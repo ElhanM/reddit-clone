@@ -5,9 +5,9 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/server.ts",
+    "dev": "NODE_PATH=./src ts-node-dev --respawn src/server.ts",
     "build": "tsc",
-    "start": "node dist/src/server.js",
+    "start": "NODE_PATH=./src node dist/src/server.js",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/",
     "lint:fix": "npm run lint -- --fix"
   },
