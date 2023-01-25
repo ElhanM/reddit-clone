@@ -1,25 +1,21 @@
 require("dotenv").config(); // this is important!
 
-module.exports = {
-  development: {
-    username: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    host: process.env.PG_HOST,
+import { Sequelize } from "sequelize";
+
+const database = process.env.PG_DATABASE;
+const user = process.env.PG_USER;
+const password = process.env.PG_PASSWORD;
+const host = process.env.PG_HOST;
+
+let db: Sequelize;
+
+if (database && user && password && host) {
+  db = new Sequelize(database, user, password, {
+    host,
     dialect: "postgres",
-  },
-  test: {
-    username: "root",
-    password: null,
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "postgres",
-  },
-  production: {
-    username: "root",
-    password: null,
-    database: "database_production",
-    host: "127.0.0.1",
-    dialect: "postgres",
-  },
-};
+  });
+} else {
+  throw new Error("Missing environment variables");
+}
+
+export default db;
