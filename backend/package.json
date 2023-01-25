@@ -21,8 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.21.3",
-    "uuid": "^9.0.0"
+    "sequelize": "^6.21.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -33,7 +32,6 @@
     "@types/node": "^18.11.18",
     "@types/pg": "^8.6.6",
     "@types/sequelize": "^4.28.14",
-    "@types/uuid": "^9.0.0",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
     "eslint": "^8.20.0",
