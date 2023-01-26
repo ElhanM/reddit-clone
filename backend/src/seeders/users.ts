@@ -2,19 +2,19 @@ import db from "models";
 
 const users = [
   {
-    userId: "97cbf1a0-5b1f-11eb-ae93-0242ac130002",
+    userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
     username: "user1",
     email: "user1@gmail.com",
     password: "user1234",
   },
   {
-    userId: "97cbf1a0-5b1f-11eb-ae93-0242ac130003",
+    userId: "311f992b-e482-4a1a-b15d-68252b5d1ac3",
     username: "user2",
     email: "user2@gmail.com",
     password: "user2345",
   },
   {
-    userId: "97cbf1a0-5b1f-11eb-ae93-0242ac130004",
+    userId: "a8bce593-1c89-40a9-a39d-e9a9dab64a97",
     username: "user3",
     email: "user3@gmail.com",
     password: "user3456",

@@ -23,6 +23,24 @@ module.exports = (sequelize: any, DataTypes: any) => {
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
+      User.hasMany(models.Comment, {
+        foreignKey: {
+          name: "userId",
+          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      User.belongsToMany(models.Community, {
+        through: "CommunityUser",
+        // userId as join key reffering to userId in User
+        foreignKey: {
+          name: "userId",
+          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   User.init(
