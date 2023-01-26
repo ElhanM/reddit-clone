@@ -10,7 +10,24 @@ module.exports = (sequelize: any, DataTypes: any) => {
   class Comment extends Model<IComment> implements IComment {
     commentId?: string;
     comment!: string;
-    // static associate(models: any) {}
+    static associate(models: any) {
+      Comment.belongsTo(models.User, {
+        foreignKey: {
+          name: "userId",
+          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      Comment.belongsTo(models.Post, {
+        foreignKey: {
+          name: "postId",
+          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+    }
   }
   Comment.init(
     {

@@ -13,9 +13,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
     name!: string;
     description!: string;
     static associate(models: any) {
-      Community.belongsTo(models.User, {
+      Community.belongsToMany(models.User, {
+        through: "CommunityUser",
         foreignKey: {
-          name: "userId",
+          name: "communityId",
           // allowNull: false,
         },
         onDelete: "CASCADE",

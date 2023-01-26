@@ -1,4 +1,5 @@
-export { default as createUsers } from "./user";
-export { default as createPosts } from "./post";
-export { default as createComments } from "./comment";
-export { default as createCommunities } from "./community";
+export { default as createUsers } from "./users";
+export { default as createPosts } from "./posts";
+export { default as createComments } from "./comments";
+export { default as createCommunities } from "./communities";
+export { default as createCommunityUsers } from "./communityUsers";
