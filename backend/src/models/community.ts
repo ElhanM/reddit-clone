@@ -1,19 +1,19 @@
 "use strict";
 import { Model } from "sequelize";
 
-interface IPost {
-  postId?: string;
-  title: string;
+interface ICommunity {
+  communityId?: string;
+  name: string;
   description: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
-  class Post extends Model<IPost> implements IPost {
-    postId!: string;
-    title!: string;
+  class Community extends Model<ICommunity> implements ICommunity {
+    communityId?: string;
+    name!: string;
     description!: string;
     static associate(models: any) {
-      Post.belongsTo(models.User, {
+      Community.belongsTo(models.User, {
         foreignKey: {
           name: "userId",
           // allowNull: false,
@@ -23,24 +23,24 @@ module.exports = (sequelize: any, DataTypes: any) => {
       });
     }
   }
-  Post.init(
+  Community.init(
     {
-      postId: {
+      communityId: {
         type: DataTypes.UUID,
         primaryKey: true,
         allowNull: false,
         defaultValue: DataTypes.UUIDV4,
       },
-      title: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: "Title is required",
+            msg: "Name is required",
           },
           len: {
-            args: [1, 255],
-            msg: "Title must be between 1 and 255 characters",
+            args: [1, 25],
+            msg: "Name must be between 1 and 25 characters",
           },
         },
       },
@@ -60,9 +60,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
     },
     {
       sequelize,
-      modelName: "Post",
-      tableName: "posts",
+      modelName: "Community",
+      tableName: "communities",
     },
   );
-  return Post;
+  return Community;
 };

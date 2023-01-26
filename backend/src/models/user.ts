@@ -1,7 +1,7 @@
 "use strict";
 import { Model } from "sequelize";
 
-interface UserAttributes {
+interface IUser {
   userId?: string;
   username: string;
   email: string;
@@ -9,12 +9,7 @@ interface UserAttributes {
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
-  class User extends Model<UserAttributes> implements UserAttributes {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class User extends Model<IUser> implements IUser {
     userId!: string;
     username!: string;
     email!: string;
@@ -23,8 +18,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       User.hasMany(models.Post, {
         foreignKey: {
           name: "userId",
-          // type: Sequelize.DataTypes.UUID,
-          allowNull: false,
+          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
