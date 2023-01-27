@@ -8,13 +8,12 @@ interface IComment {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Comment extends Model<IComment> implements IComment {
-    commentId?: string;
+    commentId!: string;
     comment!: string;
     static associate(models: any) {
       Comment.belongsTo(models.User, {
         foreignKey: {
           name: "userId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -22,7 +21,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       Comment.belongsTo(models.Post, {
         foreignKey: {
           name: "postId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",

@@ -9,7 +9,7 @@ interface ICommunity {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Community extends Model<ICommunity> implements ICommunity {
-    communityId?: string;
+    communityId!: string;
     name!: string;
     description!: string;
     static associate(models: any) {
@@ -17,7 +17,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
         through: "CommunityUser",
         foreignKey: {
           name: "communityId",
-          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      // community has many posts
+      Community.hasMany(models.Post, {
+        foreignKey: {
+          name: "communityId",
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",

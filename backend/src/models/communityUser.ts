@@ -7,7 +7,7 @@ interface ICommunity {
 
 module.exports = (sequelize: any, DataTypes: any) => {
   class Community extends Model<ICommunity> implements ICommunity {
-    communityUserId?: string;
+    communityUserId!: string;
   }
   // the foreign keys also act as a composite alternate key
   // so their pair has to be uqique

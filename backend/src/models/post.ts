@@ -16,7 +16,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       Post.belongsTo(models.User, {
         foreignKey: {
           name: "userId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -24,7 +23,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
       Post.hasMany(models.Comment, {
         foreignKey: {
           name: "postId",
-          // allowNull: false,
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      // post belongs to one community
+      Post.belongsTo(models.Community, {
+        foreignKey: {
+          name: "communityId",
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",

@@ -21,15 +21,12 @@ const users = [
   },
 ];
 
-const createUsers = () => {
-  users.map(async user => {
-    try {
-      const createUser = await db.User.create(user);
-      console.log("success", createUser.toJSON());
-    } catch (error) {
-      console.log(error);
-    }
-  });
+const createUsers = async () => {
+  try {
+    await db.User.bulkCreate(users, { runValidators: true });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default createUsers;
