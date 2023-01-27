@@ -21,15 +21,14 @@ const comments = [
   },
 ];
 
-const createComments = () => {
-  comments.map(async comment => {
-    try {
-      const createComment = await db.Comment.create(comment);
-      console.log("success", createComment.toJSON());
-    } catch (error) {
-      console.log(error);
-    }
-  });
+const createComments = async () => {
+  try {
+    await db.Comment.bulkCreate(comments, {
+      runValidators: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default createComments;

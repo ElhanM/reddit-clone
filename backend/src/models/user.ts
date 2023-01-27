@@ -1,5 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
+import bcrypt from "bcryptjs";
 
 interface IUser {
   userId?: string;
@@ -18,7 +19,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       User.hasMany(models.Post, {
         foreignKey: {
           name: "userId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -26,7 +26,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       User.hasMany(models.Comment, {
         foreignKey: {
           name: "userId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -36,7 +35,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
         // userId as join key reffering to userId in User
         foreignKey: {
           name: "userId",
-          // allowNull: false,
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
@@ -72,7 +70,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
       email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: "Username already exists",
+        unique: "Email already exists",
         validate: {
           notEmpty: {
             msg: "Email is required",
@@ -94,13 +92,14 @@ module.exports = (sequelize: any, DataTypes: any) => {
             msg: "Password is required",
           },
           len: {
-            args: [8, 32],
-            msg: "Password must be between 8 and 32 characters",
+            args: [8, 100],
+            msg: "Password must be between 8 and 100 characters",
           },
-          is: {
-            args: /^[a-zA-Z0-9_.-]+$/,
-            msg: "Password can only contain letters, numbers, dash, underscore and dot",
-          },
+        },
+        set(this: any, password: string) {
+          const salt = bcrypt.genSaltSync(10);
+          const hashedPassword = bcrypt.hashSync(password, salt);
+          this.setDataValue("password", hashedPassword);
         },
       },
     },

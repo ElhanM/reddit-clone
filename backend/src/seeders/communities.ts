@@ -18,15 +18,14 @@ const communities = [
   },
 ];
 
-const createCommunities = () => {
-  communities.map(async community => {
-    try {
-      const createCommunity = await db.Community.create(community);
-      console.log("success", createCommunity.toJSON());
-    } catch (error) {
-      console.log(error);
-    }
-  });
+const createCommunities = async () => {
+  try {
+    await db.Community.bulkCreate(communities, {
+      runValidators: true,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default createCommunities;
