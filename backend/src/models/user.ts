@@ -2,7 +2,7 @@
 import { Model } from "sequelize";
 import bcrypt from "bcryptjs";
 
-interface IUser {
+export interface IUser {
   userId?: string;
   username: string;
   email: string;
@@ -59,7 +59,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
           },
           len: {
             args: [4, 25],
-            msg: "Username must be between 1 and 25 characters",
+            msg: "Username must be between 4 and 25 characters",
           },
           is: {
             args: /^[a-zA-Z0-9_.-]+$/,
@@ -90,10 +90,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
         validate: {
           notEmpty: {
             msg: "Password is required",
-          },
-          len: {
-            args: [8, 100],
-            msg: "Password must be between 8 and 100 characters",
           },
         },
         set(this: any, password: string) {

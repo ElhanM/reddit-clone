@@ -1,9 +1,9 @@
 import db from "models";
-import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
+import { getToken, setCookie } from "utils";
 
-const login = async (req: Request, res: Response, next: NextFunction) => {
+const login = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
@@ -13,43 +13,38 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
       },
     });
     if (!user) {
-      return res.status(400).json({ message: "Invalid email" });
+      return res.status(400).json({ msg: "Invalid email" });
     }
     const isPasswordCorrect = bcrypt.compareSync(password, user.toJSON().password);
     if (!isPasswordCorrect) {
-      return res.status(400).json({ message: "Inavlid password" });
+      return res.status(400).json({ msg: "Invalid password" });
     }
 
-    if (process.env.JWT_SECRET && process.env.COOKIE_EXPIRE) {
-      const token = jwt.sign({ userId: user.toJSON().userId }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE,
-      });
+    const token = getToken(user.toJSON);
 
-      // check if user already has a cookie, if he does delete it
-      console.log("req.cookies", req.cookies);
-      // clear all cookies from req.cookies object
-      // for (const key in req.cookies) {
-      //   res.clearCookie(key);
-      // }
-      const currentCookie = req.cookies[`${user.toJSON().userId}`];
-      if (currentCookie) {
-        req.cookies[`${user.toJSON().userId}`] = "";
-      }
-      res.cookie(String(user.toJSON().userId), token, {
-        path: "/",
-        // in process.env.COOKIE_EXPIRE we have number of days, so we need to convert it to milliseconds
-        maxAge: Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000,
-        httpOnly: true,
-        sameSite: "lax",
-      });
+    // check if user already has a cookie, if he does delete it
+    console.log("req.cookies", req.cookies);
+    // clear all cookies from req.cookies object
+    // for (const key in req.cookies) {
+    //   res.clearCookie(key);
+    // }
 
-      return res.status(200).json({ message: "Successfully Logged In", user });
+    const currentCookie = req.cookies[`${user.toJSON().userId}`];
+    if (currentCookie) {
+      req.cookies[`${user.toJSON().userId}`] = "";
+    }
+    if (token) {
+      setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);
     } else {
-      return res.status(500).json({ message: "Internal server error, no env variables" });
+      return res.status(500).json({ msg: "Internal server error, token missing" });
     }
+    // give back user object without password
+    const userWithoutPassword = { ...user.toJSON() };
+    delete userWithoutPassword.password;
+    return res.status(200).json({ msg: "Successfully Logged In", user: userWithoutPassword });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Internal server error", err });
+    return res.status(500).json({ msg: "Internal server error", err });
   }
 };
 
