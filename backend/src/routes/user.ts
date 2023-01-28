@@ -1,9 +1,11 @@
-const express = require("express");
+import express from "express";
+import { ErrorHandler } from "middlewares";
+import { AuthValidator } from "validation";
+import { register, login } from "controllers";
+
 const router = express.Router();
 
-import { register, login } from "controllers/auth";
-
-router.route("/register").post(register);
-router.route("/login").post(login);
+router.route("/register").post(AuthValidator.checkRegister(), ErrorHandler.handleValidationError, register);
+router.route("/login").post(AuthValidator.checkLogin(), ErrorHandler.handleValidationError, login);
 
 export default router;
