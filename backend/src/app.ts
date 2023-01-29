@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import auth from "routes/user";
+import { auth, posts } from "./routes";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 
@@ -14,5 +14,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", auth);
+app.use("/api/posts", posts);
 
 export default app;

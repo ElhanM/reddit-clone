@@ -20,18 +20,15 @@ const login = async (req: Request, res: Response) => {
       return res.status(400).json({ msg: "Invalid password" });
     }
 
-    const token = getToken(user.toJSON);
+    const token = getToken(user.toJSON().userId);
 
     // check if user already has a cookie, if he does delete it
     console.log("req.cookies", req.cookies);
     // clear all cookies from req.cookies object
-    // for (const key in req.cookies) {
-    //   res.clearCookie(key);
-    // }
 
-    const currentCookie = req.cookies[`${user.toJSON().userId}`];
-    if (currentCookie) {
-      req.cookies[`${user.toJSON().userId}`] = "";
+    // req.cookies[`${user.toJSON().userId}`] = "";
+    for (const key in req.cookies) {
+      res.clearCookie(key);
     }
     if (token) {
       setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);
