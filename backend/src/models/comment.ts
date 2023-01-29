@@ -1,6 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
-
+import * as zlib from "zlib";
 interface IComment {
   commentId?: string;
   comment: string;
@@ -36,17 +36,25 @@ module.exports = (sequelize: any, DataTypes: any) => {
         defaultValue: DataTypes.UUIDV4,
       },
       comment: {
-        // TODO: Add zlib compress, make it validate before compressing
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           notEmpty: {
             msg: "Comment is required",
           },
           len: {
-            args: [1, 255],
-            msg: "Comment must be between 1 and 255 characters",
+            args: [1, 1000],
+            msg: "Comment too long",
           },
+        },
+        set(value: string) {
+          const compressed = zlib.deflateSync(value).toString("base64");
+          this.setDataValue("comment", compressed);
+        },
+        get() {
+          const compressed = this.getDataValue("comment");
+          const decompressed = zlib.inflateSync(Buffer.from(compressed, "base64"));
+          return decompressed.toString();
         },
       },
     },

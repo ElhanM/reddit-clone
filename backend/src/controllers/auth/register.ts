@@ -32,6 +32,10 @@ const register = async (req: Request, res: Response) => {
     const token = getToken(user.toJSON().userId);
 
     // req.cookies[`${user.toJSON().userId}`] = "";
+    // in a finished app, the end user can only login/register once and then his cookie gets deleted when he signs out
+    // in development, we can register/login multiple times, and then one user can have multiple cookies
+    // which we don't want/need
+    // so we delete all cookies on login and on register
     for (const key in req.cookies) {
       res.clearCookie(key);
     }

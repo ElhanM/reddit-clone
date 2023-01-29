@@ -19,6 +19,12 @@ const users = [
     email: "user3@gmail.com",
     password: "user3456",
   },
+  {
+    userId: "81de75b1-8ebe-47ae-8b8d-95f0c2aae8ba",
+    username: "elhan",
+    email: "elhan@gmail.com",
+    password: "elhan1234",
+  },
 ];
 
 const createUsers = async () => {

@@ -16,6 +16,11 @@ const communityUsers = [
     userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
     communityId: "0a22e48d-4a2a-41c0-94d6-949af9d5fe00",
   },
+  {
+    communityUserId: "3a47bc17-daed-41c8-a10e-cf38a3f71590",
+    userId: "81de75b1-8ebe-47ae-8b8d-95f0c2aae8ba",
+    communityId: "1dbd35c9-cc57-4635-afb3-9f8825516bd1",
+  },
 ];
 
 const createCommunityUsers = async () => {

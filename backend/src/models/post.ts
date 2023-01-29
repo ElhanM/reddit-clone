@@ -1,6 +1,6 @@
 "use strict";
 import { Model } from "sequelize";
-
+import * as zlib from "zlib";
 interface IPost {
   postId?: string;
   title: string;
@@ -59,16 +59,26 @@ module.exports = (sequelize: any, DataTypes: any) => {
         },
       },
       description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
           notEmpty: {
             msg: "Description is required",
           },
           len: {
-            args: [1, 255],
-            msg: "Description must be between 1 and 255 characters",
+            args: [1, 1000],
+            msg: "Description too long",
           },
+        },
+        // zlib adds compression to the data. makes it smaller
+        set(value: string) {
+          const compressed = zlib.deflateSync(value).toString("base64");
+          this.setDataValue("description", compressed);
+        },
+        get() {
+          const compressed = this.getDataValue("description");
+          const decompressed = zlib.inflateSync(Buffer.from(compressed, "base64"));
+          return decompressed.toString();
         },
       },
     },
