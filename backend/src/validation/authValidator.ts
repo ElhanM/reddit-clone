@@ -52,7 +52,6 @@ class AuthValidator {
         .withMessage("The password value should be between 8 and 32 characters")
         .matches(/^[a-zA-Z0-9_.-]+$/)
         .withMessage("The password value can only contain letters, numbers, dash, underscore and dot")
-        // Password can only contain letters, numbers, dash, underscore and dot
         .matches(/^[a-zA-Z0-9_.-]+$/)
         .withMessage("The password value can only contain letters, numbers, dash, underscore and dot"),
     ];

@@ -14,7 +14,9 @@ const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
         if (err) {
           return res.status(400).json({ message: "Invalid Token" });
         }
+        // to avoid error that userId does not exist on user: string | jwt.JwtPayload | undefined
         const { userId } = user as { userId: string };
+        // in order to add userId to req object, we need to add it to the req type, hence the AuthRequest type
         req.userId = userId;
         next();
       });

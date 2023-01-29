@@ -1,6 +1,5 @@
 import express from "express";
-import { ErrorHandler, verifyToken } from "middlewares";
-import { AuthValidator } from "validation";
+import { handleValidationError, verifyToken } from "middlewares";
 import { getPostsForUser } from "controllers";
 
 const router = express.Router();
