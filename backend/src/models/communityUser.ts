@@ -1,17 +1,21 @@
 "use strict";
 import { Model } from "sequelize";
 
-interface ICommunity {
+export interface ICommunityUser {
   communityUserId?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  communityId?: string;
+  userId?: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
-  class Community extends Model<ICommunity> implements ICommunity {
+  class CommunityUser extends Model<ICommunityUser> implements ICommunityUser {
     communityUserId!: string;
   }
   // the foreign keys also act as a composite alternate key
   // so their pair has to be unique
-  Community.init(
+  CommunityUser.init(
     {
       communityUserId: {
         type: DataTypes.UUID,
@@ -24,8 +28,9 @@ module.exports = (sequelize: any, DataTypes: any) => {
       sequelize,
       modelName: "CommunityUser",
       tableName: "communityUsers",
+      timestamps: false,
     },
   );
 
-  return Community;
+  return CommunityUser;
 };
