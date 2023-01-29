@@ -1,6 +1,7 @@
 import db from "models";
 import { Request, Response } from "express";
 import { getToken, setCookie } from "utils";
+import jwt from "jsonwebtoken";
 
 const register = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
@@ -28,8 +29,13 @@ const register = async (req: Request, res: Response) => {
       email,
       password,
     });
+    const token = getToken(user.toJSON().userId);
 
-    const token = getToken(user.toJSON);
+    // req.cookies[`${user.toJSON().userId}`] = "";
+    for (const key in req.cookies) {
+      res.clearCookie(key);
+    }
+
     if (token) {
       // in process.env.COOKIE_EXPIRE we have number of days, so we need to convert it to milliseconds
       setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);

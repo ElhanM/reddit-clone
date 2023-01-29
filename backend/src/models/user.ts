@@ -1,8 +1,7 @@
 "use strict";
 import { Model } from "sequelize";
 import bcrypt from "bcryptjs";
-
-export interface IUser {
+interface IUser {
   userId?: string;
   username: string;
   email: string;
@@ -65,6 +64,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
             args: /^[a-zA-Z0-9_.-]+$/,
             msg: "Username can only contain letters, numbers, dash, underscore and dot",
           },
+        },
+        // set it to lowercase
+        set(this: any, username: string) {
+          this.setDataValue("username", username.toLowerCase());
         },
       },
       email: {

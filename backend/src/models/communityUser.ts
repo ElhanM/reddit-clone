@@ -10,7 +10,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     communityUserId!: string;
   }
   // the foreign keys also act as a composite alternate key
-  // so their pair has to be uqique
+  // so their pair has to be unique
   Community.init(
     {
       communityUserId: {
