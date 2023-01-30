@@ -65,10 +65,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
             msg: "Username can only contain letters, numbers, dash, underscore and dot",
           },
         },
-        // set it to lowercase
-        set(this: any, username: string) {
-          this.setDataValue("username", username.toLowerCase());
-        },
       },
       email: {
         type: DataTypes.STRING,

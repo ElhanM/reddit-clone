@@ -1,9 +1,9 @@
 import db from "models";
-import { Request, Response } from "express";
-import { getToken, setCookie } from "utils";
-import jwt from "jsonwebtoken";
+import { NextFunction, Request, Response } from "express";
+import { clearCookies, getToken, setCookie } from "utils";
+import { ErrorResponse } from "utils";
 
-const register = async (req: Request, res: Response) => {
+const register = async (req: Request, res: Response, next: NextFunction) => {
   const { username, email, password } = req.body;
 
   let existingUser;
@@ -18,9 +18,12 @@ const register = async (req: Request, res: Response) => {
     console.log(err);
   }
   if (existingUser) {
-    return res
-      .status(400)
-      .json({ msg: "Email or username already exists. If this is your account, try logging in. Otherwise, try using different credentials." });
+    return next(
+      new ErrorResponse(
+        "Email or username already exists. If this is your account, try logging in. Otherwise, try using different credentials.",
+        400,
+      ),
+    );
   }
 
   try {
@@ -36,24 +39,22 @@ const register = async (req: Request, res: Response) => {
     // in development, we can register/login multiple times, and then one user can have multiple cookies
     // which we don't want/need
     // so we delete all cookies on login and on register
-    for (const key in req.cookies) {
-      res.clearCookie(key);
-    }
+    clearCookies(req, res);
 
     if (token) {
       // in process.env.COOKIE_EXPIRE we have number of days, so we need to convert it to milliseconds
       setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);
     } else {
-      return res.status(500).json({ msg: "Internal server error, token missing" });
+      return next(new ErrorResponse("Internal server error, token missing", 500));
     }
 
     // give back user object without password
     const userWithoutPassword = { ...user.toJSON() };
     delete userWithoutPassword.password;
-    return res.status(200).json({ msg: "Successfully Registered", user: userWithoutPassword });
+    return res.status(200).json({ success: true, msg: "Successfully Registered", user: userWithoutPassword });
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ msg: "Internal server error", err });
+    return next(err);
   }
 };
 

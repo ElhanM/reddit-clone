@@ -50,6 +50,10 @@ module.exports = (sequelize: any, DataTypes: any) => {
             args: [1, 25],
             msg: "Name must be between 1 and 25 characters",
           },
+          is: {
+            args: /^[a-zA-Z0-9_.-]+$/,
+            msg: "Community name can only contain letters, numbers, dash, underscore and dot",
+          },
         },
       },
       description: {
