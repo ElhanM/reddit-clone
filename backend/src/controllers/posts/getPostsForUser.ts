@@ -1,9 +1,9 @@
 import db from "models";
-import { Response } from "express";
+import { NextFunction, Response } from "express";
 import { AuthRequest } from "types/express";
-import { ICommunityUser } from "models/communityUser";
+import { ErrorResponse } from "utils";
 
-const getAllPostsForUser = async (req: AuthRequest, res: Response) => {
+const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
     const pageSize = 2;
     const { page }: { page?: string } = req.query;
@@ -17,35 +17,59 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response) => {
         pageNumber = 1;
       }
     }
-    console.log({ pageSize });
-    console.log({ pageNumber });
-    const user = await db.User.findOne({
-      where: { userId: req.userId },
-      attributes: [],
-      include: [{ model: db.Community, through: { model: db.CommunityUser, attributes: [] }, attributes: ["communityId"] }],
-    });
-    // get all user data, and the communities user is in, and all of the posts in those communities
-    const postsForUser = await db.Post.findAll({
-      where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
-      // add comments
-      include: [
-        {
-          model: db.Comment,
-          attributes: ["commentId"],
-        },
-      ],
-      limit: pageSize,
-      offset: (pageNumber - 1) * pageSize,
-    });
+    let user;
+    try {
+      user = await db.User.findOne({
+        where: { userId: req.userId },
+        attributes: [],
+        include: [{ model: db.Community, through: { model: db.CommunityUser, attributes: [] }, attributes: ["communityId"] }],
+      });
+    } catch (error) {
+      return next(new ErrorResponse(`Error finding user with userId: ${req.userId}`, 404));
+      // return next(error);
+    }
+    let postsForUser;
+    try {
+      // get all user data, and the communities user is in, and all of the posts in those communities
+      postsForUser = await db.Post.findAll({
+        where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
+        // exclude the communityId and userId
+        attributes: { exclude: ["communityId", "userId"] },
+        // add comments
+        include: [
+          {
+            model: db.Comment,
+            attributes: ["commentId"],
+          },
+          {
+            model: db.User,
+            attributes: ["userId", "username"],
+          },
+          {
+            model: db.Community,
+            attributes: ["communityId", "name"],
+          },
+        ],
+        limit: pageSize,
+        offset: (pageNumber - 1) * pageSize,
+      });
+    } catch (error) {
+      return next(new ErrorResponse(`Error getting posts for user with userId: ${req.userId}`, 404));
+    }
+    let numberOfPosts;
+    try {
+      //TODO sort by newest posts on front end when normalizing state
+      // Record<string, string> -> object with string keys and string properties
+      numberOfPosts = await db.Post.count({
+        where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
+      });
+    } catch (error) {
+      return next(new ErrorResponse(`Error getting number of posts for user with userId: ${req.userId}`, 404));
+    }
 
-    //TODO sort by newest posts on front end when normalizing state
-    // Record<string, any> -> object with string keys and any properties
-    const numberOfPosts = await db.Post.count({
-      where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
-    });
-    console.log({ numberOfPosts });
     const pages = Math.ceil(numberOfPosts / pageSize);
     res.status(200).json({
+      success: true,
       info: {
         pageSize,
         numberOfPosts,
@@ -63,7 +87,7 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response) => {
       postsForUser,
     });
   } catch (error) {
-    res.status(500).json({ msg: "Error getting posts for user", error });
+    next(error);
   }
 };
 
