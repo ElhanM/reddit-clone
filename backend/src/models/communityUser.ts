@@ -3,10 +3,6 @@ import { Model } from "sequelize";
 
 export interface ICommunityUser {
   communityUserId?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-  communityId?: string;
-  userId?: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {

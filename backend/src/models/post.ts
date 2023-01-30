@@ -35,6 +35,22 @@ module.exports = (sequelize: any, DataTypes: any) => {
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       });
+      Post.belongsToMany(models.User, {
+        through: "PostUpvote",
+        // userId as join key reffering to userId in User
+        foreignKey: {
+          name: "postId",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
+      Post.hasMany(models.PostUpvote, {
+        foreignKey: {
+          name: "postId",
+        },
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+      });
     }
   }
   Post.init(
@@ -86,7 +102,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       sequelize,
       modelName: "Post",
       tableName: "posts",
-      timestamps: false,
     },
   );
   return Post;
