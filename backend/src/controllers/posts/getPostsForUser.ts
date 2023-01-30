@@ -22,6 +22,7 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
       user = await db.User.findOne({
         where: { userId: req.userId },
         attributes: [],
+        // here, we are including the communities, but user has no direct relation with communities, so we have to do this through the CommunityUser table
         include: [{ model: db.Community, through: { model: db.CommunityUser, attributes: [] }, attributes: ["communityId"] }],
       });
     } catch (error) {
@@ -31,7 +32,7 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
     let postsForUser;
     try {
       // get all user data, and the communities user is in, and all of the posts in those communities
-      postsForUser = await db.Post.findAll({
+      postsForUser = await db.Post.findAndCountAll({
         where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
         // exclude the communityId and userId
         attributes: { exclude: ["communityId", "userId"] },
@@ -43,26 +44,30 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
           },
           {
             model: db.User,
-            attributes: ["userId", "username"],
+            attributes: ["userId"],
           },
           {
             model: db.Community,
-            attributes: ["communityId", "name"],
+            attributes: ["communityId"],
+          },
+          {
+            // we are doing this join directly through the PostUpvote table because I added a bunch of extra relations to the model that allow this
+            model: db.PostUpvote,
+            attributes: ["userId"],
           },
         ],
         limit: pageSize,
         offset: (pageNumber - 1) * pageSize,
       });
     } catch (error) {
+      console.log({ error });
       return next(new ErrorResponse(`Error getting posts for user with userId: ${req.userId}`, 404));
     }
     let numberOfPosts;
     try {
       //TODO sort by newest posts on front end when normalizing state
       // Record<string, string> -> object with string keys and string properties
-      numberOfPosts = await db.Post.count({
-        where: { communityId: user?.Communities.map((community: Record<string, string>) => community.communityId) },
-      });
+      numberOfPosts = postsForUser.count;
     } catch (error) {
       return next(new ErrorResponse(`Error getting number of posts for user with userId: ${req.userId}`, 404));
     }
@@ -72,7 +77,6 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
       success: true,
       info: {
         pageSize,
-        numberOfPosts,
         pages,
         currentPage: pageNumber,
         next: pageNumber >= pages ? null : `http://localhost:5000/api/posts?page=${pageNumber + 1}`,
