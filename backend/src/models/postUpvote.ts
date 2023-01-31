@@ -38,7 +38,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       sequelize,
       modelName: "PostUpvote",
       tableName: "postUpvotes",
-      timestamps: false,
     },
   );
 

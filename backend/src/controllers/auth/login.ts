@@ -23,7 +23,6 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
 
     const token = getToken(user.toJSON().userId);
 
-    console.log("req.cookies", req.cookies);
     // req.cookies[`${user.toJSON().userId}`] = "";
     clearCookies(req, res);
 

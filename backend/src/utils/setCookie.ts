@@ -5,7 +5,10 @@ const setCookie = (res: Response, userId: number, token: string, maxAge: number)
     path: "/",
     maxAge,
     httpOnly: true,
-    sameSite: "lax",
+    // only works in https, so don't work in postman
+    // but still works in localhost in browser
+    // secure: true,
+    sameSite: "strict",
   });
 };
 
