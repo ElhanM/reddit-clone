@@ -74,7 +74,6 @@ module.exports = (sequelize: any, DataTypes: any) => {
       sequelize,
       modelName: "Community",
       tableName: "communities",
-      timestamps: false,
     },
   );
   return Community;

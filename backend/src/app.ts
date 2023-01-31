@@ -8,10 +8,9 @@ import { errorHandler } from "middlewares";
 const app = express();
 require("dotenv").config();
 
-// use cookie parser and pass secret key
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 app.use(helmet());
-app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", auth);
