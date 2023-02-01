@@ -1,15 +1,18 @@
+// PLUGINS IMPORTS //
 import { configureStore } from "@reduxjs/toolkit";
+// EXTRA IMPORTS //
+import { apiSlice } from "features/api/apiSlice";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
-import { postsApi } from "../features/api/postsApi";
+/////////////////////////////////////////////////////////////////////////////
 
 export const store = configureStore({
   devTools: true,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(postsApi.middleware),
   reducer: {
-    [postsApi.reducerPath]: postsApi.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(apiSlice.middleware),
 });
 export type RootState = ReturnType<typeof store.getState>;
 export const useAppDispatch: () => typeof store.dispatch = useDispatch;
