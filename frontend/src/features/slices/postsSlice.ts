@@ -1,12 +1,11 @@
 // PLUGINS IMPORTS //
 import type { EntityId, Dictionary } from "@reduxjs/toolkit";
 import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
-import type { RootState } from "app/store";
 // INTERFACES IMPORTS //
 import type { IInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
-
 // EXTRA IMPORTS //
 import { apiSlice } from "../api/apiSlice";
+import type { RootState } from "app/store";
 
 /////////////////////////////////////////////////////////////////////////////
 

@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from "express";
 const errorHandler = (err: { statusCode: number; message: string }, _req: Request, res: Response, _next: NextFunction) => {
   res.status(err.statusCode || 500).json({
     success: false,
-    message: err.message || "Internal Server Error",
+    msg: err.message || "Internal Server Error",
   });
 };
 

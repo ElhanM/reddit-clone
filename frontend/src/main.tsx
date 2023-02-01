@@ -1,7 +1,10 @@
 // PLUGINS IMPORTS //
 import { ThemeProvider } from "@mui/material/styles";
+import React from "react";
+
 // COMPONENT IMPORTS //
 import App from "App";
+
 // EXTRA IMPORTS //
 import { store } from "app/store";
 import { theme } from "mui";

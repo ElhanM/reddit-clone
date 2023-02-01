@@ -1,9 +1,10 @@
 // PLUGINS IMPORTS //
 import { configureStore } from "@reduxjs/toolkit";
-// EXTRA IMPORTS //
-import { apiSlice } from "features/api/apiSlice";
 import type { TypedUseSelectorHook } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
+
+// EXTRA IMPORTS //
+import { apiSlice } from "features/api/apiSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
