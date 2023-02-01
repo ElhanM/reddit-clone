@@ -1,15 +1,22 @@
-import React from "react";
+// PLUGINS IMPORTS //
+import { ThemeProvider } from "@mui/material/styles";
+// COMPONENT IMPORTS //
+import App from "App";
+// EXTRA IMPORTS //
+import { store } from "app/store";
+import { theme } from "mui";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
+import "index.css";
 
-// absolute path does not work in this file
-import App from "./App";
-import { store } from "./app/store";
+/////////////////////////////////////////////////////////////////////////////
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement);
 
 root.render(
   <Provider store={store}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Provider>,
 );

@@ -1,9 +1,9 @@
 {
-  "name": "backend",
+  "name": "reddit-clone-backend",
   "version": "0.0.0",
-  "description": "TypeScript + Sequelize + MySQL + Express API Server",
-  "author": "",
-  "license": "ISC",
+  "description": "TypeScript + Sequelize + PostgreSQL + Express API Server",
+  "author": "ElhanM",
+  "license": "MIT",
   "scripts": {
     "dev": "NODE_PATH=./src ts-node-dev --respawn src/server.ts",
     "build": "tsc",
