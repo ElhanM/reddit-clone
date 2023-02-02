@@ -1,0 +1,6 @@
+@use "../../../scss/abstracts/colors" as *;
+
+.upvote-svg {
+  width: 20px;
+  fill: $upvote;
+}
