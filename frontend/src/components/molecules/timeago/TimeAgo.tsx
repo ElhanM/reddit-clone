@@ -4,7 +4,7 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-
+import styles from "./time-ago.module.css";
 /////////////////////////////////////////////////////////////////////////////
 
 type Props = {
@@ -20,7 +20,7 @@ const TimeAgo = ({ timestamp }: Props) => {
   }
 
   return (
-    <span>
+    <span className={`${styles["header-rest"]}`}>
       <i>{timeAgo}</i>
     </span>
   );

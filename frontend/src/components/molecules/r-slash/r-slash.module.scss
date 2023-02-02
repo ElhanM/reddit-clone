@@ -1,0 +1,9 @@
+@use "../../../scss/abstracts/colors" as *;
+
+.r-slash {
+  fill: $r-slash;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid white;
+  width: 1em;
+}
