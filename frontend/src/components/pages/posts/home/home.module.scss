@@ -1,0 +1,10 @@
+@use "../../../../scss/abstracts/colors" as *;
+
+.home-wrapper {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  align-items: flex-start;
+}

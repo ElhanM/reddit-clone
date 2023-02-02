@@ -1,6 +1,7 @@
 // COMPONENTS IMPORTS //
 import { CssBaseline } from "@mui/material";
-import { Home, Login, SharedLayout } from "components/pages";
+import { Home, Login } from "components/pages";
+import { SharedLayout } from "components/templates";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
