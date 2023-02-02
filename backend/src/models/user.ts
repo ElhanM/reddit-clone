@@ -77,9 +77,12 @@ module.exports = (sequelize: any, DataTypes: any) => {
             msg: "Username must be between 4 and 25 characters",
           },
           is: {
-            args: /^[a-zA-Z0-9_.-]+$/,
-            msg: "Username can only contain letters, numbers, dash, underscore and dot",
+            args: /^[a-zA-Z0-9-_.]+$/,
+            msg: "Username can only contain letters, numbers, dash, underscore and dot and no space",
           },
+        },
+        set(value: string) {
+          this.setDataValue("username", value.replace(/\s/g, ""));
         },
       },
       email: {

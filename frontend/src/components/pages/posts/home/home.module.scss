@@ -1,10 +1,24 @@
 @use "../../../../scss/abstracts/colors" as *;
 
 .home-wrapper {
-  width: 80vw;
+  max-width: 960px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 2fr 1fr;
   justify-content: center;
   align-items: flex-start;
+  gap: 1.8em;
+  margin-top: 1.6em;
+}
+
+@media screen and (max-width: 976px) {
+  .home-wrapper {
+    width: 95%;
+    grid-template-columns: 1fr;
+  }
+  // select last child of .home-wrapper
+  // place last child (our aside element) first
+  .home-wrapper > *:last-child {
+    order: -1;
+  }
 }

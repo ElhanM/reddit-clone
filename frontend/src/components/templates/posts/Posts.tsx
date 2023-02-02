@@ -8,6 +8,7 @@ import PostsError from "../error/PostsError";
 import PostsLoading from "../loading/PostsLoading";
 
 // EXTRA IMPORTS //
+import styles from "./posts.module.css";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -21,7 +22,7 @@ const Posts = () => {
     return <PostsError error={error} />;
   } else if (isSuccess) {
     return (
-      <section>
+      <section className={`${styles["posts-wrapper"]}`}>
         {postIds.map(postId => (
           <Post key={postId} postId={postId} />
         ))}
