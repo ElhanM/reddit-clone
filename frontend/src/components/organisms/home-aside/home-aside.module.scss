@@ -1,4 +1,40 @@
 @use "../../../scss/abstracts/colors" as *;
 
 .home_aside-wrapper {
+  border: 1px solid $reddit-border;
+}
+
+.background {
+  height: 2.125em;
+  background-image: url("https://www.redditstatic.com/desktop2x/img/id-cards/home-banner@2x.png");
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  padding-left: 0.8em;
+}
+
+.avatar {
+  height: 2.125em;
+  background: url("https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png");
+  background-size: 40px 68px;
+  height: 68px;
+  width: 40px;
+  translate: 0 -1em;
+}
+
+.border-seperate{
+  width: 100%;
+  margin: .7em auto;
+  border: 1px solid $reddit-border;
+}
+
+.home-aside-main {
+  // display: flex;
+
+  margin: 0 1em;
+  padding-bottom: 1em;
 }
