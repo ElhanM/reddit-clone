@@ -1,0 +1,14 @@
+.home-wrapper {
+  width: 80vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}/*# sourceMappingURL=home.module.css.map */

@@ -1,0 +1,14 @@
+@use "../../../scss/abstracts/colors" as *;
+
+.post-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-wrapper > .post {
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 1em;
+}
