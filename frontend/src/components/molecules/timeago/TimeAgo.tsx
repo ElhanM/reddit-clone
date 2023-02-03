@@ -7,11 +7,11 @@ import { parseISO, formatDistanceToNow } from "date-fns";
 import styles from "./time-ago.module.css";
 /////////////////////////////////////////////////////////////////////////////
 
-type Props = {
+type TimeAgoProps = {
   timestamp: string;
 };
 
-const TimeAgo = ({ timestamp }: Props) => {
+const TimeAgo = ({ timestamp }: TimeAgoProps) => {
   let timeAgo = "";
   if (timestamp) {
     const date = parseISO(timestamp);

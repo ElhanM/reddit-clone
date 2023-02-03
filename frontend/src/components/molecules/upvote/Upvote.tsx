@@ -6,9 +6,9 @@
 import styles from "./upvote.module.css";
 /////////////////////////////////////////////////////////////////////////////
 
-type Props = {};
+type UpvoteProps = {};
 
-const Upvote = (props: Props) => {
+const Upvote = (props: UpvoteProps) => {
   return (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={`${styles["upvote-svg"]}`}>
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
