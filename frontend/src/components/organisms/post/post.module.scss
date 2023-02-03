@@ -48,9 +48,10 @@
   font-size: 0.75em;
 }
 
-.header-rest {
+.by-user {
   // we need !important to override the inline font-size of mui
   font-size: 0.75em !important;
+  color: $pale-text;
 }
 
 .post-main {
@@ -79,10 +80,10 @@
 }
 
 .comment-icon {
-  color: $comment-number;
+  color: $pale-text;
 }
 .comment-info {
-  color: $comment-number;
+  color: $pale-text;
   font-weight: 500 !important;
   font-size: 0.9em !important;
 }

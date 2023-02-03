@@ -1,1 +1,1 @@
-{"version":3,"sources":["time-ago.module.scss","time-ago.module.css"],"names":[],"mappings":"AAAA;EACE,eAAA;ACCF","file":"time-ago.module.css"}
+{"version":3,"sources":["time-ago.module.scss","../../../scss/abstracts/_colors.scss","time-ago.module.css"],"names":[],"mappings":"AAEA;EACE,eAAA;EACA,cCYU;ACbZ","file":"time-ago.module.css"}

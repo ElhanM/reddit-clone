@@ -6,7 +6,7 @@ import { CreateButton } from "components/atoms";
 
 // EXTRA IMPORTS //
 import styles from "./home-aside.module.css";
-import { ETheme } from "types/features";
+import { ETheme } from "types/theme";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -25,8 +25,20 @@ const HomeAside = (props: HomeAsideProps) => {
           <p className={`${styles["p-welcome"]}`}>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
           <div className={`${styles["border-seperate"]}`}></div>
           <div className={`${styles["buttons"]}`}>
-            <CreateButton theme={ETheme.LIGHT} />
-            <CreateButton theme={ETheme.DARK} />
+            <CreateButton
+              theme={ETheme.LIGHT}
+              buttonText="Create Post"
+              buttonProps={{
+                fullWidth: true,
+              }}  
+            />
+            <CreateButton
+              theme={ETheme.DARK}
+              buttonText="Create Community"
+              buttonProps={{
+                fullWidth: true,
+              }}
+            />
           </div>
         </main>
       </Paper>

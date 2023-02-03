@@ -1,22 +1,24 @@
 // PLUGINS IMPORTS //
-import { Button } from "@mui/material";
+import { Button, ButtonProps } from "@mui/material";
 
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
 import styles from "./create-button.module.scss";
-import { ETheme } from "types/features";
+import { ETheme } from "types/theme";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type CreateButtonProps = {
   theme: ETheme;
+  buttonText: string;
+  buttonProps?: ButtonProps;
 };
 
-const CreateButtonLight = ({ theme }: CreateButtonProps) => {
+const CreateButtonLight = ({ theme, buttonText, ...rest }: CreateButtonProps) => {
   return (
-    <Button fullWidth variant="contained" className={`${styles[`button-${theme}`]}`} onClick={() => {}}>
-      Create Post
+    <Button variant="contained" className={`${styles[`button-${theme}`]}`} {...rest.buttonProps}>
+      {buttonText}
     </Button>
   );
 };
