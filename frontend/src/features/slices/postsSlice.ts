@@ -29,25 +29,52 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     // we are getting a response of type IPaginatedGetPosts but we are transforming that response when normalizing state
     // so this is the new return type of the query
+    // pagination:
+    // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
     getPosts: builder.query<
       {
         info: IInfo;
         ids: EntityId[];
         entities: Dictionary<IPostsForUser>;
       },
-      void
+      // pass number of pages
+      number
     >({
-      query: () => {
+      query: pageNumber => {
         return {
           // allow httpOnly cookies to be sent
           credentials: "include",
           method: "GET",
-          url: "posts/get-posts",
+          url: `posts/get-posts?page=${pageNumber}`,
         };
       },
+      // Only have one cache entry because the arg always maps to one string
+      serializeQueryArgs: ({ endpointName }) => {
+        return endpointName;
+      },
       transformResponse: (rawResult: IPaginatedGetPosts) => {
+        // transforme response gets called on every request
         // set initial state to rawResult.postsForUser and also set info from initialState to rawResult.info
         return postsAdapter.setAll({ ...initialState, info: rawResult.info }, rawResult.postsForUser);
+      },
+      // Always merge incoming data to the cache entry
+      merge: (currentCache, newItems) => {
+        /* 
+        The transformResponse function is used to initialize the state of the data in the Redux store. The first time it is called, it sets the state to rawResult.postsForUser and
+        also sets the information from initialState to rawResult.info. The subsequent calls to transformResponse do not overwrite the state, but instead transform the response and
+        pass the transformed response to the merge function.
+
+        The merge function then adds the new items (in the form of a normalized state object with ids and entities) to the current cache by calling postsAdapter.upsertMany, which
+        updates the existing state with the new items without overwriting the existing state. This allows the cache to be updated with new data without losing the existing data.
+        */
+        // merge gets called on every request after the first one
+        // newItems are normalized state object with ids & entities (they get normalized in transformResponse)
+        // add them to state
+        return postsAdapter.upsertMany(currentCache, newItems.entities);
+      },
+      // Refetch when the page arg changes
+      forceRefetch({ currentArg, previousArg }) {
+        return currentArg !== previousArg;
       },
       // result is object of entities ids and info
       // entities is an object with keys of ids and values of posts
@@ -70,7 +97,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 export const { useGetPostsQuery } = extendedApiSlice;
 
 // returns the query result object
-export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select();
+export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(undefined);
 
 // Creates memoized selector
 const selectPostsData = createSelector(

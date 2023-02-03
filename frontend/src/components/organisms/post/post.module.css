@@ -77,8 +77,9 @@
   font-size: 0.75em;
 }
 
-.header-rest {
+.by-user {
   font-size: 0.75em !important;
+  color: #818384;
 }
 
 .post-main {

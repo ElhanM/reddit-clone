@@ -1,3 +1,6 @@
+@use "../../../scss/abstracts/colors" as *;
+
 .header-rest{
   font-size: 12px;
+  color: $pale-text;
 }

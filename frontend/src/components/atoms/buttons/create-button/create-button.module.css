@@ -1,0 +1,29 @@
+.button-light {
+  color: #1a1a1b !important;
+  background-color: #d7dadc !important;
+  border: 1px solid #d7dadc !important;
+  height: 2em !important;
+  border-radius: 1.8em !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+  text-transform: none !important;
+}
+
+.button-light:hover {
+  background-color: #bcc1c4 !important;
+}
+
+.button-dark {
+  color: #d7dadc !important;
+  background-color: #1a1a1b !important;
+  border: 1px solid #d7dadc !important;
+  height: 2em !important;
+  border-radius: 1.8em !important;
+  -webkit-transition: none !important;
+  transition: none !important;
+  text-transform: none !important;
+}
+
+.button-dark:hover {
+  background-color: #333335 !important;
+}/*# sourceMappingURL=create-button.module.css.map */

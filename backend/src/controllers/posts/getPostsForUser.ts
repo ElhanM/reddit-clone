@@ -5,7 +5,7 @@ import { ErrorResponse } from "utils";
 
 const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const pageSize = 3;
+    const pageSize = 6;
     const { page }: { page?: string } = req.query;
     let pageNumber;
     if (page === undefined) {

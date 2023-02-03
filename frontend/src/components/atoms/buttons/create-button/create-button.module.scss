@@ -8,6 +8,8 @@
   border-radius: 1.8em !important;
   // unset all transitions (default from mui)
   transition: none !important;
+  // disable to uppercase
+  text-transform: none !important;
 }
 
 .button-light:hover {
@@ -21,6 +23,7 @@
   height: 2em !important;
   border-radius: 1.8em !important;
   transition: none !important;
+  text-transform: none !important;
 }
 
 .button-dark:hover {

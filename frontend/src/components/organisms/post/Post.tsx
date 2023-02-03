@@ -37,7 +37,7 @@ const Post = ({ postId }: PostProps) => {
                 r/{post.Community.name}
               </Typography>
             </div>
-            <Typography component="h3" className={`${styles["header-rest"]}`}>
+            <Typography component="h3" className={`${styles["by-user"]}`}>
               Posted by u/{post.User.username}
             </Typography>
             <TimeAgo timestamp={post.createdAt} />
