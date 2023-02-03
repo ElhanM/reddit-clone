@@ -6,12 +6,13 @@ import { CreateButton } from "components/atoms";
 
 // EXTRA IMPORTS //
 import styles from "./home-aside.module.css";
+import { ETheme } from "types/features";
 
 /////////////////////////////////////////////////////////////////////////////
 
-type Props = {};
+type HomeAsideProps = {};
 
-const HomeAside = (props: Props) => {
+const HomeAside = (props: HomeAsideProps) => {
   return (
     <aside>
       <Paper className={`${styles["home_aside-wrapper"]}`}>
@@ -21,11 +22,12 @@ const HomeAside = (props: Props) => {
           <Typography>Home</Typography>
         </header>
         <main className={`${styles["home-aside-main"]}`}>
-          <p>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
+          <p className={`${styles["p-welcome"]}`}>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
           <div className={`${styles["border-seperate"]}`}></div>
-          {/* make reusable buttons */}
-          <CreateButton />
-          <CreateButton />
+          <div className={`${styles["buttons"]}`}>
+            <CreateButton theme={ETheme.LIGHT} />
+            <CreateButton theme={ETheme.DARK} />
+          </div>
         </main>
       </Paper>
     </aside>

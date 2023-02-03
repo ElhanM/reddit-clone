@@ -1,1 +1,28 @@
 @use "../../../../scss/abstracts/colors" as *;
+
+.button-light {
+  color: $button-dark !important;
+  background-color: $button-light !important;
+  border: 1px solid $button-light !important;
+  height: 2em !important;
+  border-radius: 1.8em !important;
+  // unset all transitions (default from mui)
+  transition: none !important;
+}
+
+.button-light:hover {
+  background-color: darken($button-light, 10%) !important;
+}
+
+.button-dark {
+  color: $button-light !important;
+  background-color: $button-dark !important;
+  border: 1px solid $button-light !important;
+  height: 2em !important;
+  border-radius: 1.8em !important;
+  transition: none !important;
+}
+
+.button-dark:hover {
+  background-color: lighten($button-dark, 10%) !important;
+}

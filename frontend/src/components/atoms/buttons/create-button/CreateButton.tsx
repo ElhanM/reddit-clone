@@ -4,37 +4,21 @@ import { Button } from "@mui/material";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
+import styles from "./create-button.module.scss";
+import { ETheme } from "types/features";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type CreateButtonProps = {
-
+  theme: ETheme;
 };
 
-const CreateButton = (props: CreateButtonProps) => {
+const CreateButtonLight = ({ theme }: CreateButtonProps) => {
   return (
-    <Button
-      fullWidth
-      variant="contained"
-      onClick={() => {}}
-      sx={[
-        {
-          "&:hover": {
-            backgroundColor: "#000",
-            color: "#fff",
-          },
-          color: "#000",
-          backgroundColor: "#fff",
-          borderColor: "#000",
-          border: "2px solid #000",
-          transition: "background-color 0.2s ease",
-          height: "2em",
-        },
-      ]}
-    >
+    <Button fullWidth variant="contained" className={`${styles[`button-${theme}`]}`} onClick={() => {}}>
       Create Post
     </Button>
   );
 };
 
-export default CreateButton;
+export default CreateButtonLight;

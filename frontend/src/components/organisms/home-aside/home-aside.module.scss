@@ -19,22 +19,32 @@
 
 .avatar {
   height: 2.125em;
-  background: url("https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png");
+  background-image: url("https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png");
   background-size: 40px 68px;
   height: 68px;
   width: 40px;
   translate: 0 -1em;
 }
 
-.border-seperate{
+.border-seperate {
   width: 100%;
-  margin: .7em auto;
+  margin: 0 auto;
+  margin-top: 0.8em;
+  margin-bottom: 0.7em;
   border: 1px solid $reddit-border;
 }
 
 .home-aside-main {
-  // display: flex;
-
   margin: 0 1em;
   padding-bottom: 1em;
+}
+
+.p-welcome{
+  font-size: .9em;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
 }

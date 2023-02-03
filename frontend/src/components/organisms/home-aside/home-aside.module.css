@@ -26,7 +26,7 @@
 
 .avatar {
   height: 2.125em;
-  background: url("https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png");
+  background-image: url("https://www.redditstatic.com/desktop2x/img/id-cards/snoo-home@2x.png");
   background-size: 40px 68px;
   height: 68px;
   width: 40px;
@@ -35,11 +35,30 @@
 
 .border-seperate {
   width: 100%;
-  margin: 0.7em auto;
+  margin: 0 auto;
+  margin-top: 0.8em;
+  margin-bottom: 0.7em;
   border: 1px solid #343536;
 }
 
 .home-aside-main {
   margin: 0 1em;
   padding-bottom: 1em;
+}
+
+.p-welcome {
+  font-size: 0.9em;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.6em;
 }/*# sourceMappingURL=home-aside.module.css.map */
