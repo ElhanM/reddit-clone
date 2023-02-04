@@ -1,8 +1,10 @@
 // PLUGINS IMPORTS //
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
@@ -18,10 +20,31 @@ import { ETheme } from "types/theme";
 type CreatePostProps = {};
 
 const CreatePost = (props: CreatePostProps) => {
-  const [value, setValue] = useState("");
+  const toolbarOptions = [
+    ["bold", "italic", "underline", "strike"], // toggled buttons
+    ["blockquote", "code-block"],
+
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
+
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
+    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
+    [{ align: [] }],
+  ];
+  const modules = {
+    syntax: false,
+    toolbar: toolbarOptions,
+    clipboard: {
+      // toggle to add extra line breaks when pasting HTML:
+      matchVisual: false,
+    },
+  };
+
+  const [markdownText, setMarkdownText] = useState("");
   useEffect(() => {
-    console.log({ value });
-  }, [value]);
+    console.log({ markdownText });
+  }, [markdownText]);
   return (
     <main className={`${styles["create-post-wrapper"]}`}>
       <header className={`${styles["create-post-header"]}`}>
@@ -33,8 +56,12 @@ const CreatePost = (props: CreatePostProps) => {
       <article className={`${styles["create-post"]}`}>
         <section className={`${styles["inner-create-post"]}`}>
           <section>Title</section>
-          <ReactQuill theme="snow" value={value} onChange={setValue} />
-          <ReactMarkdown children={value} rehypePlugins={[rehypeRaw]} />
+          <ReactQuill theme="snow" value={markdownText} onChange={setMarkdownText} className="react-quill" modules={modules} />
+          <div className="ql-snow">
+            <div className="ql-editor">
+              <ReactMarkdown children={markdownText} rehypePlugins={[rehypeRaw]} />
+            </div>
+          </div>
           <div className={`${styles["border"]} ${styles["bottom"]}`}></div>
           <section className={`${styles["post-button"]}`}>
             <CreateButton
