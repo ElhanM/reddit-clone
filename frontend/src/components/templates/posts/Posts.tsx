@@ -20,11 +20,6 @@ const Posts = () => {
   const postIds = useSelector(selectPostIds);
 
   useEffect(() => {
-    console.log("file: Posts.tsx:19 ~ Posts ~ isLoading", isLoading);
-    console.log("file: Posts.tsx:19 ~ Posts ~ isFetching", isFetching);
-  }, [isLoading, isFetching]);
-
-  useEffect(() => {
     const onScroll = async (event: any) => {
       const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;
 

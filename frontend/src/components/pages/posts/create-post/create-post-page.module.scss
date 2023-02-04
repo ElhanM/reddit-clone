@@ -1,19 +1,19 @@
 @use "../../../../scss/abstracts/colors" as *;
 @use "../../../../scss/abstracts/mixins" as *;
 
-.home-wrapper {
+.create-post-wrapper {
   @include grid-layout;
-  max-width: 960px;
-  grid-template-columns: 2fr 1fr;
+  max-width: 1100px;
+  grid-template-columns: 5fr 2.1fr;
 }
 
-@media screen and (max-width: 976px) {
-  .home-wrapper {
+@media screen and (max-width: 1110px) {
+  .create-post-wrapper {
     @include grid-layout-responsive;
   }
   // select last child of .create-post-wrapper
   // place last child (our aside element) first
-  .home-wrapper > *:last-child {
+  .create-post-wrapper > *:last-child {
     order: -1;
   }
 }
