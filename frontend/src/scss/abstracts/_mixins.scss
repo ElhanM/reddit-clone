@@ -1,0 +1,18 @@
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-layout {
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.8em;
+  margin-top: 1.6em;
+}
+@mixin grid-layout-responsive {
+  width: 95%;
+  grid-template-columns: 1fr;
+}
