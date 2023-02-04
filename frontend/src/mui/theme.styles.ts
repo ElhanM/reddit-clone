@@ -8,6 +8,10 @@ const theme = createTheme({
   palette: {
     // dark theme
     mode: "dark",
+    // set color of dark theme to #030303
+    background: {
+      default: "#030303",
+    },
     primary: {
       main: orange[500],
     },

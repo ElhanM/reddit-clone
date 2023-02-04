@@ -1,1 +1,33 @@
-@use "../../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/colors" as *;
+
+.create-post-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.create-post-header {
+  color: $pale-text-header;
+}
+
+.border {
+  border-bottom: 1px solid $reddit-border;
+  margin: 0.8em 0;
+}
+
+.bottom {
+  margin: 0.8em auto;
+}
+
+.create-post {
+  background-color: $post-background;
+}
+
+.inner-create-post {
+  margin: .8em 1em;
+}
+
+.post-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}

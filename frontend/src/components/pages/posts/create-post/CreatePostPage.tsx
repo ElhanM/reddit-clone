@@ -12,7 +12,7 @@ type CreatePostPageProps = {};
 
 const CreatePostPage = (props: CreatePostPageProps) => {
   return (
-    <article className={`${styles["create-post-wrapper"]}`}>
+    <article className={`${styles["create-post-page-wrapper"]}`}>
       <main>
         <CreatePost />
       </main>

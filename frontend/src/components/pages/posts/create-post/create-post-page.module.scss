@@ -1,7 +1,7 @@
 @use "../../../../scss/abstracts/colors" as *;
 @use "../../../../scss/abstracts/mixins" as *;
 
-.create-post-wrapper {
+.create-post-page-wrapper {
   @include grid-layout;
   max-width: 1100px;
   grid-template-columns: 5fr 2.1fr;
