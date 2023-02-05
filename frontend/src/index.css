@@ -4,4 +4,9 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: "Roboto";
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  color: #818384;
+  font-style: normal;
 }/*# sourceMappingURL=index.css.map */

@@ -12,6 +12,10 @@ const theme = createTheme({
     background: {
       default: "#030303",
     },
+    // set color of text to #d7dadc
+    text: {
+      primary: "#d7dadc",
+    },
     primary: {
       main: orange[500],
     },

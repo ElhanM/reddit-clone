@@ -1,6 +1,5 @@
 // PLUGINS IMPORTS //
 import { CssBaseline } from "@mui/material";
-import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
