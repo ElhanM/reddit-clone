@@ -4,3 +4,10 @@
   box-sizing: border-box;
   font-family: "Roboto";
 }
+
+// change react-quill placeholder color (default is dark gray)
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  color: #818384;
+  // remove italic
+  font-style: normal;
+}

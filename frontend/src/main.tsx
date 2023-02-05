@@ -11,7 +11,9 @@ import App from "App";
 import { store } from "app/store";
 import { theme } from "mui";
 import "index.css";
-
+import "react-quill/dist/quill.core.css";
+import "react-quill/dist/quill.snow.css";
+import "highlight.js/styles/atom-one-dark.css";
 /////////////////////////////////////////////////////////////////////////////
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement);
