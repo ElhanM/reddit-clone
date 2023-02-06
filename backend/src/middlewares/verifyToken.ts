@@ -9,7 +9,14 @@ const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
   console.log("=========================");
   console.log("cookie:", req.headers.cookie);
   if (cookies) {
-    const token = cookies.split("=")[1];
+    // since user can have multiple cookies, we have our cookie a unique name that is stored in the .env file
+    // and now we can get the cookie we want without restricting the user to only have one cookie
+    const token = cookies
+      .split("; ")
+      .find(cookie => {
+        return cookie.startsWith(String(process.env.USER_COOKIE));
+      })
+      ?.split("=")[1];
     console.log({ token });
     if (!token) {
       return next(new ErrorResponse("No token found", 404));

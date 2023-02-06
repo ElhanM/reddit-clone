@@ -27,7 +27,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     clearCookies(req, res);
 
     if (token) {
-      setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);
+      setCookie(res, user.toJSON().userId, token);
     } else {
       return next(new ErrorResponse("Internal server error, token missing", 500));
     }
