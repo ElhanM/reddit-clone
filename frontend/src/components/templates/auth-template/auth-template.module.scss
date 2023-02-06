@@ -1,0 +1,16 @@
+.auth-template-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.aside-image {
+  background-image: url("https://res.cloudinary.com/instagram-clone-web-app/image/upload/v1675678005/bbb584033aa89e39bad69436c504c9bd_zhsxsa.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  // make background image height 100vh and width 100%
+  background-size: 100% 100%;
+}

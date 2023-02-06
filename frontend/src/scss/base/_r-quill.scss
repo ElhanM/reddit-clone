@@ -1,0 +1,28 @@
+// change react-quill placeholder color (default is dark gray)
+.quill > .ql-container > .ql-editor.ql-blank::before {
+  color: #818384;
+  // remove italic
+  font-style: normal;
+}
+
+.quill > .ql-container,
+.quill > .ql-toolbar {
+  border: 1px solid #343536 !important;
+}
+
+.quill > .ql-toolbar {
+  border-bottom: none !important;
+  border-top-left-radius: 0.5em !important;
+  border-top-right-radius: 0.5em !important;
+  background-color: #272729 !important;
+  svg,
+  .ql-picker-label {
+    background-color: #1a1a1b !important;
+    border-radius: 0.2em !important;
+  }
+}
+.quill > .ql-container {
+  border-top: none !important;
+  border-bottom-left-radius: 0.5em !important;
+  border-bottom-right-radius: 0.5em !important;
+}

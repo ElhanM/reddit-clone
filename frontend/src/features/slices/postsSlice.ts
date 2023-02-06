@@ -1,9 +1,11 @@
 // PLUGINS IMPORTS //
 import type { EntityId, Dictionary } from "@reduxjs/toolkit";
 import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
-// INTERFACES IMPORTS //
-import type { IInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
+
+// COMPONENTS IMPORTS //
+
 // EXTRA IMPORTS //
+import type { IInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 
@@ -97,7 +99,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
 export const { useGetPostsQuery } = extendedApiSlice;
 
 // returns the query result object
-export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(undefined);
+export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null);
 
 // Creates memoized selector
 const selectPostsData = createSelector(
