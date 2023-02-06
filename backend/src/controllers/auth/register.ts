@@ -43,7 +43,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
     if (token) {
       // in process.env.COOKIE_EXPIRE we have number of days, so we need to convert it to milliseconds
-      setCookie(res, user.toJSON().userId, token, Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000);
+      setCookie(res, user.toJSON().userId, token);
     } else {
       return next(new ErrorResponse("Internal server error, token missing", 500));
     }

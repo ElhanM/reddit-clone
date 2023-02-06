@@ -1,13 +1,12 @@
 import { Response } from "express";
 
-const setCookie = (res: Response, userId: number, token: string, maxAge: number) => {
-  res.cookie(String(userId), token, {
+const setCookie = (res: Response, userId: number, token: string) => {
+  res.cookie(String(process.env.USER_COOKIE), token, {
     path: "/",
-    maxAge,
+    maxAge: Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    // only works in https, so don't work in postman
+    // secure: true only works in https, so it doesn't work in postman
     // but still works in localhost in browser
-    // secure: true,
     sameSite: "strict",
   });
 };
