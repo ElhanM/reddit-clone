@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { auth, posts } from "./routes";
+import { auth, posts, user } from "./routes";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "middlewares";
@@ -15,6 +15,7 @@ app.use(express.json());
 
 app.use("/api/auth", auth);
 app.use("/api/posts", posts);
+app.use("/api/user", user);
 
 app.use(errorHandler);
 

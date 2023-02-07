@@ -1,6 +1,6 @@
 import db from "models";
 import { NextFunction, Request, Response } from "express";
-import { clearCookies, getToken, setCookie } from "utils";
+import { clearCookies, getToken, removePassword, setCookie } from "utils";
 import { ErrorResponse } from "utils";
 
 const register = async (req: Request, res: Response, next: NextFunction) => {
@@ -49,8 +49,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     // give back user object without password
-    const userWithoutPassword = { ...user.toJSON() };
-    delete userWithoutPassword.password;
+    const userWithoutPassword = removePassword(user.toJSON());
     return res.status(200).json({ success: true, msg: "Successfully Registered", user: userWithoutPassword });
   } catch (err) {
     console.log(err);

@@ -1,7 +1,7 @@
 import db from "models";
 import { NextFunction, Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import { clearCookies, getToken, setCookie } from "utils";
+import { clearCookies, getToken, removePassword, setCookie } from "utils";
 import { ErrorResponse } from "utils";
 
 const login = async (req: Request, res: Response, next: NextFunction) => {
@@ -32,8 +32,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
       return next(new ErrorResponse("Internal server error, token missing", 500));
     }
     // give back user object without password
-    const userWithoutPassword = { ...user.toJSON() };
-    delete userWithoutPassword.password;
+    const userWithoutPassword = removePassword(user.toJSON());
     return res.status(200).json({ success: true, msg: "Successfully Logged In", user: userWithoutPassword });
   } catch (err) {
     console.log(err);
