@@ -17,6 +17,7 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
+          //TODO add role based routing
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
             <Route path="create-post" element={<CreatePostPage />} />
