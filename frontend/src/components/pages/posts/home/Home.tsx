@@ -18,7 +18,7 @@ const Home = () => {
   useEffect(() => {
     console.log({ user }); 
     if (user.userId) {
-      setUserCookies(user.userId);
+      // setUserCookies(user.userId);
     }
   }, [user]);
   return (

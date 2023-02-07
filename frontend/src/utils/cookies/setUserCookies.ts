@@ -10,7 +10,6 @@ import Cookies from "universal-cookie";
 const setUserCookies = (userId: string) => {
   console.log({ userId, env: import.meta.env.VITE_COOKIE_EXPIRE });
   const cookies = new Cookies();
-  //! object in cookie not working
   cookies.set(`${import.meta.env.VITE_USER_COOKIE}`, userId, {
     path: "/",
     maxAge: Number(import.meta.env.VITE_COOKIE_EXPIRE) * 24 * 60 * 60 * 1000,
