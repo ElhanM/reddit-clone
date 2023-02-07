@@ -18,6 +18,7 @@ export const userSlice = createSlice({
   initialState,
   name: "userSlice",
   reducers: {
+    //TODO add clear cookies on logout
     logout: () => initialState,
     setUser: (state, action: PayloadAction<IUserAuth>) => {
       state.user = action.payload;
