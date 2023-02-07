@@ -21,6 +21,7 @@ export const userSlice = createSlice({
     logout: () => initialState,
     setUser: (state, action: PayloadAction<IUserAuth>) => {
       state.user = action.payload;
+      setUserCookies(action.payload.userId);
       console.log({ state: state.user });
     },
   },
