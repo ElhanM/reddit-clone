@@ -48,7 +48,7 @@ const Login = (props: LoginProps) => {
         <Typography variant="h5" className={`${styles["login-header"]}`}>
           Login
         </Typography>
-        <FormWrapper methods={methods} submitHandler={submitHandler}>
+        <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
           <TextFieldComponent label="Email" name="email" />
           <TextFieldComponent label="Password" name="password" />
           <CreateButton
