@@ -15,7 +15,7 @@ const AuthTemplate = ({ children }: AuthTemplateProps) => {
   return (
     <article className={`${styles["auth-template-wrapper"]}`}>
       <aside className={`${styles["aside-image"]}`}></aside>
-      <main>{children}</main>
+      {children}
     </article>
   );
 };

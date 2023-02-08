@@ -1,0 +1,7 @@
+@use "../../../../scss/abstracts/colors" as *;
+@use "../../../../scss/abstracts/mixins" as *;
+@use "../../../../scss/abstracts/variables" as *;
+
+.text-field-component {
+  margin-top: $from-margin-top;
+}
