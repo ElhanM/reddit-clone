@@ -87,7 +87,6 @@ const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) =
       <TextField
         label={label}
         variant="outlined"
-        className={`${styles["text-field-component"]}`}
         error={showHelperText}
         // typecast to string to avoid type errors
         helperText={showHelperText && ((errors[name]?.message as string) ?? "")}

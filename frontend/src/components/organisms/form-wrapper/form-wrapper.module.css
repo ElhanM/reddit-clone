@@ -1,4 +1,4 @@
-.login-form {
+.form {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -8,4 +8,8 @@
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.form .MuiInputBase-root {
+  background-color: red !important;
 }/*# sourceMappingURL=form-wrapper.module.css.map */

@@ -1,0 +1,12 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/variables" as *;
+
+// selecting a class set by mui from a module is impossible since modules add a unique prefix to class names when setting/selecting them
+form .MuiTextField-root {
+  margin-top: $from-margin-top !important;
+}
+
+form .MuiButton-root {
+  margin: $from-margin-top 0 !important;
+}

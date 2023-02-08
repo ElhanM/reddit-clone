@@ -19,7 +19,7 @@ type FormWrapperProps<T> = {
 const FormWrapper = <T extends {}>({ methods, submitHandler, children }: FormWrapperProps<T>) => {
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(submitHandler)} className={`${styles["login-form"]}`}>
+      <form onSubmit={methods.handleSubmit(submitHandler)} className={`${styles["form"]}`}>
         {children}
       </form>
     </FormProvider>
