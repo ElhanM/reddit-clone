@@ -1,4 +1,10 @@
 @use "../../../../scss/abstracts/colors" as *;
+@use "../../../../scss/abstracts/mixins" as *;
+@use "../../../../scss/abstracts/variables" as *;
+
+.button {
+  margin: $from-margin-top 0 !important;
+}
 
 .button-light {
   color: $button-dark !important;

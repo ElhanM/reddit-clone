@@ -1,0 +1,12 @@
+@use "../../../../scss/abstracts/colors" as *;
+@use "../../../../scss/abstracts/mixins" as *;
+
+.login-wrapper {
+  height: 100vh;
+  // add min height in order to enable horizontal scrolling for portrait mode
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 5%;
+}

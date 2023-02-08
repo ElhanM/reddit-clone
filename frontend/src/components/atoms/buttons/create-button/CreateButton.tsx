@@ -17,7 +17,7 @@ type CreateButtonProps = {
 
 const CreateButtonLight = ({ theme, buttonText, ...rest }: CreateButtonProps) => {
   return (
-    <Button variant="contained" className={`${styles[`button-${theme}`]}`} {...rest.buttonProps}>
+    <Button variant="contained" className={`${styles[`button-${theme}`]} ${styles[`button`]}`} {...rest.buttonProps}>
       {buttonText}
     </Button>
   );

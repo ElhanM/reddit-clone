@@ -1,12 +1,12 @@
 // PLUGINS IMPORTS //
 import { TextField, TextFieldProps } from "@mui/material";
-import { getValue } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
+import styles from "./text-field.module.css";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -32,13 +32,15 @@ const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) =
         [name]: false,
       },
     },
-    getValues,
+    // getValues,
     reset,
   } = useFormContext();
 
+  // for convinience, we will store these values in variables
+  // and we will not use useStates, because we want these variables to be updated on every render/value change
   const hasError = !!errors[name];
   const isDirtyField = !!isDirty;
-  const isModified = !!getValues(name);
+  // const isModified = !!getValues(name);
   const isTouchedField = !!isTouched;
 
   // we use useState here so it does not go back to default value on every render
@@ -71,6 +73,7 @@ const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) =
           keepValues: true,
           keepDefaultValues: true,
           keepIsSubmitted: true,
+          // touched is the only one that we want to reset
           // keepTouched: true,
           keepIsValid: true,
           keepSubmitCount: true,
@@ -79,13 +82,12 @@ const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) =
     }
   }, [isTouchedField]);
 
-  console.log("showHelperText", showHelperText);
-
   return (
     <>
       <TextField
         label={label}
         variant="outlined"
+        className={`${styles["text-field-component"]}`}
         error={showHelperText}
         // typecast to string to avoid type errors
         helperText={showHelperText && ((errors[name]?.message as string) ?? "")}
