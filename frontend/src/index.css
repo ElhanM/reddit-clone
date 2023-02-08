@@ -32,4 +32,12 @@
   border-top: none !important;
   border-bottom-left-radius: 0.5em !important;
   border-bottom-right-radius: 0.5em !important;
+}
+
+form .MuiTextField-root {
+  margin-top: 1em !important;
+}
+
+form .MuiButton-root {
+  margin: 1em 0 !important;
 }/*# sourceMappingURL=index.css.map */

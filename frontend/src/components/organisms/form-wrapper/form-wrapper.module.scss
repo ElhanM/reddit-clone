@@ -1,6 +1,18 @@
-.login-form {
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+@use "../../../scss/abstracts/variables" as *;
+
+.form {
   display: flex;
   flex-direction: column;
-  // justify-content: space-around;
-  // align-items: center;
 }
+
+// selct all mui text fields
+.form .MuiInputBase-root {
+  background-color: red !important;
+}
+.form button {
+ 
+}
+
+
