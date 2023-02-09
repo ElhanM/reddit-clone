@@ -17,6 +17,7 @@ import { useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
+import { RedditLogo } from "components/molecules";
 
 // EXTRA IMPORTS //
 
@@ -49,6 +50,8 @@ const Navbar = (props: NavbarProps) => {
   };
 
   const menuId = "primary-search-account-menu";
+
+  //! split into different components
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -121,13 +124,17 @@ const Navbar = (props: NavbarProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
+        <Toolbar
+          sx={{
+            minHeight: "50px !important",
+            backgroundColor: "#1a1a1b",
+          }}
+        >
+          {/* <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" noWrap component="div" sx={{ display: { xs: "none", sm: "block" } }}>
-            {/* orange dot on i */}
-            reddit
+            <RedditLogo />
           </Typography>
           <Search>
             <SearchIconWrapper>
