@@ -18,8 +18,10 @@ export const userSlice = createSlice({
   initialState,
   name: "userSlice",
   reducers: {
-    //TODO add clear cookies on logout
-    logout: () => initialState,
+    logout: () => {
+      // TODO delete cookie
+      return initialState;
+    },
     setUser: (state, action: PayloadAction<IUserAuth>) => {
       state.user = action.payload;
       setUserCookies(action.payload.userId);

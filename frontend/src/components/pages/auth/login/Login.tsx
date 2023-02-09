@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { SubmitHandler, FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { CreateButton, TextFieldComponent } from "components/atoms";
+import { CreateButton, AuthTextFieldComponent } from "components/atoms";
 
 // EXTRA IMPORTS //
 import { AuthTemplate } from "components/templates";
@@ -22,6 +23,8 @@ import { ETheme } from "types/theme";
 type LoginProps = {};
 
 const Login = (props: LoginProps) => {
+  const history = useNavigate();
+
   const [loginUser, { isLoading, isError, error, isSuccess }] = useLoginMutation();
 
   const methods = useForm<ILoginFormProps>({
@@ -40,6 +43,13 @@ const Login = (props: LoginProps) => {
   // typing an async arrow function
   const submitHandler: SubmitHandler<ILoginFormProps> = async (data: ILoginFormProps) => {
     console.log("data submitted", data);
+    const { email, password } = data;
+    loginUser({
+      email,
+      password,
+    });
+    // redirect to home page
+    history("/");
   };
 
   return (
@@ -49,28 +59,24 @@ const Login = (props: LoginProps) => {
           Login
         </Typography>
         <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
-          <TextFieldComponent label="Email" name="email" />
-          <TextFieldComponent label="Password" name="password" />
+          <AuthTextFieldComponent
+            label="Email"
+            name="email"
+            textFieldProps={{
+              fullWidth: true,
+            }}
+          />
+          <AuthTextFieldComponent label="Password" name="password" />
           <CreateButton
             theme={ETheme.LIGHT}
             buttonText="Login"
-            buttonProps={{ type: "submit", variant: "contained", color: "primary", fullWidth: false }}
+            buttonProps={{ type: "submit", variant: "contained", color: "primary", fullWidth: true }}
           />
         </FormWrapper>
         <Typography variant="subtitle1" className={`${styles["login-footer"]}`}>
           New to Reddit? Sign up
         </Typography>
-        {/* <button
-          onClick={() =>
-            loginUser({
-              email: "elhan@gmail.com",
-              password: "elhan1234",
-            })
-          }
-        >
-          Login Button
-        </button>
-        <Link to="/">Go to home</Link> */}
+        {/* <Link to="/">Go to home</Link> */}
       </main>
     </AuthTemplate>
   );
