@@ -3,10 +3,12 @@ import { Paper, Typography } from "@mui/material";
 import { CreateButton } from "components/atoms";
 
 // COMPONENTS IMPORTS //
+import { Avatar } from "components/molecules";
 
 // EXTRA IMPORTS //
 import styles from "./home-aside.module.css";
 import { ETheme } from "types/theme";
+import { EAvatar } from "types/pages";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -18,7 +20,7 @@ const HomeAside = (props: HomeAsideProps) => {
       <Paper className={`${styles["home_aside-wrapper"]}`}>
         <div className={`${styles["background"]}`}></div>
         <header className={`${styles["header"]}`}>
-          <div className={`${styles["avatar"]}`}></div>
+          <Avatar size={EAvatar.MEDIUM} translate />
           <Typography>Home</Typography>
         </header>
         <main className={`${styles["home-aside-main"]}`}>
@@ -30,7 +32,7 @@ const HomeAside = (props: HomeAsideProps) => {
               buttonText="Create Post"
               buttonProps={{
                 fullWidth: true,
-              }}  
+              }}
             />
             <CreateButton
               theme={ETheme.DARK}

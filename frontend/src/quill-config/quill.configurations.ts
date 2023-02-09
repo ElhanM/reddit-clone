@@ -48,6 +48,4 @@ const formats = [
   "align",
 ];
 
-const placeholder = "Description";
-
-export { modules, formats, placeholder };
+export { modules, formats };

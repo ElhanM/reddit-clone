@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import { QuillModules, QuillFormats, QuillPlaceholder } from "quill-config";
+import { QuillModules, QuillFormats,  } from "quill-config";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -23,7 +23,7 @@ const ConfigedRQuill = ({ placeholder, content, setContent }: ConfigedRQuillProp
       theme="snow"
       modules={QuillModules}
       formats={QuillFormats}
-      placeholder={QuillPlaceholder}
+      placeholder={placeholder}
     />
   );
 };
