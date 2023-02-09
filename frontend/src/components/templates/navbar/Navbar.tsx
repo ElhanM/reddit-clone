@@ -18,6 +18,7 @@ import { useState } from "react";
 // COMPONENTS IMPORTS //
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
 import { RedditLogo } from "components/molecules";
+import { SelectCommunity } from "components/atoms";
 
 // EXTRA IMPORTS //
 
@@ -51,7 +52,6 @@ const Navbar = (props: NavbarProps) => {
 
   const menuId = "primary-search-account-menu";
 
-  //! split into different components
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -74,6 +74,7 @@ const Navbar = (props: NavbarProps) => {
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
+
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
@@ -126,17 +127,31 @@ const Navbar = (props: NavbarProps) => {
       <AppBar position="static">
         <Toolbar
           sx={{
-            minHeight: "50px !important",
+            height: "48px !important",
+            maxHeight: "48px !important",
+            // we need minHeight here in order to override the existing mui min-height
+            minHeight: "48px !important",
             backgroundColor: "#1a1a1b",
           }}
         >
-          {/* <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }}>
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" noWrap component="div" sx={{ display: { xs: "none", sm: "block" } }}>
             <RedditLogo />
           </Typography>
-          <Search>
+          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: "block", sm: "block" } }}>
+            <SelectCommunity />
+          </Typography>
+          <Search
+            sx={{
+              height: "40px !important",
+              borderRadius: "20px !important",
+              width: "60% !important",
+              // make width smaller on smaller screens
+              // TODO after adding the rest of components, make this responsive
+              "@media (max-width: 1200px)": {
+                width: "40% !important",
+              },
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
