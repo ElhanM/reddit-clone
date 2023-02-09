@@ -2,7 +2,10 @@
 import React, { Suspense, lazy } from "react";
 import { Outlet } from "react-router-dom";
 
-// const Navbar = lazy(() => import("./Navbar"));
+// COMPONENTS IMPORTS //
+const Navbar = lazy(() => import("./navbar/Navbar"));
+
+// EXTRA IMPORTS //
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -10,7 +13,9 @@ const SharedLayout = () => {
   return (
     <>
       {/* this way content loads faster */}
-      <Suspense>{/* <Navbar /> */}</Suspense>
+      <Suspense>
+        <Navbar />
+      </Suspense>
       <Outlet />
     </>
   );

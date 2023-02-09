@@ -8,6 +8,8 @@ import styles from "./form-wrapper.module.css";
 
 /////////////////////////////////////////////////////////////////////////////
 
+// this form wrapper can be called in multiple components, like login and register pages, and they work with a different data shape
+// so we need to use generics for types
 type FormWrapperProps<T> = {
   // found the type of methods in the Login component (const methods: UseFormReturn<ILoginFormProps, any>)
   methods: UseFormReturn<T, any>;
@@ -27,7 +29,10 @@ const FormWrapper = <T extends {}>({ methods, submitHandler, authForm, children 
       {/* selecting a child div via a class name that wes set by mui of a form selected via its class name inside of a module is not possible*/}
       {/* so for example .form .MuiDiv does not work if we do it inside of the FormWrapper scss module */}
       {/* since .form .MuiDiv is actuall .from+unique .MuiDiv+unique, but the Mui div that was set by mui does not have the unique part */}
-      {/* so I will appy these classes outside of a module */}
+      {/* so I will apply these classes outside of a module */}
+
+      {/* alternatively, I could have wrapped all of the children in seperate divs and applied the margin to them, but that would be a lot of extra divs */}
+      {/* I pref this solution, since it is more automated */}
       <form onSubmit={methods.handleSubmit(submitHandler)} className={`${styles["form"]} ${authForm ? "auth-form" : ""}`}>
         {children}
       </form>

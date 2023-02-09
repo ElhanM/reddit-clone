@@ -16,7 +16,7 @@ type TextFieldComponentProps = {
   textFieldProps?: TextFieldProps;
 };
 
-const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) => {
+const AuthTextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) => {
   const {
     register,
     formState: {
@@ -87,14 +87,18 @@ const TextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) =
       <TextField
         label={label}
         variant="outlined"
-        error={showHelperText}
+        // only show error outline and error text only if both showHelperText is true and error msg exists 
+        // this pervents error where error outline stays after there is no longer an error
+        error={showHelperText && !!((errors[name]?.message as string) ?? "")}
         // typecast to string to avoid type errors
         helperText={showHelperText && ((errors[name]?.message as string) ?? "")}
         {...rest.textFieldProps}
+        // disable browsers default autocomplete cus it hides error text
+        autoComplete="off"
         {...register(name)}
       />
     </>
   );
 };
 
-export default TextFieldComponent;
+export default AuthTextFieldComponent;
