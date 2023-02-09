@@ -1,1 +1,1 @@
-{"version":3,"sources":["reddit-text.module.scss","reddit-text.module.css"],"names":[],"mappings":"AAIA;EACE,gBAAA;ACHF","file":"reddit-text.module.css"}
+{"version":3,"sources":["reddit-text.module.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;AAClB","file":"reddit-text.module.css","sourcesContent":[".reddit-text {\n  height: 1.125rem;\n}"]}

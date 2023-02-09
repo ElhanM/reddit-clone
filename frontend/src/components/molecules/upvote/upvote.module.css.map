@@ -1,1 +1,1 @@
-{"version":3,"sources":["upvote.module.scss","../../../scss/abstracts/_colors.scss","upvote.module.css"],"names":[],"mappings":"AAEA;EACE,WAAA;EACA,aCGO;ACJT","file":"upvote.module.css"}
+{"version":3,"sources":["upvote.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,aAAa;AACf","file":"upvote.module.css","sourcesContent":[".upvote-svg {\n  width: 20px;\n  fill: #818384;\n}"]}

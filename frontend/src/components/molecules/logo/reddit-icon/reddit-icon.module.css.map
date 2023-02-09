@@ -1,1 +1,1 @@
-{"version":3,"sources":["reddit-icon.module.scss","reddit-icon.module.css"],"names":[],"mappings":"AAIA;EACE,WAAA;ACHF","file":"reddit-icon.module.css"}
+{"version":3,"sources":["reddit-icon.module.css"],"names":[],"mappings":"AAAA;EACE,WAAW;AACb","file":"reddit-icon.module.css","sourcesContent":[".reddit-icon {\n  width: 2rem;\n}"]}

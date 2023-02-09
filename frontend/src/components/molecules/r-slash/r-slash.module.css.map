@@ -1,1 +1,1 @@
-{"version":3,"sources":["r-slash.module.scss","../../../scss/abstracts/_colors.scss","r-slash.module.css"],"names":[],"mappings":"AAEA;EACE,aCYQ;EDXR,uBAAA;EACA,kBAAA;EACA,uBAAA;EACA,UAAA;AEDF","file":"r-slash.module.css"}
+{"version":3,"sources":["r-slash.module.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,uBAAuB;EACvB,UAAU;AACZ","file":"r-slash.module.css","sourcesContent":[".r-slash {\n  fill: #0079d3;\n  background-color: white;\n  border-radius: 50%;\n  border: 1px solid white;\n  width: 1em;\n}"]}
