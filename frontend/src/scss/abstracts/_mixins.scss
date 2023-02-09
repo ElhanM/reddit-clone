@@ -16,3 +16,10 @@
   width: 95%;
   grid-template-columns: 1fr;
 }
+
+@mixin backgroun-image-position($url) {
+  background-image: url($url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

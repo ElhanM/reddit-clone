@@ -1,1 +1,5 @@
 export type { default as ILoginFormProps } from "./auth/login/ILoginFormProps";
+
+// enum can also be used as a value, so we can not store it in a
+//  .d.ts file. We need to store it in a .ts file and export it as a value.
+export {default as EAvatar} from "./icons/EAvatar";

@@ -1,4 +1,6 @@
 @use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/variables" as *;
+@use "../../../scss/abstracts/mixins" as *;
 
 .home_aside-wrapper {
   border: 1px solid $reddit-border;
@@ -6,7 +8,7 @@
 
 .background {
   height: 2.125em;
-  background-image: url("https://res.cloudinary.com/instagram-clone-web-app/image/upload/v1675505745/home-banner_2x_ybbuom.webp");
+  @include backgroun-image-position("https://res.cloudinary.com/instagram-clone-web-app/image/upload/v1675505745/home-banner_2x_ybbuom.webp");
 }
 
 .header {
@@ -15,15 +17,6 @@
   align-items: center;
   gap: 0.5em;
   padding-left: 0.8em;
-}
-
-.avatar {
-  height: 2.125em;
-  background-image: url("https://res.cloudinary.com/instagram-clone-web-app/image/upload/c_scale,w_80/v1675505745/snoo-home_2x_ojjww9.webp");
-  background-size: 40px 68px;
-  height: 68px;
-  width: 40px;
-  translate: 0 -1em;
 }
 
 .border-seperate {

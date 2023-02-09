@@ -14,11 +14,13 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 // COMPONENTS IMPORTS //
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
 import { RedditLogo } from "components/molecules";
 import { SelectCommunity } from "components/atoms";
+import { NavUser } from "components/organisms";
 
 // EXTRA IMPORTS //
 
@@ -65,6 +67,9 @@ const Navbar = (props: NavbarProps) => {
         vertical: "top",
         horizontal: "right",
       }}
+      sx={{
+        marginTop: "1.5em !important",
+      }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
@@ -91,34 +96,9 @@ const Navbar = (props: NavbarProps) => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
-      </MenuItem>
+      <MenuItem>Create Post</MenuItem>
+      <MenuItem>Profile</MenuItem>
+      <MenuItem>My account</MenuItem>
     </Menu>
   );
 
@@ -158,16 +138,13 @@ const Navbar = (props: NavbarProps) => {
             <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
-          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+            }}
+          >
             <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton size="large" aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
+              <AddOutlinedIcon />
             </IconButton>
             <IconButton
               size="large"
@@ -177,8 +154,16 @@ const Navbar = (props: NavbarProps) => {
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
               color="inherit"
+              // customize hover styles
+              sx={{
+                "&:hover": {
+                  backgroundColor: "transparent !important",
+                },
+                // remove transition
+                transition: "none !important",
+              }}
             >
-              <AccountCircle />
+              <NavUser />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

@@ -1,0 +1,16 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/variables" as *;
+@use "../../../scss/abstracts/mixins" as *;
+
+.nav-user-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 4em;
+}
