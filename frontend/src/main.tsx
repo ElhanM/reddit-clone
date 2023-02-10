@@ -19,9 +19,11 @@ import "highlight.js/styles/atom-one-dark.css";
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLDivElement);
 
 root.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </Provider>,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </Provider>
+  </React.StrictMode>,
 );
