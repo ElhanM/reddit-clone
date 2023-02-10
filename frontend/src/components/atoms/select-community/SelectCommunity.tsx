@@ -19,7 +19,7 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 8 + ITEM_PADDING_TOP,
-      width: 250,
+      // width: 250,
     },
   },
 };
@@ -69,6 +69,9 @@ const SelectCommunity = (props: SelectCommunityProps) => {
           width: 300,
           mt: 3,
           marginBottom: 3,
+          "@media (max-width: 750px)": {
+            width: "95%",
+          },
         }}
       >
         <Select
@@ -85,7 +88,7 @@ const SelectCommunity = (props: SelectCommunityProps) => {
           }}
           MenuProps={MenuProps}
           inputProps={{ "aria-label": "Without label" }}
-          sx={{ height: "34px", width: "268px" }}
+          sx={{ height: "34px", width: "100%", padding: "0 !important" }}
         >
           <MenuItem disabled>
             <Typography

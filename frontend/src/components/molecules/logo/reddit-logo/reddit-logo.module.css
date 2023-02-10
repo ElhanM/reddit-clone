@@ -1,5 +1,5 @@
 .reddit-logo {
-  width: 100px;
+  height: 100% !important;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

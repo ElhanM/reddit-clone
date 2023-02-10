@@ -13,7 +13,13 @@ type RedditLogoProps = {};
 
 const RedditLogo = (props: RedditLogoProps) => {
   return (
-    <Link href="/" className={`${styles["reddit-logo"]}`}>
+    <Link
+      href="/"
+      className={`${styles["reddit-logo"]}`}
+      sx={{
+        height: "100% !important",
+      }}
+    >
       <RedditIcon />
       <RedditText />
     </Link>

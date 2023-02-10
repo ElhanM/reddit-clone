@@ -3,7 +3,7 @@
 @use "../../../../scss/abstracts/variables" as *;
 
 .reddit-logo {
-  width: 100px;
+  height: 100% !important;
   display: flex;
   justify-content: space-between;
   align-items: center;

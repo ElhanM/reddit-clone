@@ -3,5 +3,13 @@
 @use "../../../../scss/abstracts/variables" as *;
 
 .reddit-text {
-  height: 1.125rem;
+  margin-left: 0.3em;
+  // height: 1.2rem;
+  height: 18px !important;
+}
+
+@media (max-width: 980px) {
+  .reddit-text {
+    display: none;
+  }
 }
