@@ -1,0 +1,25 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+@use "../../../scss/abstracts/variables" as *;
+
+logo {
+  height: 100%;
+}
+
+.nav-main {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 2fr;
+}
+
+@media (max-width: 1260px) {
+  .nav-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 750px) {
+  .nav-main {
+    grid-template-columns: 1fr;
+  }
+}

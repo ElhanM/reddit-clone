@@ -1,1 +1,1 @@
-{"version":3,"sources":["reddit-text.module.css"],"names":[],"mappings":"AAAA;EACE,gBAAgB;AAClB","file":"reddit-text.module.css","sourcesContent":[".reddit-text {\n  height: 1.125rem;\n}"]}
+{"version":3,"sources":["reddit-text.module.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;EAClB,uBAAuB;AACzB;;AAEA;EACE;IACE,aAAa;EACf;AACF","file":"reddit-text.module.css","sourcesContent":[".reddit-text {\n  margin-left: 0.3em;\n  height: 18px !important;\n}\n\n@media (max-width: 980px) {\n  .reddit-text {\n    display: none;\n  }\n}"]}

@@ -29,6 +29,7 @@ const StyledIconButton = ({ children, ariaLabel, icon, iconProps }: StyledIconBu
               height: "32px !important",
               // height makes it move up a bit, so we need to recenter it
               margin: "auto 0 !important",
+              marginLeft: ".5em !important",
               borderRadius: "10% !important",
               "&:hover": {
                 backgroundColor: "#2d2d2f !important",

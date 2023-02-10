@@ -3,3 +3,4 @@ export { default as AuthTextFieldComponent } from "./inputs/auth-text-field/Auth
 export { default as SelectCommunity } from "../atoms/select-community/SelectCommunity";
 
 export { default as StyledIconButton } from "./mui/StyledIconButton";
+export { default as StyledRenderMenu } from "./mui/StyledRenderMenu";

@@ -2,6 +2,7 @@
 import { Menu, MenuItem } from "@mui/material";
 
 // COMPONENTS IMPORTS //
+import { StyledRenderMenu } from "components/atoms";
 
 // EXTRA IMPORTS //
 
@@ -16,25 +17,11 @@ type RenderMobileMenuProps = {
 
 const RenderMobileMenu = ({ mobileMoreAnchorEl, isMobileMenuOpen, handleMobileMenuClose, mobileMenuId }: RenderMobileMenuProps) => {
   return (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
+    <StyledRenderMenu anchorEl={mobileMoreAnchorEl} isMenuOpen={isMobileMenuOpen} handleMenuClose={handleMobileMenuClose} menuId={mobileMenuId}>
       <MenuItem>Create Post</MenuItem>
       <MenuItem>Profile</MenuItem>
       <MenuItem>My account</MenuItem>
-    </Menu>
+    </StyledRenderMenu>
   );
 };
 

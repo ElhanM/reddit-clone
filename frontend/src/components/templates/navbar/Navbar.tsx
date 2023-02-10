@@ -25,6 +25,7 @@ import RenderMenu from "./RenderMenu";
 import RenderMobileMenu from "./RenderMobileMenu";
 
 // EXTRA IMPORTS //
+import styles from "./navbar.module.scss";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -71,28 +72,43 @@ const Navbar = (props: NavbarProps) => {
             backgroundColor: "#1a1a1b",
           }}
         >
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: "none", sm: "block" } }}>
+          <div className={`${styles["logo"]}`}>
             <RedditLogo />
-          </Typography>
-          <Typography variant="h6" noWrap component="div" sx={{ display: { xs: "block", sm: "block" } }}>
-            <SelectCommunity />
-          </Typography>
-          <Search
-            sx={{
-              height: "40px !important",
-              borderRadius: "20px !important",
-              width: "60% !important",
-              // TODO after adding the rest of components, make this responsive
-              "@media (max-width: 1200px)": {
-                width: "40% !important",
-              },
-            }}
-          >
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
-          </Search>
+          </div>
+          <section className={`${styles["nav-main"]}`}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{
+                display: { xs: "block", sm: "block" },
+                "@media (max-width: 750px)": {
+                  width: "100%",
+                },
+              }}
+              className={`${styles["select"]}`}
+            >
+              <SelectCommunity />
+            </Typography>
+            {/* //TODO add search to menu on sm screens and either make search opet up a new page and search there, or make it search from nav on lg and on new page on sm */}
+            <Search
+              className={`${styles["search"]}`}
+              sx={{
+                height: "40px !important",
+                borderRadius: "20px !important",
+                width: "100% !important",
+                "@media (max-width: 750px)": {
+                  display: "none",
+                },
+              }}
+            >
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              {/* //TODO search placeholder, what will we be searching for? */}
+              <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
+            </Search>
+          </section>
           <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{
@@ -104,13 +120,6 @@ const Navbar = (props: NavbarProps) => {
             </StyledIconButton>
             <StyledIconButton
               ariaLabel="account of current user"
-              /* 
-              edge="end"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-               */
-              // add these above as restIconProps
               iconProps={{
                 edge: "end",
                 // we cant use - in a prop name, so we need quotes
