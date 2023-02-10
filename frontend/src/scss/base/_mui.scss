@@ -1,0 +1,6 @@
+// i want to disable default on click transiton of mui menu items
+// because it is too slow
+// also the slow speed can cause it to behave buggy
+.MuiMenu-paper {
+  transition-duration: 0s !important;
+}

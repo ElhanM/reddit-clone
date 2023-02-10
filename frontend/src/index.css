@@ -41,4 +41,9 @@
 
 .auth-form .MuiButton-root {
   margin: 1em 0 !important;
+}
+
+.MuiMenu-paper {
+  -webkit-transition-duration: 0s !important;
+          transition-duration: 0s !important;
 }/*# sourceMappingURL=index.css.map */

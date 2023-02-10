@@ -19,8 +19,10 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 // COMPONENTS IMPORTS //
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
 import { RedditLogo } from "components/molecules";
-import { SelectCommunity } from "components/atoms";
+import { SelectCommunity, StyledIconButton } from "components/atoms";
 import { NavUser } from "components/organisms";
+import RenderMenu from "./RenderMenu";
+import RenderMobileMenu from "./RenderMobileMenu";
 
 // EXTRA IMPORTS //
 
@@ -54,53 +56,7 @@ const Navbar = (props: NavbarProps) => {
 
   const menuId = "primary-search-account-menu";
 
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      sx={{
-        marginTop: "1.5em !important",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
-
   const mobileMenuId = "primary-search-account-menu-mobile";
-
-  const renderMobileMenu = (
-    <Menu
-      anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMobileMenuOpen}
-      onClose={handleMobileMenuClose}
-    >
-      <MenuItem>Create Post</MenuItem>
-      <MenuItem>Profile</MenuItem>
-      <MenuItem>My account</MenuItem>
-    </Menu>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -110,6 +66,7 @@ const Navbar = (props: NavbarProps) => {
             height: "48px !important",
             maxHeight: "48px !important",
             // we need minHeight here in order to override the existing mui min-height
+            // it also will not work without !important
             minHeight: "48px !important",
             backgroundColor: "#1a1a1b",
           }}
@@ -125,7 +82,6 @@ const Navbar = (props: NavbarProps) => {
               height: "40px !important",
               borderRadius: "20px !important",
               width: "60% !important",
-              // make width smaller on smaller screens
               // TODO after adding the rest of components, make this responsive
               "@media (max-width: 1200px)": {
                 width: "40% !important",
@@ -143,28 +99,28 @@ const Navbar = (props: NavbarProps) => {
               display: { xs: "none", md: "flex" },
             }}
           >
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <StyledIconButton ariaLabel="add post" icon>
               <AddOutlinedIcon />
-            </IconButton>
-            <IconButton
-              size="large"
+            </StyledIconButton>
+            <StyledIconButton
+              ariaLabel="account of current user"
+              /* 
               edge="end"
-              aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
-              // customize hover styles
-              sx={{
-                "&:hover": {
-                  backgroundColor: "transparent !important",
-                },
-                // remove transition
-                transition: "none !important",
+               */
+              // add these above as restIconProps
+              iconProps={{
+                edge: "end",
+                // we cant use - in a prop name, so we need quotes
+                "aria-controls": menuId,
+                "aria-haspopup": "true",
+                onClick: handleProfileMenuOpen,
               }}
             >
               <NavUser />
-            </IconButton>
+            </StyledIconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -180,8 +136,13 @@ const Navbar = (props: NavbarProps) => {
           </Box>
         </Toolbar>
       </AppBar>
-      {renderMobileMenu}
-      {renderMenu}
+      <RenderMobileMenu
+        mobileMenuId={mobileMenuId}
+        isMobileMenuOpen={isMobileMenuOpen}
+        handleMobileMenuClose={handleMobileMenuClose}
+        mobileMoreAnchorEl={mobileMoreAnchorEl}
+      />
+      <RenderMenu anchorEl={anchorEl} isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose} menuId={menuId} />
     </Box>
   );
 };
