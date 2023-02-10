@@ -76,20 +76,9 @@ const Navbar = (props: NavbarProps) => {
             <RedditLogo />
           </div>
           <section className={`${styles["nav-main"]}`}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{
-                display: { xs: "block", sm: "block" },
-                "@media (max-width: 750px)": {
-                  width: "100%",
-                },
-              }}
-              className={`${styles["select"]}`}
-            >
+            <div className={`${styles["select"]}`}>
               <SelectCommunity />
-            </Typography>
+            </div>
             {/* //TODO add search to menu on sm screens and either make search opet up a new page and search there, or make it search from nav on lg and on new page on sm */}
             <Search
               className={`${styles["search"]}`}
@@ -97,25 +86,23 @@ const Navbar = (props: NavbarProps) => {
                 height: "40px !important",
                 borderRadius: "20px !important",
                 width: "100% !important",
-                "@media (max-width: 750px)": {
-                  display: "none",
-                },
+                // "@media (max-width: 600px)": {
+                //   display: "none",
+                // },
               }}
             >
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
-              {/* //TODO search placeholder, what will we be searching for? */}
               <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
             </Search>
           </section>
-          <Box sx={{ flexGrow: 1 }} />
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
             }}
           >
-            <StyledIconButton ariaLabel="add post" icon>
+            <StyledIconButton ariaLabel="add-post" icon>
               <AddOutlinedIcon />
             </StyledIconButton>
             <StyledIconButton

@@ -2,8 +2,18 @@
 @use "../../../scss/abstracts/mixins" as *;
 @use "../../../scss/abstracts/variables" as *;
 
-logo {
+.logo {
   height: 100%;
+}
+
+.select {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .select {
+    width: 45%;
+  }
 }
 
 .nav-main {
@@ -13,13 +23,23 @@ logo {
   grid-template-columns: 1fr 2fr;
 }
 
-@media (max-width: 1260px) {
+@media (max-width: 600px) {
   .nav-main {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 4fr;
   }
 }
-@media (max-width: 750px) {
+@media (max-width: 520px) {
   .nav-main {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 3fr;
+  }
+}
+@media (max-width: 450px) {
+  .nav-main {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+@media (max-width: 380px) {
+  .nav-main {
+    grid-template-columns: 2fr 3fr;
   }
 }

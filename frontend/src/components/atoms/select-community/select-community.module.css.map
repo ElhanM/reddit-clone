@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"select-community.module.css"}
+{"version":3,"sources":["select-community.module.css"],"names":[],"mappings":"AAAA;EACE,oBAAa;EAAb,qBAAa;EAAb,oBAAa;EAAb,aAAa;EACb,uBAA2B;EAA3B,mCAA2B;MAA3B,oBAA2B;UAA3B,2BAA2B;EAC3B,yBAAmB;EAAnB,2BAAmB;MAAnB,sBAAmB;UAAnB,mBAAmB;AACrB","file":"select-community.module.css","sourcesContent":["select-placeholder-wrapper {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n}"]}
