@@ -6,10 +6,12 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import { Typography } from "@mui/material";
+import { RSlash } from "components/molecules";
 
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
+import styles from "./select-community.module.scss";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -19,24 +21,23 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 8 + ITEM_PADDING_TOP,
-      // width: 250,
     },
   },
 };
 
 const names = [
   // reddit communities
-  "r/AskReddit",
-  "r/aww",
-  "r/Coronavirus",
-  "r/memes",
-  "r/NoStupidQuestions",
-  "r/PoliticalHumor",
-  "r/mildlyinteresting",
-  "r/nextfuckinglevel",
-  "r/oddlysatisfying",
-  "r/wholesomememes",
-  "r/woahdude",
+  "AskReddit",
+  "aww",
+  "Coronavirus",
+  "memes",
+  "NoStupidQuestions",
+  "PoliticalHumor",
+  "mildlyinteresting",
+  "nextfuckinglevel",
+  "oddlysatisfying",
+  "wholesomememes",
+  "woahdude",
 ];
 
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
@@ -60,59 +61,126 @@ const SelectCommunity = (props: SelectCommunityProps) => {
       typeof value === "string" ? value.split(",") : value,
     );
   };
-
   return (
-    <div>
-      <FormControl
+    <FormControl
+      sx={{
+        m: 1,
+        mt: 3,
+        marginBottom: 3,
+        width: "95% !important",
+        "@media (max-width: 600px)": {
+          width: "45% !important",
+        },
+      }}
+    >
+      <Select
+        displayEmpty
+        value={personName}
+        onChange={handleChange}
+        input={<OutlinedInput />}
+        renderValue={selected => {
+          console.log({ selected });
+          if (selected.length === 0) {
+            return (
+              <>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    "@media (max-width: 600px)": {
+                      display: "none",
+                    },
+                  }}
+                >
+                  Communities
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    "@media (min-width: 601px)": {
+                      display: "none",
+                    },
+                    "& svg": {
+                      width: "1.3rem",
+                      marginTop: ".5rem !important",
+                    },
+                  }}
+                >
+                  <RSlash />
+                </Typography>
+              </>
+            );
+          } else {
+            return (
+              <>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    "@media (max-width: 600px)": {
+                      display: "none",
+                    },
+                  }}
+                >
+                  {selected[0]}
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    "@media (min-width: 601px)": {
+                      display: "none",
+                    },
+                    "& svg": {
+                      width: "1.3rem",
+                      marginTop: ".5rem !important",
+                    },
+                  }}
+                >
+                  <RSlash />
+                </Typography>
+              </>
+            );
+          }
+        }}
+        MenuProps={MenuProps}
+        inputProps={{ "aria-label": "Without label" }}
         sx={{
-          m: 1,
-          width: 300,
-          mt: 3,
-          marginBottom: 3,
-          "@media (max-width: 750px)": {
-            width: "95%",
+          height: "34px",
+          padding: "0 !important",
+          "@media (max-width: 600px)": {
+            marginLeft: "-5vw !important",
+            width: "4em !important",
           },
         }}
       >
-        <Select
-          displayEmpty
-          value={personName}
-          onChange={handleChange}
-          input={<OutlinedInput />}
-          renderValue={selected => {
-            if (selected.length === 0) {
-              return <p>Communities</p>;
-            }
-
-            return selected.join(", ");
-          }}
-          MenuProps={MenuProps}
-          inputProps={{ "aria-label": "Without label" }}
-          sx={{ height: "34px", width: "100%", padding: "0 !important" }}
-        >
-          <MenuItem disabled>
-            <Typography
-              variant="subtitle1"
-              sx={{
-                // small font size and bold
-                fontSize: "0.7rem",
-                fontWeight: "bold",
-              }}
-            >
-              YOUR COMMUNITIES
-            </Typography>
+        <MenuItem disabled>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              // small font size and bold
+              fontSize: "0.7rem",
+              fontWeight: "bold",
+            }}
+          >
+            YOUR COMMUNITIES
+          </Typography>
+        </MenuItem>
+        <MenuItem key={"create-community"} value={"Create Community"}>
+          <Typography variant="subtitle1">Create Community</Typography>
+        </MenuItem>
+        {names.map(name => (
+          <MenuItem
+            key={name}
+            value={name}
+            style={getStyles(name, personName, theme)}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            r/{name}
           </MenuItem>
-          <MenuItem>
-            <Typography variant="subtitle1">Create Community</Typography>
-          </MenuItem>
-          {names.map(name => (
-            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
-              {name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+        ))}
+      </Select>
+    </FormControl>
   );
 };
 
