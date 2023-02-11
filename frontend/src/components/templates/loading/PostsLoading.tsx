@@ -34,7 +34,14 @@ const TitlePlaceholder = ({}: TitlePlaceholderProps) => {
       <div className={`${styles["title-background"]}`} />
       <m.div
         animate={{
-          translateX: ["-5vw", "30vw"],
+          // in order to not make the animation look choppy, we want it to start outside the div and go beyond the div's bounds
+          // https://jameshfisher.com/2019/12/29/what-are-css-percentages/
+          // when using % on width and height for example, the width and height properties are percentages of the corresponding width and height of the containing block
+          // translate on the other hand refer to the size of the bounding box
+          // https://stackoverflow.com/questions/11160227/translate-x-and-y-percentage-values-based-on-elements-height-and-width
+          // aka When using percentage in translate, it refers to width or height of itself.
+          // so I will just use pixels
+          translateX: ["-100px", "900px"],
         }}
         transition={{ duration: 1, ease: "linear", repeat: Infinity }}
         className={`${styles["title-animation"]}`}
@@ -53,7 +60,7 @@ const BodyPlaceholder = ({}: BodyPlaceholderProps) => {
           <div className={`${styles["body-background"]}`} />
           <m.div
             animate={{
-              translateX: ["-5vw", "30vw"],
+              translateX: ["-100px", "900px"],
             }}
             transition={{ duration: 1, ease: "linear", repeat: Infinity }}
             className={`${styles["body-animation"]}`}

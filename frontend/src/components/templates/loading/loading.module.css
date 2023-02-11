@@ -13,6 +13,27 @@
   width: 100%;
 }
 
+.title-container {
+  height: 2em;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.body-container {
+  position: relative;
+  overflow: hidden;
+  margin: 1em 0;
+  width: 100%;
+}
+
+.body-background {
+  background-color: #575757;
+  height: 1.5em;
+  width: 100%;
+}
+
 .title-animation,
 .body-animation {
   height: 100%;
@@ -22,25 +43,6 @@
   background: linear-gradient(90deg, #575757 0%, rgba(157, 157, 157, 0.4784313725) 50%, #575757 100%);
   left: 0;
   top: 0;
-}
-
-.title-container {
-  height: 2em;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.body-container {
-  position: relative;
-  overflow: hidden;
-  margin: 1em 0;
-}
-
-.body-background {
-  background-color: #575757;
-  height: 1.5em;
-  width: 100%;
 }
 
 .posts-loading-container {
