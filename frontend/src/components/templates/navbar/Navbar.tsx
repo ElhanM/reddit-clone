@@ -8,10 +8,10 @@ import { useState } from "react";
 import RenderMenu from "./RenderMenu";
 import RenderMobileMenu from "./RenderMobileMenu";
 import NavLG from "./NavLG";
+import NavSM from "./NavSM";
 
 // EXTRA IMPORTS //
 import styles from "./navbar.module.scss";
-import NavSM from "./NavSM";
 
 /////////////////////////////////////////////////////////////////////////////
 
