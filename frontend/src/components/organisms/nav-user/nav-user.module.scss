@@ -6,6 +6,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  // the div moves on hover due to added border
+  // so we will have default transparent border
+  border: 1px solid transparent;
+  padding: .1em;
+  &:hover {
+    border: 1px solid #343536;
+  }
 }
 
 .user-info {

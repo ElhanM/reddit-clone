@@ -11,6 +11,11 @@
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border: 1px solid transparent;
+  padding: 0.1em;
+}
+.nav-user-wrapper:hover {
+  border: 1px solid #343536;
 }
 
 .user-info {

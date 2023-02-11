@@ -146,6 +146,8 @@ const SelectCommunity = (props: SelectCommunityProps) => {
           height: "34px",
           padding: "0 !important",
           "@media (max-width: 600px)": {
+            // move select to the left since for some reason it has a huge margin
+            // using vw in order to make it responsive, so that it not goes over logo
             marginLeft: "-5vw !important",
             width: "4em !important",
           },
