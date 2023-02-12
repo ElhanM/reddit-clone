@@ -19,17 +19,20 @@
 
 .title-container {
   height: 2em;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
 }
 
 .body-container {
-  position: relative;
-  overflow: hidden;
   margin: 1em 0;
+}
+
+.body-container,
+.title-container {
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  // https://stackoverflow.com/questions/5736503/how-to-make-css3-rounded-corners-hide-overflow-in-chrome-opera <- inspiration for solution
+  border-radius: 1em; /* this breaks the overflow:hidden, the overflow ignores the border radius and causes the overflown element to go slightly beyond the bounds of the container */
+  mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC); /* this fixes the problem */
 }
 
 .body-background {
