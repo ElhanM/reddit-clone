@@ -4,3 +4,5 @@ export { default as SelectCommunity } from "../atoms/select-community/SelectComm
 
 export { default as StyledIconButton } from "./mui/StyledIconButton";
 export { default as StyledRenderMenu } from "./mui/StyledRenderMenu";
+
+export { default as PlainLink } from "./links/PlainLink";

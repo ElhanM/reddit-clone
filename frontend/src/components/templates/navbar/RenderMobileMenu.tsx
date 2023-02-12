@@ -1,10 +1,11 @@
 // PLUGINS IMPORTS //
-import { Menu, MenuItem } from "@mui/material";
 
 // COMPONENTS IMPORTS //
 import { StyledRenderMenu } from "components/atoms";
+import IconLink from "./IconLink";
 
 // EXTRA IMPORTS //
+import { ELink } from "types/pages";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -18,9 +19,7 @@ type RenderMobileMenuProps = {
 const RenderMobileMenu = ({ mobileMoreAnchorEl, isMobileMenuOpen, handleMobileMenuClose, mobileMenuId }: RenderMobileMenuProps) => {
   return (
     <StyledRenderMenu anchorEl={mobileMoreAnchorEl} isMenuOpen={isMobileMenuOpen} handleMenuClose={handleMobileMenuClose} menuId={mobileMenuId}>
-      <MenuItem>Create Post</MenuItem>
-      <MenuItem>Profile</MenuItem>
-      <MenuItem>My account</MenuItem>
+      <IconLink link={ELink.TEXT} handleClick={handleMobileMenuClose} renderIconText />
     </StyledRenderMenu>
   );
 };
