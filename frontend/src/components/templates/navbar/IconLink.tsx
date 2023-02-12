@@ -18,6 +18,10 @@ type CreatePostLinkProps = {
   lgScreenRenderText?: boolean;
 };
 
+// this array can take icons that we use on lg screens and render them, and also on sm screens it knows to not render the icons
+// but instead display the icon text in the dropdown menu instead
+// and it can also take the links we use in the user dropdown menu that do not have icons and only display them in the seperate user dropdown menu on lg screen
+// and on sm screens it takes these links and displays them in the sm screen's dropdown menu together with the icon texts
 const iconLinks: {
   icon?: JSX.Element;
   ariaLabel?: string;
@@ -40,6 +44,10 @@ const iconLinks: {
   },
 ];
 
+
+// this component makes the navbar navigation icons and other links easier to manage by rendering them all using one component
+// this way when I want to change something about them or add more of them or add a link to them, I don't have to change multiple files
+// i just have to add them to the array above and the component will render them
 const CreatePostLink = ({ link, handleClick, linkOnly, renderIconText, lgScreenRenderText }: CreatePostLinkProps) => {
   let content: JSX.Element;
 

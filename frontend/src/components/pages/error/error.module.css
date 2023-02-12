@@ -1,0 +1,125 @@
+.notfound-wrapper {
+  position: relative;
+  height: 100vh;
+}
+
+.notfound-wrapper .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.notfound .notfound-404 {
+  height: 190px;
+  margin-bottom: 2em;
+}
+
+.notfound .notfound-404 h1 {
+  font-size: 146px;
+  font-weight: 700;
+  margin: 0px;
+}
+
+.notfound .notfound-404 h1 > span {
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+  background-image: url("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/mozilla/36/pensive-face_1f614.png");
+  background-size: cover;
+  z-index: -1;
+  scale: 1.2;
+  -webkit-animation-name: floating;
+          animation-name: floating;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.notfound h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.notfound p {
+  font-weight: 300;
+  margin-bottom: 1em;
+}
+
+.button-wrapper,
+.button {
+  display: inline-block;
+  padding: 0.5em 1.5em;
+  background-color: #ff9800;
+  border-radius: 40px;
+}
+
+.button {
+  font-weight: 700;
+  text-decoration: none;
+  -webkit-transition: 0.2s all;
+  transition: 0.2s all;
+  padding: 0.5em 1.5em;
+}
+
+.notfound a {
+  color: black !important;
+}
+
+.notfound a:hover {
+  background-color: #cc7a00;
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    height: 115px;
+  }
+  .notfound .notfound-404 h1 {
+    font-size: 86px;
+  }
+  .notfound .notfound-404 h1 > span {
+    width: 86px;
+    height: 86px;
+  }
+}
+@-webkit-keyframes floating {
+  from {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  50% {
+    -webkit-transform: translate(0, 15px);
+            transform: translate(0, 15px);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+@keyframes floating {
+  from {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  50% {
+    -webkit-transform: translate(0, 15px);
+            transform: translate(0, 15px);
+  }
+  to {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}/*# sourceMappingURL=error.module.css.map */

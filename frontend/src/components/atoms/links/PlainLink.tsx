@@ -11,12 +11,14 @@ import styles from "./plain-link.module.css";
 type PlainLinkProps = {
   children: React.ReactNode;
   to: string;
-  restLinkProps?: LinkProps;
+  className?: string;
+  // i need the onClick in order to have the back button in the error page
+  onClick?: () => void;
 };
 
-const PlainLink = ({ children, to, restLinkProps }: PlainLinkProps) => {
+const PlainLink = ({ children, to, className, onClick }: PlainLinkProps) => {
   return (
-    <Link to={to} className={`${styles["plain-link"]}`} {...restLinkProps}>
+    <Link to={to} className={`${styles["plain-link"]} ${className}`} onClick={onClick}>
       {children}
     </Link>
   );

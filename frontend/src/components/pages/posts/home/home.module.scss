@@ -1,6 +1,7 @@
 // default absolute path that I set up in the tsconfig file doesn't affect scss
 @use "../../../../scss/abstracts/colors" as *;
 @use "../../../../scss/abstracts/mixins" as *;
+@use "../../../../scss/abstracts/variables" as *;
 
 .home-wrapper {
   @include grid-layout;

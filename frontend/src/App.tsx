@@ -3,7 +3,7 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { CreatePostPage, Home, Login } from "components/pages";
+import { CreatePostPage, Error, Home, Login } from "components/pages";
 import { SharedLayout } from "components/templates";
 
 // EXTRA IMPORTS //
@@ -23,7 +23,7 @@ const App = () => {
             <Route path="create-post" element={<CreatePostPage />} />
             <Route path="login" element={<Login />} />
             {/* <Route path="register" element={<Register />} /> */}
-            {/* <Route path="*" element={<Error />} /> */}
+            <Route path="*" element={<Error />} />
           </Route>
         </Routes>
       </BrowserRouter>

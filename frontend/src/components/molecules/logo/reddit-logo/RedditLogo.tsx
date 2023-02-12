@@ -1,7 +1,7 @@
 // PLUGINS IMPORTS //
 
 // COMPONENTS IMPORTS //
-import { Link } from "@mui/material";
+import { PlainLink } from "components/atoms";
 import { RedditIcon, RedditText } from "components/molecules";
 
 // EXTRA IMPORTS //
@@ -13,16 +13,12 @@ type RedditLogoProps = {};
 
 const RedditLogo = (props: RedditLogoProps) => {
   return (
-    <Link
-      href="/"
-      className={`${styles["reddit-logo"]}`}
-      sx={{
-        height: "100% !important",
-      }}
-    >
-      <RedditIcon />
-      <RedditText />
-    </Link>
+    <PlainLink to="/">
+      <nav className={`${styles["reddit-logo"]}`}>
+        <RedditIcon />
+        <RedditText />
+      </nav>
+    </PlainLink>
   );
 };
 
