@@ -40,7 +40,7 @@ const TitlePlaceholder = ({}: TitlePlaceholderProps) => {
           // translate on the other hand refer to the size of the bounding box
           // https://stackoverflow.com/questions/11160227/translate-x-and-y-percentage-values-based-on-elements-height-and-width
           // aka When using percentage in translate, it refers to width or height of itself.
-          // so I will just use pixels
+          // so I will just use pixels, from -100 to 900 so it works on all screen sizes and I don't have to waste any more time on this
           translateX: ["-100px", "900px"],
         }}
         transition={{ duration: 1, ease: "linear", repeat: Infinity }}
