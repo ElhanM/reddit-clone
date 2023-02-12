@@ -1,0 +1,1 @@
+{"version":3,"sources":["plain-link.module.css"],"names":[],"mappings":"AAAA;EACE,gCAAgC;EAChC,yBAAyB;AAC3B","file":"plain-link.module.css","sourcesContent":[".plain-link {\n  text-decoration: none !important;\n  color: inherit !important;\n}"]}

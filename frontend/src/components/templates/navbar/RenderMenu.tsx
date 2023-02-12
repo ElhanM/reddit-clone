@@ -1,10 +1,11 @@
 // PLUGINS IMPORTS //
-import { MenuItem } from "@mui/material";
 
 // COMPONENTS IMPORTS //
 import { StyledRenderMenu } from "components/atoms";
+import IconLink from "./IconLink";
 
 // EXTRA IMPORTS //
+import { ELink } from "types/pages";
 
 /////////////////////////////////////////////////////////////////////////////
 type RenderMenuProps = {
@@ -17,8 +18,7 @@ type RenderMenuProps = {
 const RenderMenu = ({ anchorEl, isMenuOpen, handleMenuClose, menuId }: RenderMenuProps) => {
   return (
     <StyledRenderMenu anchorEl={anchorEl} isMenuOpen={isMenuOpen} handleMenuClose={handleMenuClose} menuId={menuId}>
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <IconLink link={ELink.TEXT} handleClick={handleMenuClose} linkOnly lgScreenRenderText />
     </StyledRenderMenu>
   );
 };

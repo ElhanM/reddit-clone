@@ -1,16 +1,17 @@
 // PLUGINS IMPORTS //
 import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/material";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 
 // COMPONENTS IMPORTS //
 import { SelectCommunity, StyledIconButton } from "components/atoms";
 import { RedditLogo } from "components/molecules";
 import { NavUser } from "components/organisms";
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
+import IconLink from "./IconLink";
 
 // EXTRA IMPORTS //
 import styles from "./navbar.module.css";
+import { ELink } from "types/pages";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -49,14 +50,12 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
           display: { xs: "none", md: "flex" },
         }}
       >
-        <StyledIconButton ariaLabel="add-post" icon>
-          <AddOutlinedIcon />
-        </StyledIconButton>
+        <IconLink link={ELink.ICON} />
         <StyledIconButton
           ariaLabel="account of current user"
           iconProps={{
             edge: "end",
-            // we cant use - in a prop name, so we need quotes
+            // we cant use '-' in a prop name, so we need quotes
             "aria-controls": menuId,
             "aria-haspopup": "true",
             onClick: handleProfileMenuOpen,
