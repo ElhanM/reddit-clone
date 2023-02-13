@@ -1,4 +1,4 @@
-export default interface IInfo {
+export default interface IPostInfo {
   pageSize: number;
   pages: number;
   numberOfPosts: number;

@@ -4,6 +4,6 @@ import { getMe } from "controllers";
 
 const router = express.Router();
 
-router.route("/get-me").get(verifyToken, getMe);
+router.route("/get-me").post(verifyToken, getMe);
 
 export default router;

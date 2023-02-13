@@ -13,10 +13,11 @@ import styles from "./text-field.module.css";
 type TextFieldComponentProps = {
   label: string;
   name: string;
+  type?: string;
   textFieldProps?: TextFieldProps;
 };
 
-const AuthTextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProps) => {
+const AuthTextFieldComponent = ({ label, name, type, ...rest }: TextFieldComponentProps) => {
   const {
     register,
     formState: {
@@ -87,7 +88,7 @@ const AuthTextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProp
       <TextField
         label={label}
         variant="outlined"
-        // only show error outline and error text only if both showHelperText is true and error msg exists 
+        // only show error outline and error text only if both showHelperText is true and error msg exists
         // this pervents error where error outline stays after there is no longer an error
         error={showHelperText && !!((errors[name]?.message as string) ?? "")}
         // typecast to string to avoid type errors
@@ -95,6 +96,11 @@ const AuthTextFieldComponent = ({ label, name, ...rest }: TextFieldComponentProp
         {...rest.textFieldProps}
         // disable browsers default autocomplete cus it hides error text
         autoComplete="off"
+        type={type ?? "text"}
+        // disable saved logins autocomplete
+
+        
+
         {...register(name)}
       />
     </>

@@ -2,7 +2,7 @@
 
 // COMPONENTS IMPORTS //
 import { StyledRenderMenu } from "components/atoms";
-import IconLink from "./IconLink";
+import IconLink from "./CreatePostLinks";
 
 // EXTRA IMPORTS //
 import { ELink } from "types/pages";

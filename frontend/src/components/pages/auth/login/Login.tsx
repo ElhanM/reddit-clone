@@ -1,7 +1,5 @@
 // PLUGINS IMPORTS //
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { SubmitHandler, FormProvider, useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +23,7 @@ type LoginProps = {};
 const Login = (props: LoginProps) => {
   const history = useNavigate();
 
+  //! handle errors
   const [loginUser, { isLoading, isError, error, isSuccess }] = useLoginMutation();
 
   const methods = useForm<ILoginFormProps>({
@@ -44,7 +43,8 @@ const Login = (props: LoginProps) => {
   const submitHandler: SubmitHandler<ILoginFormProps> = async (data: ILoginFormProps) => {
     console.log("data submitted", data);
     const { email, password } = data;
-    loginUser({
+    // ! myb await
+    await loginUser({
       email,
       password,
     });
@@ -59,14 +59,8 @@ const Login = (props: LoginProps) => {
           Login
         </Typography>
         <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
-          <AuthTextFieldComponent
-            label="Email"
-            name="email"
-            textFieldProps={{
-              fullWidth: true,
-            }}
-          />
-          <AuthTextFieldComponent label="Password" name="password" />
+          <AuthTextFieldComponent label="Email" name="email" />
+          <AuthTextFieldComponent label="Password" name="password" type="password" />
           <CreateButton
             theme={ETheme.LIGHT}
             buttonText="Login"

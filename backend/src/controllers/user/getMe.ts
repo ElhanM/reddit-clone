@@ -5,7 +5,7 @@ import { AuthRequest } from "types/express";
 
 const getMe = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    console.log({ userId: req.userId });
+    console.log("user get me hit", { userId: req.userId });
     const user = await db.User.findOne({
       where: {
         userId: req.userId,

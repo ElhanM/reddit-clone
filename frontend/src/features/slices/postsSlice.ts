@@ -5,7 +5,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import type { IInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
+import type { IPostInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 
@@ -35,7 +35,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     // https://stackoverflow.com/questions/72530121/rtk-query-infinite-scrolling-retaining-existing-data
     getPosts: builder.query<
       {
-        info: IInfo;
+        info: IPostInfo;
         ids: EntityId[];
         entities: Dictionary<IPostsForUser>;
       },

@@ -7,7 +7,7 @@ import { SelectCommunity, StyledIconButton } from "components/atoms";
 import { RedditLogo } from "components/molecules";
 import { NavUser } from "components/organisms";
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
-import IconLink from "./IconLink";
+import IconLink from "./CreatePostLinks";
 
 // EXTRA IMPORTS //
 import styles from "./navbar.module.css";

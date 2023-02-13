@@ -1,7 +1,6 @@
+import IReqInfo from "types/features/IReqInfo";
 import IUserAuth from "./IUserAuth";
 
-export default interface IExtendedUserAuth {
-  success: boolean;
-  msg: string;
+export default interface IExtendedUserAuth extends IReqInfo{
   user: IUserAuth;
 }
