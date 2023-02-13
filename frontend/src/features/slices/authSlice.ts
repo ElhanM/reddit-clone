@@ -1,13 +1,11 @@
 // PLUGINS IMPORTS //
-import { createSelector } from "@reduxjs/toolkit";
 
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
 import { apiSlice } from "../api/apiSlice";
-import type { RootState } from "app/store";
-import { IExtendedUserAuth, IUserAuth, IUserBody } from "types/features";
-import { setUser } from "./userSlice";
+import { IExtendedUserAuth, IReqInfo, IUserAuth, IUserBody } from "types/features";
+import { setUser, logout } from "./userSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -16,19 +14,25 @@ import { setUser } from "./userSlice";
 
 export const extendedApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getMe: builder.query<IUserAuth, null>({
+    // we need getMe to be a mutation/post request in order to be able to dispatch it once
+    getMe: builder.mutation<IUserAuth, null>({
       query() {
         return {
-          url: "users/get-me",
+          url: "/user/get-me",
           credentials: "include",
+          method: "POST",
         };
       },
-      transformResponse: (result: { data: { user: IUserAuth } }) => result.data.user,
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      transformResponse: (rawResult: IExtendedUserAuth) => {
+        return rawResult.user;
+      },
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
           dispatch(setUser(data));
-        } catch (error) {}
+        } catch (error) {
+          console.log("getMe error:", { error });
+        }
       },
     }),
     // in order to have a user state which holds the user data, I needed to create a new userSlice
@@ -51,7 +55,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       transformResponse: (rawResult: IExtendedUserAuth) => {
         return rawResult.user;
       },
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
           // add cookie on successful login
           // resolve queryFulfilled promise
@@ -60,7 +64,26 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         } catch (error) {}
       },
     }),
+    // we need logout to be a mutation/post request in order to be able to dispatch logout action
+    logout: builder.mutation<IReqInfo, null>({
+      query: () => {
+        return {
+          method: "POST",
+          credentials: "include",
+          url: "auth/logout",
+        };
+      },
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
+        try {
+          console.log("LOGOUT AUTH SLICE");
+          // "optimistic" logout, which will delete the cookie on the frontend before the backend request
+          // that way the user gets redirected to the login page immediately, and also the navbar gets removed and routes updated
+          dispatch(logout());
+          await queryFulfilled;
+        } catch (error) {}
+      },
+    }),
   }),
 });
 
-export const { useLoginMutation } = extendedApiSlice;
+export const { useLoginMutation, useGetMeMutation, useLogoutMutation } = extendedApiSlice;

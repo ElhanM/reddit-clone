@@ -33,7 +33,7 @@ const Error = (props: ErrorProps) => {
           </PlainLink>
           <PlainLink
             className={`${styles["button"]}`}
-            // dummy link since to is required in link component
+            // dummy link since 'to' prop is required in link component
             to="#"
             onClick={() => {
               navigate(-1);

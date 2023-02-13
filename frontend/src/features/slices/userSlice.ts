@@ -1,6 +1,13 @@
+// PLUGINS IMPORTS //
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IExtendedUserAuth, IUserAuth, IUserBody } from "types/features";
-import { setUserCookies } from "utils";
+
+// COMPONENTS IMPORTS //
+import { deleteUserCookies, setUserCookies } from "utils";
+
+// EXTRA IMPORTS //
+import { IUserAuth } from "types/features";
+
+/////////////////////////////////////////////////////////////////////////////
 
 const initialState: { user: IUserAuth } = {
   // we need to use user:{...} in initialState in order to be able to get user data from the state
@@ -19,10 +26,12 @@ export const userSlice = createSlice({
   name: "userSlice",
   reducers: {
     logout: () => {
-      // TODO delete cookie
+      console.log("LOGOUT USER SLICE");
+      deleteUserCookies();
       return initialState;
     },
     setUser: (state, action: PayloadAction<IUserAuth>) => {
+      console.log("LOGIN SETTING DATA");
       state.user = action.payload;
       setUserCookies(action.payload.userId);
       console.log({ state: state.user });
