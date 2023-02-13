@@ -15,22 +15,14 @@ import { useGetMeMutation } from "features/slices/authSlice";
 /////////////////////////////////////////////////////////////////////////////
 
 const App = () => {
-  const [userCookie, setUserCookie] = useState("");
   // get state from userSlice
   const { user } = useAppSelector(state => state.userState);
   const [getMe, { isLoading, isError, error, isSuccess }] = useGetMeMutation();
 
-  useEffect(() => {
-    setUserCookie(getUserCookie());
-    // ! more dependencies? slice? split? redirect?
-  }, [getUserCookie]);
-
-  useEffect(() => {
-    // React useState hook is asynchronous so we need to use getMe in a separate useEffect that relies on userCookie
-    if (userCookie && user.userId === "") {
-      getMe(null);
-    }
-  }, [userCookie]);
+  // React useState hook is asynchronous so we need to use getMe in a separate useEffect that relies on userCookie
+  if (getUserCookie() && user.userId === "") {
+    getMe(null);
+  }
 
   useEffect(() => {
     console.log("userrrrr", user);
@@ -43,17 +35,17 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           //TODO add role based routing
-          <Route path="/" element={<SharedLayout />}>
-            {userCookie ? (
+          <Route path="/" element={getUserCookie() ? <SharedLayout /> : <Login />}>
+            {getUserCookie() && (
               <>
                 <Route index element={<Home />} />
                 <Route path="create-post" element={<CreatePostPage />} />
               </>
-            ) : null}
+            )}
 
             <Route path="login" element={<Login />} />
             {/* <Route path="register" element={<Register />} /> */}
-            <Route path="*" element={userCookie ? <Error /> : <Login />} />
+            <Route path="*" element={getUserCookie() ? <Error /> : <Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
