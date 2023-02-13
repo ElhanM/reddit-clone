@@ -61,7 +61,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           // resolve queryFulfilled promise
           const { data } = await queryFulfilled;
           dispatch(setUser(data));
-        } catch (error) {}
+        } catch (error) {
+          console.log("login error:", { error });
+        }
       },
     }),
     // we need logout to be a mutation/post request in order to be able to dispatch logout action
@@ -71,6 +73,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           method: "POST",
           credentials: "include",
           url: "auth/logout",
+          // i don't really need to invalidate Auth tags, since I am handling the logout logic seperately on the frontend
+          // so I will have logout mutation also just provide "Auth" as a tag, cus it helps keep track of requests
+          tags: ["Auth"],
         };
       },
       async onQueryStarted(_args, { dispatch, queryFulfilled }) {

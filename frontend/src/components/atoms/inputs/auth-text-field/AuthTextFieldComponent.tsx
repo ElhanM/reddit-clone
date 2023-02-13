@@ -56,32 +56,30 @@ const AuthTextFieldComponent = ({ label, name, type, ...rest }: TextFieldCompone
     }
   }
 
-  useEffect(() => {
-    // we only want error to appear if a modifed field gets unfocused, and once it appears, it should stay
-    // but, e.g. if we unfocus an unmodifed field, and then after that focus it again and modify it
-    // the error appears before unfocus
-    // since isTouchedField stays true
-    // so, everytime a filed gets unfocused, if showHelperText===false, aka the error is not showing, we will reset isTouchedField to false
-    // but, since we only want reset the value of isTouchedField
-    // we need to add all specific options to keep the other values
-    if (!showHelperText) {
-      reset(
-        { [name]: false },
-        {
-          keepErrors: true,
-          keepDirty: true,
-          keepDirtyValues: true,
-          keepValues: true,
-          keepDefaultValues: true,
-          keepIsSubmitted: true,
-          // touched is the only one that we want to reset
-          // keepTouched: true,
-          keepIsValid: true,
-          keepSubmitCount: true,
-        },
-      );
-    }
-  }, [isTouchedField]);
+  // we only want error to appear if a modifed field gets unfocused, and once it appears, it should stay
+  // but, e.g. if we unfocus an unmodifed field, and then after that focus it again and modify it
+  // the error appears before unfocus
+  // since isTouchedField stays true
+  // so, everytime a filed gets unfocused, if showHelperText===false, aka the error is not showing, we will reset isTouchedField to false
+  // but, since we only want reset the value of isTouchedField
+  // we need to add all specific options to keep the other values
+  if (!showHelperText && isTouchedField) {
+    reset(
+      { [name]: false },
+      {
+        keepErrors: true,
+        keepDirty: true,
+        keepDirtyValues: true,
+        keepValues: true,
+        keepDefaultValues: true,
+        keepIsSubmitted: true,
+        // touched is the only one that we want to reset
+        // keepTouched: true,
+        keepIsValid: true,
+        keepSubmitCount: true,
+      },
+    );
+  }
 
   return (
     <>
@@ -98,8 +96,6 @@ const AuthTextFieldComponent = ({ label, name, type, ...rest }: TextFieldCompone
         autoComplete="off"
         type={type ?? "text"}
         // disable saved logins autocomplete
-
-        
 
         {...register(name)}
       />

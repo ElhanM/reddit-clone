@@ -1,17 +1,15 @@
 // PLUGINS IMPORTS //
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { Avatar } from "components/molecules";
 
 // EXTRA IMPORTS //
-import { getUserCookie } from "utils";
 import { EAvatar } from "types/pages";
 import styles from "./nav-user.module.css";
 import { useAppSelector } from "app/store";
-import { useGetMeMutation } from "features/slices/authSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 type NavUserProps = {};

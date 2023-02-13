@@ -19,7 +19,8 @@ const App = () => {
   const { user } = useAppSelector(state => state.userState);
   const [getMe, { isLoading, isError, error, isSuccess }] = useGetMeMutation();
 
-  // React useState hook is asynchronous so we need to use getMe in a separate useEffect that relies on userCookie
+  // https://beta.reactjs.org/learn/you-might-not-need-an-effect
+  // Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
   if (getUserCookie() && user.userId === "") {
     getMe(null);
   }

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
 import { CreateButton, AuthTextFieldComponent } from "components/atoms";
+import { HandleError } from "components/templates";
 
 // EXTRA IMPORTS //
 import { AuthTemplate } from "components/templates";
@@ -41,13 +42,15 @@ const Login = (props: LoginProps) => {
 
   // typing an async arrow function
   const submitHandler: SubmitHandler<ILoginFormProps> = async (data: ILoginFormProps) => {
-    console.log("data submitted", data);
     const { email, password } = data;
     // ! myb await
-    await loginUser({
+    // If you need to access the error or success payload immediately after a mutation, you can chain .unwrap().
+    const login = await loginUser({
       email,
       password,
-    });
+    }).unwrap();
+    console.log("login", login);
+    console.log("error", error);
     // redirect to home page
     history("/");
   };
@@ -61,6 +64,9 @@ const Login = (props: LoginProps) => {
         <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
           <AuthTextFieldComponent label="Email" name="email" />
           <AuthTextFieldComponent label="Password" name="password" type="password" />
+          {/* //! ADD ERROR STYLES */}
+          {isError && <HandleError error={error} />}
+          {/* //! ADD LOADING STATE TO BUTTON */}
           <CreateButton
             theme={ETheme.LIGHT}
             buttonText="Login"

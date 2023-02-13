@@ -1,5 +1,5 @@
 // PLUGINS IMPORTS //
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy } from "react";
 import { Outlet } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
