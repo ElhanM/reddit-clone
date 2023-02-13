@@ -1,7 +1,7 @@
 // PLUGINS IMPORTS //
 import { MenuItem } from "@mui/material";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import { useDispatch } from "react-redux";
+import { useMemo } from "react";
 
 // COMPONENTS IMPORTS //
 import { PlainLink, StyledIconButton } from "components/atoms";
@@ -10,6 +10,7 @@ import { PlainLink, StyledIconButton } from "components/atoms";
 import { ELink } from "types/pages";
 // import { logout } from "features/slices/userSlice";
 import { useLogoutMutation } from "features/slices/authSlice";
+import { MutationTrigger } from "@reduxjs/toolkit/dist/query/react/buildHooks";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +28,6 @@ type CreatePostLinkProps = {
 const CreatePostLinks = ({ link, handleClick, linkOnly, renderIconText, lgScreenRenderText }: CreatePostLinkProps) => {
   let content: JSX.Element;
   // !remove dispatch
-  const dispatch = useDispatch();
 
   const [logoutUser, { isLoading, isError, error, isSuccess }] = useLogoutMutation();
 
@@ -41,29 +41,33 @@ const CreatePostLinks = ({ link, handleClick, linkOnly, renderIconText, lgScreen
     to: string;
     text: string;
     //!!!!!!! anyyy
-    handleClick?: (...args: any[]) => any;
-  }[] = [
-    {
-      icon: <AddOutlinedIcon />,
-      ariaLabel: "add-post",
-      to: "/create-post",
-      text: "Create Post",
-    },
-    {
-      to: "#",
-      text: "Profile",
-    },
-    {
-      to: "#",
-      text: "My account",
-    },
-    {
-      to: "login",
-      text: "Logout",
-      // destructure logoutUser from useLogoutMutation and call it with null as argument
-      handleClick: logoutUser,
-    },
-  ];
+    // add type of handleClick, it takes redux toolkit query mutations (like logoutUser for example)
+    handleClick?: MutationTrigger<any>;
+  }[] = useMemo(
+    () => [
+      {
+        icon: <AddOutlinedIcon />,
+        ariaLabel: "add-post",
+        to: "/create-post",
+        text: "Create Post",
+      },
+      {
+        to: "#",
+        text: "Profile",
+      },
+      {
+        to: "#",
+        text: "My account",
+      },
+      {
+        to: "login",
+        text: "Logout",
+        // destructure logoutUser from useLogoutMutation and call it with null as argument
+        handleClick: logoutUser,
+      },
+    ],
+    [],
+  );
 
   if (link === ELink.ICON) {
     content = (
