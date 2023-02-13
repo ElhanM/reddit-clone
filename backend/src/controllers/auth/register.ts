@@ -8,6 +8,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
 
   let existingUser;
   try {
+    // this fails when existingUser is not null, so we will wrap it in a try/catch
     existingUser = await db.User.findOne({
       where: {
         username,
@@ -15,7 +16,7 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    return next(err);
   }
   if (existingUser) {
     return next(
@@ -52,7 +53,6 @@ const register = async (req: Request, res: Response, next: NextFunction) => {
     const userWithoutPassword = removePassword(user.toJSON());
     return res.status(200).json({ success: true, msg: "Successfully Registered", user: userWithoutPassword });
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 };

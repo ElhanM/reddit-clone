@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { Post } from "components/organisms";
-import PostsError from "../error/PostsError";
+import HandleError from "../error/HandleError";
 import PostsLoading from "../loading/PostsLoading";
 
 // EXTRA IMPORTS //
@@ -39,7 +39,7 @@ const Posts = () => {
   if (isLoading) {
     return <PostsLoading />;
   } else if (isError) {
-    return <PostsError error={error} />;
+    return <HandleError error={error} />;
   } else if (isSuccess) {
     return (
       <section className={`${styles["posts-wrapper"]}`}>

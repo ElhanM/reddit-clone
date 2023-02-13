@@ -8,13 +8,14 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
 
   try {
+    // this fails when user is null, so we don't need to wrap it in a try/catch, we catch that error in the if statement below
     const user = await db.User.findOne({
       where: {
         email,
       },
     });
     if (!user) {
-      return new ErrorResponse("Invalid email", 400);
+      return next(new ErrorResponse("Invalid email", 400));
     }
     const isPasswordCorrect = bcrypt.compareSync(password, user.toJSON().password);
     if (!isPasswordCorrect) {

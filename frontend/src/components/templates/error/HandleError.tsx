@@ -8,11 +8,11 @@ import type { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 
 /////////////////////////////////////////////////////////////////////////////
 
-type PostsErrorProps = {
+type HandleErrorProps = {
   error: FetchBaseQueryError | SerializedError;
 };
 
-const PostsError = ({ error }: PostsErrorProps) => {
+const HandleError = ({ error }: HandleErrorProps) => {
   // error is an object, so we can't directly render it
   // docs type safe way to handle rtk query errors:
   // https://redux-toolkit.js.org/rtk-query/usage-with-typescript#type-safe-error-handling
@@ -38,4 +38,4 @@ const PostsError = ({ error }: PostsErrorProps) => {
   }
 };
 
-export default PostsError;
+export default HandleError;

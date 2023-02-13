@@ -1,6 +1,6 @@
 // PLUGINS IMPORTS //
 import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { CreateButton } from "components/atoms";
@@ -16,9 +16,7 @@ type CreatePostProps = {};
 
 const CreatePost = (props: CreatePostProps) => {
   const [markdownText, setMarkdownText] = useState("");
-  useEffect(() => {
-    console.log({ markdownText });
-  }, [markdownText]);
+
   return (
     <main className={`${styles["create-post-wrapper"]}`}>
       <header className={`${styles["create-post-header"]}`}>
