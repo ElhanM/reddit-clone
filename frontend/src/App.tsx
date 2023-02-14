@@ -19,15 +19,19 @@ const App = () => {
   const { user } = useAppSelector(state => state.userState);
   const [getMe, { isLoading, isError, error, isSuccess }] = useGetMeMutation();
 
-  // https://beta.reactjs.org/learn/you-might-not-need-an-effect
-  // Removing unnecessary Effects will make your code easier to follow, faster to run, and less error-prone.
-  if (getUserCookie() && user.userId === "") {
-    getMe(null);
-  }
+  let userCookie = getUserCookie();
 
   useEffect(() => {
-    console.log("userrrrr", user);
-  }, [user]);
+    // we only need this useEffect to run on the very initial render of the app
+    // if user has a cookie, that means he has recently logged in (so we know he has an account) and we only need to get his info
+    // if user has no cookie, that means he needs to visit the login page
+    // evey subsequent need for a cookie will be handled by the auth pages, the job of this useEffect is only to handle the user's first visit to the app
+    // and make it so that, if he has a cookie, he doesn't have to visit the login page beofre viewing the content
+    if (userCookie && user.userId === "") {
+      getMe(null);
+      userCookie = getUserCookie();
+    }
+  }, []);
 
   return (
     <>
@@ -36,17 +40,17 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           //TODO add role based routing
-          <Route path="/" element={getUserCookie() ? <SharedLayout /> : <Login />}>
-            {getUserCookie() && (
+          <Route path="/" element={userCookie ? <SharedLayout /> : <Login />}>
+            {userCookie && (
               <>
                 <Route index element={<Home />} />
                 <Route path="create-post" element={<CreatePostPage />} />
+                <Route path="login" element={<Login />} />
+                {/* <Route path="register" element={<Register />} /> */}
               </>
             )}
 
-            <Route path="login" element={<Login />} />
-            {/* <Route path="register" element={<Register />} /> */}
-            <Route path="*" element={getUserCookie() ? <Error /> : <Login />} />
+            <Route path="*" element={userCookie ? <Error /> : <Login />} />
           </Route>
         </Routes>
       </BrowserRouter>
