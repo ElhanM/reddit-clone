@@ -46,9 +46,12 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-type SelectCommunityProps = {};
+type SelectCommunityProps = {
+  setCommunity: (value: string) => void;
+  emptyCommunity?: boolean;
+};
 
-const SelectCommunity = (props: SelectCommunityProps) => {
+const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps) => {
   const theme = useTheme();
   const [personName, setPersonName] = useState<string[]>([]);
 
@@ -60,127 +63,131 @@ const SelectCommunity = (props: SelectCommunityProps) => {
       // On autofill we get a stringified value.
       typeof value === "string" ? value.split(",") : value,
     );
+    setCommunity(value as string);
   };
   return (
-    <FormControl
-      sx={{
-        backgroundColor: "#1a1a1b",
-        width: "95% !important",
-        "@media (max-width: 600px)": {
-          width: "45% !important",
-        },
-      }}
-    >
-      <Select
-        displayEmpty
-        value={personName}
-        onChange={handleChange}
-        input={<OutlinedInput />}
-        renderValue={selected => {
-          console.log({ selected });
-          if (selected.length === 0) {
-            return (
-              <>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    "@media (max-width: 600px)": {
-                      display: "none",
-                    },
-                  }}
-                >
-                  Communities
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    "@media (min-width: 601px)": {
-                      display: "none",
-                    },
-                    "& svg": {
-                      width: "1.3rem",
-                      marginTop: ".5rem !important",
-                    },
-                  }}
-                >
-                  <RSlash />
-                </Typography>
-              </>
-            );
-          } else {
-            return (
-              <>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    "@media (max-width: 600px)": {
-                      display: "none",
-                    },
-                  }}
-                >
-                  {selected[0]}
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  sx={{
-                    "@media (min-width: 601px)": {
-                      display: "none",
-                    },
-                    "& svg": {
-                      width: "1.3rem",
-                      marginTop: ".5rem !important",
-                    },
-                  }}
-                >
-                  <RSlash />
-                </Typography>
-              </>
-            );
-          }
-        }}
-        MenuProps={MenuProps}
-        inputProps={{ "aria-label": "Without label" }}
+    <>
+      <FormControl
         sx={{
-          height: "34px",
-          padding: "0 !important",
+          backgroundColor: "#1a1a1b",
+          width: "95% !important",
           "@media (max-width: 600px)": {
-            // move select to the left since for some reason it has a huge margin
-            // using vw in order to make it responsive, so that it not goes over logo
-            marginLeft: "-5vw !important",
-            width: "4em !important",
+            width: "45% !important",
           },
         }}
       >
-        <MenuItem disabled>
-          <Typography
-            variant="subtitle1"
-            sx={{
-              // small font size and bold
-              fontSize: "0.7rem",
-              fontWeight: "bold",
-            }}
-          >
-            YOUR COMMUNITIES
-          </Typography>
-        </MenuItem>
-        <MenuItem key={"create-community"} value={"Create Community"}>
-          <Typography variant="subtitle1">Create Community</Typography>
-        </MenuItem>
-        {names.map(name => (
-          <MenuItem
-            key={name}
-            value={name}
-            style={getStyles(name, personName, theme)}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-            r/{name}
+        <Select
+          displayEmpty
+          value={personName}
+          onChange={handleChange}
+          input={<OutlinedInput />}
+          renderValue={selected => {
+            console.log({ selected });
+            if (selected.length === 0) {
+              return (
+                <>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      "@media (max-width: 600px)": {
+                        display: "none",
+                      },
+                    }}
+                  >
+                    Communities
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      "@media (min-width: 601px)": {
+                        display: "none",
+                      },
+                      "& svg": {
+                        width: "1.3rem",
+                        marginTop: ".5rem !important",
+                      },
+                    }}
+                  >
+                    <RSlash />
+                  </Typography>
+                </>
+              );
+            } else {
+              return (
+                <>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      "@media (max-width: 600px)": {
+                        display: "none",
+                      },
+                    }}
+                  >
+                    {selected[0]}
+                  </Typography>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      "@media (min-width: 601px)": {
+                        display: "none",
+                      },
+                      "& svg": {
+                        width: "1.3rem",
+                        marginTop: ".5rem !important",
+                      },
+                    }}
+                  >
+                    <RSlash />
+                  </Typography>
+                </>
+              );
+            }
+          }}
+          MenuProps={MenuProps}
+          inputProps={{ "aria-label": "Without label" }}
+          sx={{
+            height: "34px",
+            padding: "0 !important",
+            "@media (max-width: 600px)": {
+              // move select to the left since for some reason it has a huge margin
+              // using vw in order to make it responsive, so that it not goes over logo
+              marginLeft: "-5vw !important",
+              width: "4em !important",
+            },
+          }}
+        >
+          <MenuItem disabled>
+            <Typography
+              variant="subtitle1"
+              sx={{
+                // small font size and bold
+                fontSize: "0.7rem",
+                fontWeight: "bold",
+              }}
+            >
+              YOUR COMMUNITIES
+            </Typography>
           </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+          <MenuItem key={"create-community"} value={"Create Community"}>
+            <Typography variant="subtitle1">Create Community</Typography>
+          </MenuItem>
+          {names.map(name => (
+            <MenuItem
+              key={name}
+              value={name}
+              style={getStyles(name, personName, theme)}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              r/{name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      {emptyCommunity && "Please select a community"}
+    </>
   );
 };
 

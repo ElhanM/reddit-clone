@@ -21,6 +21,7 @@ type CreatePostProps = {};
 
 const CreatePost = (props: CreatePostProps) => {
   const [markdownText, setMarkdownText] = useState("");
+  const [community, setCommunity] = useState("");
 
   const methods = useForm<ICreatePostForm>({
     resolver: yupResolver(createPostFormSchema),
@@ -30,13 +31,22 @@ const CreatePost = (props: CreatePostProps) => {
     mode: "onTouched",
     defaultValues: {
       title: "",
-      description: "",
+      // description: "",
     },
     // uncontrolled inputs
   });
 
+  const [emptyMarkdown, setEmptyMarkdown] = useState(false);
+  const [emptyCommunity, setEmptyCommunity] = useState(false);
+
   // typing an async arrow function
   const submitHandler: SubmitHandler<ICreatePostForm> = async (data: ICreatePostForm) => {
+    if (markdownText === "<p><br></p>" || markdownText === "") {
+      setEmptyMarkdown(true);
+    }
+    if (community === "") {
+      setEmptyCommunity(true);
+    }
     console.log("data", data);
   };
 
@@ -44,18 +54,22 @@ const CreatePost = (props: CreatePostProps) => {
     console.log("markdownText", markdownText);
   }, [markdownText]);
 
+  useEffect(() => {
+    console.log("community", community);
+  }, [community]);
+
   return (
-    <main className={`${styles["create-post-wrapper"]}`}>
-      <header className={`${styles["create-post-header"]}`}>
-        <Typography variant="h6">Create a post</Typography>
-      </header>
-      {/* making the border a seperate div makes it easier to apply margin */}
-      <div className={`${styles["border"]} ${styles["top"]}`}></div>
-      <div className={`${styles["select"]}`}>
-        <SelectCommunity />
-      </div>
-      <article className={`${styles["create-post"]}`}>
-        <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
+    <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
+      <main className={`${styles["create-post-wrapper"]}`}>
+        <header className={`${styles["create-post-header"]}`}>
+          <Typography variant="h6">Create a post</Typography>
+        </header>
+        {/* making the border a seperate div makes it easier to apply margin */}
+        <div className={`${styles["border"]} ${styles["top"]}`}></div>
+        <div className={`${styles["select"]}`}>
+          <SelectCommunity setCommunity={setCommunity} emptyCommunity={emptyCommunity} />
+        </div>
+        <article className={`${styles["create-post"]}`}>
           <section className={`${styles["inner-create-post"]}`}>
             <AuthTextFieldComponent
               label="Title"
@@ -65,24 +79,19 @@ const CreatePost = (props: CreatePostProps) => {
                 fullWidth: true,
               }}
             />
-            <ConfigedRQuill placeholder="Description" content={markdownText} setContent={setMarkdownText} />
+            <ConfigedRQuill placeholder="Description" content={markdownText} setContent={setMarkdownText} emptyMarkdown={emptyMarkdown} />
             <div className={`${styles["formatted-markdown"]}`}>
+              {/* if we type something into RQuill, and then delete it all, the markdownText gets set to "<p><br></p>" */}
               <FormattedRMD markdownText={markdownText && markdownText !== "<p><br></p>" ? markdownText : "Markdown preview"} />
             </div>
             <div className={`${styles["border"]} ${styles["bottom"]}`}></div>
             <section className={`${styles["post-button"]}`}>
-              <CreateButton
-                theme={ETheme.LIGHT}
-                buttonText="Post"
-                buttonProps={{
-                  fullWidth: false,
-                }}
-              />
+              <CreateButton theme={ETheme.LIGHT} buttonText="Post" buttonProps={{ type: "submit", variant: "contained", color: "primary" }} />
             </section>
           </section>
-        </FormWrapper>
-      </article>
-    </main>
+        </article>
+      </main>
+    </FormWrapper>
   );
 };
 

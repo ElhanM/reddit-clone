@@ -1,5 +1,5 @@
 export default interface ICreatePostForm {
-  // community
+  // community: string;
   title: string;
-  description: string;
+  // description: string;
 }

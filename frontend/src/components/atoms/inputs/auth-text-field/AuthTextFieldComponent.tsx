@@ -13,6 +13,7 @@ import styles from "./text-field.module.css";
 type TextFieldComponentProps = {
   label: string;
   name: string;
+  // type text, password, etc
   type?: string;
   createPost?: boolean;
   textFieldProps?: TextFieldProps;
