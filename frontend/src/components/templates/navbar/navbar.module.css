@@ -4,6 +4,7 @@
 
 .select {
   width: 100%;
+  margin-left: 1em !important;
 }
 
 @media (max-width: 600px) {

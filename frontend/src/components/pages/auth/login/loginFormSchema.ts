@@ -4,11 +4,11 @@ import * as yup from "yup";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import { ILoginFormProps } from "types/pages";
+import { ILoginForm } from "types/pages";
 
 /////////////////////////////////////////////////////////////////////////////
 
-const loginFormSchema: yup.SchemaOf<ILoginFormProps> = yup.object({
+const loginFormSchema: yup.SchemaOf<ILoginForm> = yup.object({
   // make yup schema using exact same rules as express-validator with same error messages
   email: yup
     .string()

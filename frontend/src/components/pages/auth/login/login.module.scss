@@ -4,10 +4,16 @@
 .login-wrapper {
   height: 100vh;
   // add min height in order to enable horizontal scrolling for portrait mode
-  width: 300px;
+  width: 20vw;
+  min-width: 330px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   margin-left: 2em;
+}
+
+.inner-login{
+    width: 20vw;
+    min-width: 330px;
 }
