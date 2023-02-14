@@ -25,9 +25,24 @@
   margin: 0.8em 1em;
 }
 
+// select all direct children of .inner-create-post, except the last one
+.inner-create-post > :not(:last-child) {
+  margin-bottom: 0.8em;
+}
+
+.formatted-markdown {
+  border: 1px solid $reddit-border;
+  background-color: darken($post-background, 2%);
+}
+
 .post-button {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+}
+
+.select {
+  width: 40%;
+  margin-bottom: 0.5em;
 }

@@ -24,6 +24,15 @@
   margin: 0.8em 1em;
 }
 
+.inner-create-post > :not(:last-child) {
+  margin-bottom: 0.8em;
+}
+
+.formatted-markdown {
+  border: 1px solid #343536;
+  background-color: #151516;
+}
+
 .post-button {
   display: -webkit-box;
   display: -webkit-flex;
@@ -42,4 +51,9 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.select {
+  width: 40%;
+  margin-bottom: 0.5em;
 }/*# sourceMappingURL=create-post.module.css.map */

@@ -14,10 +14,11 @@ type TextFieldComponentProps = {
   label: string;
   name: string;
   type?: string;
+  createPost?: boolean;
   textFieldProps?: TextFieldProps;
 };
 
-const AuthTextFieldComponent = ({ label, name, type, ...rest }: TextFieldComponentProps) => {
+const AuthTextFieldComponent = ({ label, name, type, createPost, ...rest }: TextFieldComponentProps) => {
   const {
     register,
     formState: {
@@ -91,13 +92,13 @@ const AuthTextFieldComponent = ({ label, name, type, ...rest }: TextFieldCompone
         error={showHelperText && !!((errors[name]?.message as string) ?? "")}
         // typecast to string to avoid type errors
         helperText={showHelperText && ((errors[name]?.message as string) ?? "")}
-        {...rest.textFieldProps}
+        // {...rest.textFieldProps}
         // disable browsers default autocomplete cus it hides error text
         autoComplete="off"
         type={type ?? "text"}
-        // disable saved logins autocomplete
-
+        size={createPost ? "small" : "medium"}
         {...register(name)}
+        fullWidth
       />
     </>
   );

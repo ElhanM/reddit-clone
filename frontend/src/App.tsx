@@ -39,7 +39,6 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          //TODO add role based routing
           <Route path="/" element={userCookie ? <SharedLayout /> : <Login />}>
             {userCookie && (
               <>

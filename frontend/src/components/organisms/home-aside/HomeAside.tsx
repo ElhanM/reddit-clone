@@ -1,6 +1,6 @@
 // PLUGINS IMPORTS //
 import { Paper, Typography } from "@mui/material";
-import { CreateButton } from "components/atoms";
+import { CreateButton, PlainLink } from "components/atoms";
 
 // COMPONENTS IMPORTS //
 import { Avatar } from "components/molecules";
@@ -27,20 +27,24 @@ const HomeAside = (props: HomeAsideProps) => {
           <p className={`${styles["p-welcome"]}`}>Your personal Reddit frontpage. Come here to check in with your favorite communities.</p>
           <div className={`${styles["border-seperate"]}`}></div>
           <div className={`${styles["buttons"]}`}>
-            <CreateButton
-              theme={ETheme.LIGHT}
-              buttonText="Create Post"
-              buttonProps={{
-                fullWidth: true,
-              }}
-            />
-            <CreateButton
-              theme={ETheme.DARK}
-              buttonText="Create Community"
-              buttonProps={{
-                fullWidth: true,
-              }}
-            />
+            <PlainLink to="/create-post">
+              <CreateButton
+                theme={ETheme.LIGHT}
+                buttonText="Create Post"
+                buttonProps={{
+                  fullWidth: true,
+                }}
+              />
+            </PlainLink>
+            <PlainLink to="#">
+              <CreateButton
+                theme={ETheme.DARK}
+                buttonText="Create Community"
+                buttonProps={{
+                  fullWidth: true,
+                }}
+              />
+            </PlainLink>
           </div>
         </main>
       </Paper>

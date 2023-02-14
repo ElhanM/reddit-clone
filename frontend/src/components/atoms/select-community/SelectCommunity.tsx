@@ -64,9 +64,7 @@ const SelectCommunity = (props: SelectCommunityProps) => {
   return (
     <FormControl
       sx={{
-        m: 1,
-        mt: 3,
-        marginBottom: 3,
+        backgroundColor: "#1a1a1b",
         width: "95% !important",
         "@media (max-width: 600px)": {
           width: "45% !important",
