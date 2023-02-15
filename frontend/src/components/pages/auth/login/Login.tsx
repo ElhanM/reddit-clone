@@ -37,7 +37,6 @@ const Login = (props: LoginProps) => {
       email: "",
       password: "",
     },
-    // uncontrolled inputs
   });
 
   // typing an async arrow function

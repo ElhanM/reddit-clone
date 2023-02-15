@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/material";
 
 // COMPONENTS IMPORTS //
-import { SelectCommunity, StyledIconButton } from "components/atoms";
+import { NavSelectCommunity, StyledIconButton } from "components/atoms";
 import { RedditLogo } from "components/molecules";
 import { NavUser } from "components/organisms";
 import { Search, SearchIconWrapper, StyledInputBase } from "./index";
@@ -28,7 +28,7 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
       </div>
       <section className={`${styles["nav-main"]}`}>
         <div className={`${styles["select"]}`}>
-          <SelectCommunity />
+          <NavSelectCommunity />
         </div>
         {/* //TODO add search to menu on sm screens and either make search opet up a new page and search there, or make it search from nav on lg and on new page on sm */}
         <Search

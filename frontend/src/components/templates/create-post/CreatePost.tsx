@@ -2,10 +2,9 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
 // COMPONENTS IMPORTS //
-import { AuthTextFieldComponent, CreateButton, SelectCommunity } from "components/atoms";
+import { CreatePostTextFieldComponent, CreateButton, CreatePostSelectCommunity } from "components/atoms";
 import { ConfigedRQuill, FormattedRMD } from "components/molecules";
 import { FormWrapper } from "components/organisms";
 
@@ -13,7 +12,6 @@ import { FormWrapper } from "components/organisms";
 import styles from "./create-post.module.css";
 import { ETheme } from "types/theme";
 import { ICreatePostForm } from "types/templates";
-import createPostFormSchema from "./createPostFormSchema";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -24,30 +22,31 @@ const CreatePost = (props: CreatePostProps) => {
   const [community, setCommunity] = useState("");
 
   const methods = useForm<ICreatePostForm>({
-    resolver: yupResolver(createPostFormSchema),
-    // in order to achive the behaviour where error msgs appear both on submit and when fields that are modified get unfocused, we use mode: "onTouched" with
-    // some extra logic in the input field to stop behaviours like error appearing if user did not modify the field
-    // also, once error appears, it will stay there until form is submitted properly
     mode: "onTouched",
     defaultValues: {
       title: "",
-      // description: "",
     },
-    // uncontrolled inputs
   });
 
   const [emptyMarkdown, setEmptyMarkdown] = useState(false);
   const [emptyCommunity, setEmptyCommunity] = useState(false);
+  const [emptyTitle, setEmptyTitle] = useState(false);
 
   // typing an async arrow function
   const submitHandler: SubmitHandler<ICreatePostForm> = async (data: ICreatePostForm) => {
     if (markdownText === "<p><br></p>" || markdownText === "") {
       setEmptyMarkdown(true);
+      return;
     }
     if (community === "") {
       setEmptyCommunity(true);
+      return;
     }
-    console.log("data", data);
+    if (data.title === "") {
+      setEmptyTitle(true);
+      return;
+    }
+    console.log("data", data, "markdownText", markdownText, "community", community);
   };
 
   useEffect(() => {
@@ -67,14 +66,14 @@ const CreatePost = (props: CreatePostProps) => {
         {/* making the border a seperate div makes it easier to apply margin */}
         <div className={`${styles["border"]} ${styles["top"]}`}></div>
         <div className={`${styles["select"]}`}>
-          <SelectCommunity setCommunity={setCommunity} emptyCommunity={emptyCommunity} />
+          <CreatePostSelectCommunity setCommunity={setCommunity} emptyCommunity={emptyCommunity} />
         </div>
         <article className={`${styles["create-post"]}`}>
           <section className={`${styles["inner-create-post"]}`}>
-            <AuthTextFieldComponent
+            <CreatePostTextFieldComponent
               label="Title"
               name="title"
-              createPost
+              error={emptyTitle}
               textFieldProps={{
                 fullWidth: true,
               }}
