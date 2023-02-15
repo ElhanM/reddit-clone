@@ -36,26 +36,28 @@ const CreatePost = (props: CreatePostProps) => {
   const submitHandler: SubmitHandler<ICreatePostForm> = async (data: ICreatePostForm) => {
     if (markdownText === "<p><br></p>" || markdownText === "") {
       setEmptyMarkdown(true);
-      return;
     }
     if (community === "") {
       setEmptyCommunity(true);
-      return;
     }
     if (data.title === "") {
       setEmptyTitle(true);
-      return;
     }
     console.log("data", data, "markdownText", markdownText, "community", community);
+    if (markdownText !== "<p><br></p>" && markdownText !== "" && community !== "" && data.title !== "") {
+    }
   };
 
   useEffect(() => {
     console.log("markdownText", markdownText);
+    setEmptyMarkdown(false);
   }, [markdownText]);
 
   useEffect(() => {
     console.log("community", community);
+    setEmptyCommunity(false);
   }, [community]);
+
 
   return (
     <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
@@ -74,6 +76,7 @@ const CreatePost = (props: CreatePostProps) => {
               label="Title"
               name="title"
               error={emptyTitle}
+              setEmptyTitle={setEmptyTitle}
               textFieldProps={{
                 fullWidth: true,
               }}

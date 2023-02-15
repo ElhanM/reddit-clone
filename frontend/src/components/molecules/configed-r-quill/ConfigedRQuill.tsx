@@ -1,5 +1,6 @@
 // PLUGINS IMPORTS //
 import ReactQuill from "react-quill";
+import { Typography } from "@mui/material";
 
 // COMPONENTS IMPORTS //
 
@@ -26,8 +27,21 @@ const ConfigedRQuill = ({ placeholder, content, setContent, emptyMarkdown }: Con
         modules={QuillModules}
         formats={QuillFormats}
         placeholder={placeholder}
+        className={emptyMarkdown && "empty-markdown"}
       />
-      {emptyMarkdown && "The description value should not be empty"}
+      {emptyMarkdown && (
+        <Typography
+          variant="subtitle1"
+          sx={{
+            color: "#f44336",
+            fontSize: "0.75rem",
+            marginLeft: "0.7rem",
+            marginTop: "-.8em",
+          }}
+        >
+          The description value should not be empty
+        </Typography>
+      )}
     </>
   );
 };

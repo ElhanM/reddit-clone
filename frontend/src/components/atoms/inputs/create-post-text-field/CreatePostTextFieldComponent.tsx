@@ -16,11 +16,16 @@ type CreatePostTextFieldComponentProps = {
   error: boolean;
   // type text, password, etc
   type?: string;
+  setEmptyTitle: (value: boolean) => void;
   textFieldProps?: TextFieldProps;
 };
 
-const CreatePostTextFieldComponent = ({ label, name, type, error, ...rest }: CreatePostTextFieldComponentProps) => {
-  const { register } = useFormContext();
+const CreatePostTextFieldComponent = ({ label, name, type, error, setEmptyTitle, ...rest }: CreatePostTextFieldComponentProps) => {
+  const { register, watch } = useFormContext();
+
+  useEffect(() => {
+    setEmptyTitle(false);
+  }, [watch(name)]);
 
   return (
     <>

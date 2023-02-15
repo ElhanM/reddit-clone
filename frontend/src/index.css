@@ -16,6 +16,15 @@
   border: 1px solid #343536 !important;
 }
 
+.empty-markdown .ql-container,
+.empty-markdown .ql-toolbar {
+  border: 1px solid #f44336 !important;
+}
+
+.empty-markdown > .ql-container > .ql-editor.ql-blank::before {
+  color: #f44336;
+}
+
 .quill > .ql-toolbar {
   border-bottom: none !important;
   border-top-left-radius: 0.5em !important;
