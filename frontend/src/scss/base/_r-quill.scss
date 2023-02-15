@@ -14,6 +14,15 @@
   border: 1px solid $reddit-border !important;
 }
 
+.empty-markdown .ql-container,
+.empty-markdown .ql-toolbar {
+  border: 1px solid $error-text !important;
+}
+
+.empty-markdown > .ql-container > .ql-editor.ql-blank::before {
+  color: $error-text;
+}
+
 .quill > .ql-toolbar {
   border-bottom: none !important;
   border-top-left-radius: 0.5em !important;

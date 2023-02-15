@@ -6,7 +6,6 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import { Typography } from "@mui/material";
-import { RSlash } from "components/molecules";
 
 // COMPONENTS IMPORTS //
 
@@ -81,7 +80,16 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           renderValue={selected => {
             console.log({ selected });
             if (selected.length === 0) {
-              return <Typography variant="subtitle1">Communities</Typography>;
+              return (
+                <Typography
+                  variant="subtitle1"
+                  sx={{
+                    color: emptyCommunity && "#f44336",
+                  }}
+                >
+                  Communities
+                </Typography>
+              );
             } else {
               return <Typography variant="subtitle1">r/{selected[0]}</Typography>;
             }
@@ -91,6 +99,15 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           sx={{
             height: "34px",
             padding: "0 !important",
+            ".MuiOutlinedInput-notchedOutline": {
+              border: emptyCommunity && "1px solid #f44336",
+            },
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: emptyCommunity && "1px solid #f44336",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              border: emptyCommunity && "1px solid #f44336",
+            },
           }}
         >
           <MenuItem disabled>
@@ -123,7 +140,18 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           ))}
         </Select>
       </FormControl>
-      {emptyCommunity && "Please select a community"}
+      {emptyCommunity && (
+        <Typography
+          variant="subtitle1"
+          sx={{
+            color: "#f44336",
+            fontSize: "0.75rem",
+            marginLeft: "0.7rem",
+          }}
+        >
+          Please select a community
+        </Typography>
+      )}
     </>
   );
 };
