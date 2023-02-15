@@ -1,9 +1,0 @@
-@use "../../../scss/abstracts/colors" as *;
-@use "../../../scss/abstracts/mixins" as *;
-@use "../../../scss/abstracts/variables" as *;
-
-select-placeholder-wrapper{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}

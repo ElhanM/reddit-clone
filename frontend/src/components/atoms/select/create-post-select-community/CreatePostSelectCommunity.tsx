@@ -70,10 +70,7 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
       <FormControl
         sx={{
           backgroundColor: "#1a1a1b",
-          width: "95% !important",
-          "@media (max-width: 600px)": {
-            width: "45% !important",
-          },
+          width: "100%",
         }}
       >
         <Select
@@ -84,63 +81,9 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           renderValue={selected => {
             console.log({ selected });
             if (selected.length === 0) {
-              return (
-                <>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      "@media (max-width: 600px)": {
-                        display: "none",
-                      },
-                    }}
-                  >
-                    Communities
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      "@media (min-width: 601px)": {
-                        display: "none",
-                      },
-                      "& svg": {
-                        width: "1.3rem",
-                        marginTop: ".5rem !important",
-                      },
-                    }}
-                  >
-                    <RSlash />
-                  </Typography>
-                </>
-              );
+              return <Typography variant="subtitle1">Communities</Typography>;
             } else {
-              return (
-                <>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      "@media (max-width: 600px)": {
-                        display: "none",
-                      },
-                    }}
-                  >
-                    {selected[0]}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      "@media (min-width: 601px)": {
-                        display: "none",
-                      },
-                      "& svg": {
-                        width: "1.3rem",
-                        marginTop: ".5rem !important",
-                      },
-                    }}
-                  >
-                    <RSlash />
-                  </Typography>
-                </>
-              );
+              return <Typography variant="subtitle1">r/{selected[0]}</Typography>;
             }
           }}
           MenuProps={MenuProps}
@@ -148,12 +91,6 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           sx={{
             height: "34px",
             padding: "0 !important",
-            "@media (max-width: 600px)": {
-              // move select to the left since for some reason it has a huge margin
-              // using vw in order to make it responsive, so that it not goes over logo
-              marginLeft: "-5vw !important",
-              width: "4em !important",
-            },
           }}
         >
           <MenuItem disabled>
