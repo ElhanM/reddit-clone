@@ -88,7 +88,7 @@ const CreatePost = (props: CreatePostProps) => {
             </div>
             <div className={`${styles["border"]} ${styles["bottom"]}`}></div>
             <section className={`${styles["post-button"]}`}>
-              <CreateButton theme={ETheme.LIGHT} buttonText="Post" buttonProps={{ type: "submit", variant: "contained", color: "primary" }} />
+              <CreateButton theme={ETheme.LIGHT} createPost buttonText="Post" buttonProps={{ type: "submit", variant: "contained", color: "primary" }} />
             </section>
           </section>
         </article>

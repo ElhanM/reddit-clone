@@ -2,9 +2,6 @@
 @use "../../../../scss/abstracts/mixins" as *;
 @use "../../../../scss/abstracts/variables" as *;
 
-.button {
-}
-
 .button-light {
   color: $button-dark !important;
   background-color: $button-light !important;
