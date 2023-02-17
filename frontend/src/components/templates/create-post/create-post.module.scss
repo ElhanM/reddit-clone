@@ -40,6 +40,12 @@
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.post-button button {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .select {

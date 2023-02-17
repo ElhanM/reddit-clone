@@ -1,20 +1,15 @@
 // PLUGINS IMPORTS //
 
-
 // COMPONENTS IMPORTS //
-
 
 // EXTRA IMPORTS //
 
-
 /////////////////////////////////////////////////////////////////////////////
 
-type CreatePostAsideProps = {}
+type CreatePostAsideProps = {};
 
 const CreatePostAside = (props: CreatePostAsideProps) => {
-  return (
-    <div>CreatePostAside</div>
-  )
-}
+  return <div>CreatePostAside</div>;
+};
 
-export default CreatePostAside
+export default CreatePostAside;

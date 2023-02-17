@@ -13,11 +13,22 @@ type CreateButtonProps = {
   theme: ETheme;
   buttonText: string;
   buttonProps?: ButtonProps;
+  createPost?: boolean;
 };
 
-const CreateButtonLight = ({ theme, buttonText, ...rest }: CreateButtonProps) => {
+const CreateButtonLight = ({ theme, buttonText, createPost, ...rest }: CreateButtonProps) => {
   return (
-    <Button variant="contained" className={`${styles[`button-${theme}`]}`} {...rest.buttonProps}>
+    <Button
+      variant="contained"
+      className={`${styles[`button-${theme}`]}`}
+      {...rest.buttonProps}
+      sx={{
+        // select .MuiButton-root
+        "&.MuiButton-root": {
+          margin: createPost && "0 !important",
+        },
+      }}
+    >
       {buttonText}
     </Button>
   );

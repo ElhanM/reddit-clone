@@ -51,6 +51,13 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.post-button button {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .select {

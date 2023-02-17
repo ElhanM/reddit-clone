@@ -23,3 +23,8 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@mixin wrapper-grid {
+  max-width: 960px;
+  grid-template-columns: 2fr 1fr;
+}

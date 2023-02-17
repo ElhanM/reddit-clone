@@ -5,11 +5,10 @@
 
 .home-wrapper {
   @include grid-layout;
-  max-width: 960px;
-  grid-template-columns: 2fr 1fr;
+  @include wrapper-grid;
 }
 
-@media screen and (max-width: 976px) {
+@media screen and (max-width: $breakpoint) {
   .home-wrapper {
     @include grid-layout-responsive;
   }
