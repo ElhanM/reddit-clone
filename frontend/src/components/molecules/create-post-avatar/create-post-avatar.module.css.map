@@ -1,0 +1,1 @@
+{"version":3,"sources":["create-post-avatar.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;AACd","file":"create-post-avatar.module.css","sourcesContent":[".create-post-avatar {\n  height: 45px;\n}"]}

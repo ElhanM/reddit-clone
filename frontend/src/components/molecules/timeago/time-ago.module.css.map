@@ -1,1 +1,1 @@
-{"version":3,"sources":["time-ago.module.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,cAAc;AAChB","file":"time-ago.module.css","sourcesContent":[".header-rest {\n  font-size: 12px;\n  color: #818384;\n}"]}
+{"version":3,"sources":["time-ago.module.css"],"names":[],"mappings":"AAAA;EACE,eAAe;EACf,cAAc;AAChB","file":"time-ago.module.css","sourcesContent":[".header-rest {\n  font-size: 12px;\n  color: #d7dadc;\n}"]}
