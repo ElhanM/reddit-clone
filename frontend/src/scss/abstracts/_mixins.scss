@@ -14,6 +14,12 @@
   gap: 1.8em;
   margin-top: 1.6em;
 }
+
+@mixin wrapper-grid {
+  max-width: 990px;
+  grid-template-columns: 2fr 1fr;
+}
+
 @mixin grid-layout-responsive {
   width: 95%;
   grid-template-columns: 1fr;
@@ -24,11 +30,6 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-
-@mixin wrapper-grid {
-  max-width: 960px;
-  grid-template-columns: 2fr 1fr;
 }
 
 @mixin aside-header {

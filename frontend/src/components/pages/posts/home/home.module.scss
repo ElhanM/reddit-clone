@@ -8,7 +8,7 @@
   @include wrapper-grid;
 }
 
-@media screen and (max-width: $breakpoint) {
+@media screen and (max-width: $breakpoint-home) {
   .home-wrapper {
     @include grid-layout-responsive;
   }
