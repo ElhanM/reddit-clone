@@ -1,3 +1,5 @@
+@use "./colors" as *;
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -27,4 +29,20 @@
 @mixin wrapper-grid {
   max-width: 960px;
   grid-template-columns: 2fr 1fr;
+}
+
+@mixin aside-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  padding-left: 0.8em;
+}
+
+@mixin border-seperate {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 0.8em;
+  margin-bottom: 0.7em;
+  border: 1px solid $reddit-border;
 }

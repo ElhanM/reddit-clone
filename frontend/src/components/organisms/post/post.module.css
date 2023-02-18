@@ -79,7 +79,7 @@
 
 .by-user {
   font-size: 0.75em !important;
-  color: #818384;
+  color: #d7dadc;
 }
 
 .post-main {
@@ -133,11 +133,11 @@
 }
 
 .comment-icon {
-  color: #818384;
+  color: #d7dadc;
 }
 
 .comment-info {
-  color: #818384;
+  color: #d7dadc;
   font-weight: 500 !important;
   font-size: 0.9em !important;
 }/*# sourceMappingURL=post.module.css.map */

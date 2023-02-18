@@ -1,1 +1,18 @@
-@use "../../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/variables" as *;
+@use "../../../scss/abstracts/mixins" as *;
+
+.create_post_aside-wrapper {
+  border: 1px solid $reddit-border;
+  padding: 0 1em;
+}
+
+.header {
+  @include aside-header;
+  margin-top: 0.5em;
+}
+
+.border-seperate {
+  @include border-seperate;
+  margin: .4em 0;
+}

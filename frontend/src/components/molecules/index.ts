@@ -9,3 +9,4 @@ export { default as RedditText } from "./logo/reddit-text/RedditText";
 export { default as RedditLogo } from "./logo/reddit-logo/RedditLogo";
 
 export { default as Avatar } from "./avatar/Avatar";
+export { default as CreatePostAvatar } from "./create-post-avatar/CreatePostAvatar";

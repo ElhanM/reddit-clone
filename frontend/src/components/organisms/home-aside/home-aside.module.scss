@@ -12,19 +12,11 @@
 }
 
 .header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5em;
-  padding-left: 0.8em;
+  @include aside-header;
 }
 
 .border-seperate {
-  width: 100%;
-  margin: 0 auto;
-  margin-top: 0.8em;
-  margin-bottom: 0.7em;
-  border: 1px solid $reddit-border;
+  @include border-seperate;
 }
 
 .home-aside-main {
