@@ -11,11 +11,11 @@
           align-items: flex-start;
   gap: 1.8em;
   margin-top: 1.6em;
-  max-width: 960px;
+  max-width: 990px;
   grid-template-columns: 2fr 1fr;
 }
 
-@media screen and (max-width: 976px) {
+@media screen and (max-width: 1010px) {
   .home-wrapper {
     width: 95%;
     grid-template-columns: 1fr;
