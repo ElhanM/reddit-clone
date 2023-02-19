@@ -92,11 +92,24 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     // from stack overflow: https://stackoverflow.com/questions/68647833/redux-rtk-query-invalidating-only-single-element-from-list
     // Can we invalidate only single element from a list
     // No. RTK-Query is a document cache (full response = document), not a normalized cache
+
+    createPost: builder.mutation<IPostsForUser, { title: string; description: string; communityId: string }>({
+      query: ({ title, description, communityId }) => {
+        return {
+          // allow httpOnly cookies to be sent
+          credentials: "include",
+          method: "POST",
+          url: "posts/create-post",
+          body: { title, description, communityId },
+        };
+      },
+      invalidatesTags: [{ type: "Post" }],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetPostsQuery } = extendedApiSlice;
+export const { useGetPostsQuery, useCreatePostMutation } = extendedApiSlice;
 
 // returns the query result object
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null);
@@ -114,7 +127,4 @@ export const {
 } = postsAdapter.getSelectors((state: RootState) => selectPostsData(state) ?? initialState);
 
 // select info from state
-export const selectPostsInfo = createSelector(
-  selectPostsResult,
-  postsResult => postsResult.data?.info,
-);
+export const selectPostsInfo = createSelector(selectPostsResult, postsResult => postsResult.data?.info);

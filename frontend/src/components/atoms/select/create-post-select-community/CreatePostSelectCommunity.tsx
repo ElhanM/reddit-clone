@@ -11,6 +11,8 @@ import { Typography } from "@mui/material";
 
 // EXTRA IMPORTS //
 import styles from "./select-community.module.scss";
+import { useSelector } from "react-redux";
+import { selectAllCommunities } from "features/slices/communitySlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -24,21 +26,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  // reddit communities
-  "AskReddit",
-  "aww",
-  "Coronavirus",
-  "memes",
-  "NoStupidQuestions",
-  "PoliticalHumor",
-  "mildlyinteresting",
-  "nextfuckinglevel",
-  "oddlysatisfying",
-  "wholesomememes",
-  "woahdude",
-];
-
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight: personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
@@ -51,6 +38,9 @@ type SelectCommunityProps = {
 };
 
 const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps) => {
+  const userCommunities = useSelector(selectAllCommunities);
+  console.log({ userCommunities });
+
   const theme = useTheme();
   const [personName, setPersonName] = useState<string[]>([]);
 
@@ -78,7 +68,6 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={selected => {
-            console.log({ selected });
             if (selected.length === 0) {
               return (
                 <Typography
@@ -91,7 +80,14 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
                 </Typography>
               );
             } else {
-              return <Typography variant="subtitle1">r/{selected[0]}</Typography>;
+              return (
+                <Typography variant="subtitle1">
+                  {/* find element in userCommunities array with communityId of selected[0] and display the name */}
+                  {selected[0] === "Create Community"
+                    ? "Create Community"
+                    : `r/${userCommunities.find(community => community.communityId === selected[0])?.name}`}
+                </Typography>
+              );
             }
           }}
           MenuProps={MenuProps}
@@ -125,17 +121,17 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           <MenuItem key={"create-community"} value={"Create Community"}>
             <Typography variant="subtitle1">Create Community</Typography>
           </MenuItem>
-          {names.map(name => (
+          {userCommunities.map(community => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={community.communityId}
+              value={community.communityId}
+              style={getStyles(community.name, personName, theme)}
               sx={{
                 display: "flex",
                 alignItems: "center",
               }}
             >
-              r/{name}
+              r/{community.name}
             </MenuItem>
           ))}
         </Select>

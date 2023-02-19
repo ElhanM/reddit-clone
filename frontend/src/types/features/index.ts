@@ -9,3 +9,5 @@ export type { default as IReqInfo } from "./IReqInfo";
 export type { default as IUserAuth } from "./slices/authSlice/IUserAuth";
 export type { default as IUserBody } from "./slices/authSlice/IUserBody";
 export type { default as IExtendedUserAuth } from "./slices/authSlice/IExtendedUserAuth";
+
+export type { default as IGetCommunities } from "./slices/communitySlice/IGetCommunities";
