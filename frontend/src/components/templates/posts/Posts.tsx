@@ -1,5 +1,4 @@
 // PLUGINS IMPORTS //
-import { selectPostIds, useGetPostsQuery } from "features/slices/postsSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
@@ -10,23 +9,29 @@ import PostsLoading from "../loading/PostsLoading";
 
 // EXTRA IMPORTS //
 import styles from "./posts.module.css";
+import { selectPostIds, selectPostsInfo, useGetPostsQuery } from "features/slices/postsSlice";
+import { useAppSelector } from "app/store";
 
 /////////////////////////////////////////////////////////////////////////////
 
 const Posts = () => {
   const [page, setPage] = useState(1);
+
   const { isLoading, isSuccess, isError, error, isFetching } = useGetPostsQuery(page);
 
+  const postsInfo = selectPostsInfo(useAppSelector(state => state));
   const postIds = useSelector(selectPostIds);
+
+  useEffect(() => {
+    console.log({ postsInfo });
+  }, [postsInfo]);
 
   useEffect(() => {
     const onScroll = async (event: any) => {
       const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;
 
       if (!isFetching && scrollHeight - scrollTop <= clientHeight * 1.5) {
-        // version 1 of pagination,
-        // TODO, add more sophisticated next page logic
-        setPage(page + 1);
+        if (page <= postsInfo.pages) setPage(page + 1);
       }
     };
 

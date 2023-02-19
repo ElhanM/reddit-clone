@@ -15,8 +15,8 @@
   margin-top: 1.6em;
 }
 
-@mixin wrapper-grid {
-  max-width: 990px;
+@mixin wrapper-grid($width) {
+  max-width: $width;
   grid-template-columns: 2fr 1fr;
 }
 
