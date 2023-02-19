@@ -11,9 +11,8 @@
           align-items: flex-start;
   gap: 1.8em;
   margin-top: 1.6em;
-  max-width: 990px;
-  grid-template-columns: 2fr 1fr;
   max-width: 1150px;
+  grid-template-columns: 2fr 1fr;
 }
 
 @media screen and (max-width: 1170px) {

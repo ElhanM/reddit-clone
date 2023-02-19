@@ -112,3 +112,9 @@ export const {
   selectById: selectPostById,
   selectIds: selectPostIds,
 } = postsAdapter.getSelectors((state: RootState) => selectPostsData(state) ?? initialState);
+
+// select info from state
+export const selectPostsInfo = createSelector(
+  selectPostsResult,
+  postsResult => postsResult.data?.info,
+);
