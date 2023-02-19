@@ -11,13 +11,18 @@ import { getUserCookie } from "utils";
 // EXTRA IMPORTS //
 import { useAppSelector } from "app/store";
 import { useGetMeMutation } from "features/slices/authSlice";
+import { useGetUserCommunitiesQuery } from "features/slices/communitySlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
 const App = () => {
   // get state from userSlice
   const { user } = useAppSelector(state => state.userState);
-  const [getMe, { isLoading, isError, error, isSuccess }] = useGetMeMutation();
+  const [
+    getMe,
+    // {isLoading, isError, error, isSuccess }
+  ] = useGetMeMutation();
+  const { isLoading, isSuccess, isError, error, isFetching } = useGetUserCommunitiesQuery(null);
 
   let userCookie = getUserCookie();
 

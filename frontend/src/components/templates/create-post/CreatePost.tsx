@@ -12,12 +12,18 @@ import { FormWrapper } from "components/organisms";
 import styles from "./create-post.module.css";
 import { ETheme } from "types/theme";
 import { ICreatePostForm } from "types/templates";
+import { useCreatePostMutation } from "features/slices/postsSlice";
+import { useNavigate } from "react-router-dom";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type CreatePostProps = {};
 
 const CreatePost = (props: CreatePostProps) => {
+  const [createPost, { isLoading, isError, error, isSuccess }] = useCreatePostMutation();
+
+  const history = useNavigate();
+
   const [markdownText, setMarkdownText] = useState("");
   const [community, setCommunity] = useState("");
 
@@ -43,22 +49,26 @@ const CreatePost = (props: CreatePostProps) => {
     if (data.title === "") {
       setEmptyTitle(true);
     }
-    console.log("data", data, "markdownText", markdownText, "community", community);
     if (markdownText !== "<p><br></p>" && markdownText !== "" && community !== "" && data.title !== "") {
+      console.log("data", data, "markdownText", markdownText, "community", community);
+      const createPostData = await createPost({
+        title: data.title,
+        description: markdownText,
+        communityId: community,
+      }).unwrap();
+      history("/");
     }
   };
 
   useEffect(() => {
-    console.log("markdownText", markdownText);
     setEmptyMarkdown(false);
   }, [markdownText]);
 
   useEffect(() => {
-    console.log("community", community);
     setEmptyCommunity(false);
   }, [community]);
 
-
+  //!TODO reduce the amount of rerenders
   return (
     <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
       <main className={`${styles["create-post-wrapper"]}`}>
@@ -88,7 +98,12 @@ const CreatePost = (props: CreatePostProps) => {
             </div>
             <div className={`${styles["border"]} ${styles["bottom"]}`}></div>
             <section className={`${styles["post-button"]}`}>
-              <CreateButton theme={ETheme.LIGHT} createPost buttonText="Post" buttonProps={{ type: "submit", variant: "contained", color: "primary" }} />
+              <CreateButton
+                theme={ETheme.LIGHT}
+                createPost
+                buttonText="Post"
+                buttonProps={{ type: "submit", variant: "contained", color: "primary" }}
+              />
             </section>
           </section>
         </article>
