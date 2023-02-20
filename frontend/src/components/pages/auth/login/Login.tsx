@@ -16,6 +16,9 @@ import { ILoginForm } from "types/pages";
 import loginFormSchema from "./loginFormSchema";
 import styles from "./login.module.css";
 import { ETheme } from "types/theme";
+import { useEffect, useRef } from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { SerializedError } from "@reduxjs/toolkit";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +29,15 @@ const Login = (props: LoginProps) => {
 
   //! handle errors
   const [loginUser, { isLoading, isError, error, isSuccess }] = useLoginMutation();
+
+  // by default, whenever we hit login, if submitHandler runs, error will be reset to undefined
+  // this causes the error modal to disappear for a split second and reappear if there is still an error
+  // to prevent this, we use a ref to store the prev value and display that while error is undefined
+  const errorRef = useRef<FetchBaseQueryError | SerializedError>(undefined);
+
+  useEffect(() => {
+    if (error !== undefined) errorRef.current = error;
+  }, [error]);
 
   const methods = useForm<ILoginForm>({
     resolver: yupResolver(loginFormSchema),
@@ -42,13 +54,14 @@ const Login = (props: LoginProps) => {
   // typing an async arrow function
   const submitHandler: SubmitHandler<ILoginForm> = async (data: ILoginForm) => {
     const { email, password } = data;
-    // ! myb await
     // If you need to access the error or success payload immediately after a mutation, you can chain .unwrap().
     const login = await loginUser({
       email,
       password,
     }).unwrap();
     // redirect to home page
+    // we do not need to check whether there was an error before redirecting because if there was an error, due to yup form validation
+    // this function will not be called
     history("/");
   };
 
@@ -62,7 +75,7 @@ const Login = (props: LoginProps) => {
           <section className={`${styles["inner-login"]}`}>
             <AuthTextFieldComponent label="Email" name="email" />
             <AuthTextFieldComponent label="Password" name="password" type="password" />
-            {isError && <HandleError error={error} marginTop />}
+            {(isError || errorRef.current) && !isSuccess && <HandleError error={error || errorRef.current} marginTop />}
             <CreateButton
               theme={ETheme.LIGHT}
               buttonText="Login"
