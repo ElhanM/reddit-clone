@@ -48,8 +48,6 @@ const Login = (props: LoginProps) => {
       email,
       password,
     }).unwrap();
-    console.log("login", login);
-    console.log("error", error);
     // redirect to home page
     history("/");
   };
@@ -64,13 +62,11 @@ const Login = (props: LoginProps) => {
           <section className={`${styles["inner-login"]}`}>
             <AuthTextFieldComponent label="Email" name="email" />
             <AuthTextFieldComponent label="Password" name="password" type="password" />
-            {/* //! ADD ERROR STYLES */}
-            {isError && <HandleError error={error} />}
-            {/* //! ADD LOADING STATE TO BUTTON */}
+            {isError && <HandleError error={error} marginTop />}
             <CreateButton
               theme={ETheme.LIGHT}
               buttonText="Login"
-              buttonProps={{ type: "submit", variant: "contained", color: "primary", fullWidth: true }}
+              buttonProps={{ type: "submit", variant: "contained", color: "primary", fullWidth: true, disabled: isLoading }}
             />
           </section>
         </FormWrapper>

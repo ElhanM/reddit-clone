@@ -5,14 +5,29 @@ import type { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
+import styles from "./handle-error.module.css";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type HandleErrorProps = {
   error: FetchBaseQueryError | SerializedError;
+  marginTop?: boolean;
 };
 
-const HandleError = ({ error }: HandleErrorProps) => {
+const ErrorWrapper = ({ marginTop, children }: { children: React.ReactNode; marginTop?: boolean }) => {
+  return (
+    <div
+      className={`${styles["error-wrapper"]}
+      ${marginTop ? styles["error-wrapper--margin-top"] : ""}
+    `}
+    >
+      <i className="fa fa-times-circle"></i>
+      <span>{children}</span>
+    </div>
+  );
+};
+
+const HandleError = ({ marginTop, error }: HandleErrorProps) => {
   // error is an object, so we can't directly render it
   // docs type safe way to handle rtk query errors:
   // https://redux-toolkit.js.org/rtk-query/usage-with-typescript#type-safe-error-handling
@@ -26,15 +41,10 @@ const HandleError = ({ error }: HandleErrorProps) => {
     if ("msg" in JSON.parse(errMsg)) {
       errMsg = JSON.parse(errMsg).msg;
     }
-    return (
-      <div>
-        <h1>An error has occurred:</h1>
-        <h2>{errMsg}</h2>
-      </div>
-    );
+    return <ErrorWrapper children={errMsg} marginTop={marginTop} />;
   } else {
     // you can access all properties of `SerializedError` here
-    return <div>{error.message}</div>;
+    return <ErrorWrapper children={error.message} marginTop={marginTop} />;
   }
 };
 

@@ -13,6 +13,12 @@
   background-color: #bcc1c4 !important;
 }
 
+.button-light:disabled {
+  background-color: #a1a8ac !important;
+  color: #1a1a1b !important;
+  border: 1px solid #a1a8ac !important;
+}
+
 .button-dark {
   color: #d7dadc !important;
   background-color: #1a1a1b !important;
@@ -26,4 +32,10 @@
 
 .button-dark:hover {
   background-color: #333335 !important;
+}
+
+.button-dark:disabled {
+  background-color: #4c4c4f !important;
+  color: #d7dadc !important;
+  border: 1px solid #4c4c4f !important;
 }/*# sourceMappingURL=create-button.module.css.map */

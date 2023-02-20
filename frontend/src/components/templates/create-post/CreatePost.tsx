@@ -61,14 +61,13 @@ const CreatePost = (props: CreatePostProps) => {
   };
 
   useEffect(() => {
-    setEmptyMarkdown(false);
+    if (emptyMarkdown) setEmptyMarkdown(false);
   }, [markdownText]);
 
   useEffect(() => {
-    setEmptyCommunity(false);
+    if (emptyCommunity) setEmptyCommunity(false);
   }, [community]);
 
-  //!TODO reduce the amount of rerenders
   return (
     <FormWrapper methods={methods} submitHandler={submitHandler} authForm={true}>
       <main className={`${styles["create-post-wrapper"]}`}>
@@ -102,7 +101,7 @@ const CreatePost = (props: CreatePostProps) => {
                 theme={ETheme.LIGHT}
                 createPost
                 buttonText="Post"
-                buttonProps={{ type: "submit", variant: "contained", color: "primary" }}
+                buttonProps={{ type: "submit", variant: "contained", color: "primary", disabled: isLoading }}
               />
             </section>
           </section>
