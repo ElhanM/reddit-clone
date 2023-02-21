@@ -1,3 +1,8 @@
 @use "../../../../scss/abstracts/colors" as *;
 @use "../../../../scss/abstracts/mixins" as *;
 @use "../../../../scss/abstracts/variables" as *;
+
+.link-wrapper {
+  height: 100%;
+  width: 100%;
+}

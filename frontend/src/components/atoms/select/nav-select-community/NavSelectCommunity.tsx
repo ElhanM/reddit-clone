@@ -7,11 +7,15 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useState } from "react";
 import { Typography } from "@mui/material";
 import { RSlash } from "components/molecules";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
+import PlainLink from "components/atoms/links/PlainLink";
 
 // EXTRA IMPORTS //
 import styles from "./nav-select-community.module.scss";
+import { useSelector } from "react-redux";
+import { selectAllCommunities } from "features/slices/communitySlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -25,21 +29,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  // reddit communities
-  "AskReddit",
-  "aww",
-  "Coronavirus",
-  "memes",
-  "NoStupidQuestions",
-  "PoliticalHumor",
-  "mildlyinteresting",
-  "nextfuckinglevel",
-  "oddlysatisfying",
-  "wholesomememes",
-  "woahdude",
-];
-
 function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight: personName.indexOf(name) === -1 ? theme.typography.fontWeightRegular : theme.typography.fontWeightMedium,
@@ -49,6 +38,9 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
 type NavSelectCommunityProps = {};
 
 const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
+  const userCommunities = useSelector(selectAllCommunities);
+  const history = useNavigate();
+
   const theme = useTheme();
   const [personName, setPersonName] = useState<string[]>([]);
 
@@ -78,7 +70,8 @@ const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={selected => {
-            console.log({ selected });
+            console.log({ userCommunities });
+            console.log("selected", selected[0]);
             if (selected.length === 0) {
               return (
                 <>
@@ -119,7 +112,9 @@ const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
                       },
                     }}
                   >
-                    r/{selected[0]}
+                    {selected[0] === "Create Community"
+                      ? "Create Community"
+                      : `r/${userCommunities.find(community => community.communityId === selected[0])?.name}`}
                   </Typography>
                   <Typography
                     variant="subtitle1"
@@ -164,20 +159,29 @@ const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
               YOUR COMMUNITIES
             </Typography>
           </MenuItem>
-          <MenuItem key={"create-community"} value={"Create Community"}>
+          <MenuItem
+            key={"create-community"}
+            value={"Create Community"}
+            // here, i can not wrap menuItem with a Link component, since then when I press an element
+            // it invokes the link but does not invoke the menuItem onClick effect that closes the modal
+            // but if I put the link component inside the menuItem, then the link is only clickable on the text
+            // so instead I will navigate the user using history and onClick
+            onClick={() => {
+              history("/create-community");
+            }}
+          >
             <Typography variant="subtitle1">Create Community</Typography>
           </MenuItem>
-          {names.map(name => (
+          {userCommunities.map(community => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
-              sx={{
-                display: "flex",
-                alignItems: "center",
+              key={community.communityId}
+              value={community.communityId}
+              style={getStyles(community.name, personName, theme)}
+              onClick={() => {
+                history(`/${community.communityId}`);
               }}
             >
-              r/{name}
+              r/{community.name}
             </MenuItem>
           ))}
         </Select>

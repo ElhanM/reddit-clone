@@ -5,7 +5,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import type { IPostInfo, IPaginatedGetPosts, IPostsForUser } from "types/features";
+import type { IPostInfo, IPaginatedGetPosts, IPostsForUser, ICreatePost } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 
@@ -93,7 +93,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
     // Can we invalidate only single element from a list
     // No. RTK-Query is a document cache (full response = document), not a normalized cache
 
-    createPost: builder.mutation<IPostsForUser, { title: string; description: string; communityId: string }>({
+    createPost: builder.mutation<IPostsForUser, ICreatePost>({
       query: ({ title, description, communityId }) => {
         return {
           // allow httpOnly cookies to be sent
