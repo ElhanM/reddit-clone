@@ -43,6 +43,11 @@
   border-bottom-right-radius: 0.5em !important;
 }
 
+.post-markdown .ql-editor {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
 .auth-form .MuiTextField-root {
   margin-top: 1em !important;
 }
