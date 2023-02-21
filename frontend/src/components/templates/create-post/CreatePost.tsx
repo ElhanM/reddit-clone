@@ -2,6 +2,7 @@
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
 import { CreatePostTextFieldComponent, CreateButton, CreatePostSelectCommunity } from "components/atoms";
@@ -13,7 +14,6 @@ import styles from "./create-post.module.css";
 import { ETheme } from "types/theme";
 import { ICreatePostForm } from "types/templates";
 import { useCreatePostMutation } from "features/slices/postsSlice";
-import { useNavigate } from "react-router-dom";
 
 /////////////////////////////////////////////////////////////////////////////
 

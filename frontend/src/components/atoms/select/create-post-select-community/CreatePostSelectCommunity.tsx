@@ -39,7 +39,6 @@ type SelectCommunityProps = {
 
 const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps) => {
   const userCommunities = useSelector(selectAllCommunities);
-  console.log({ userCommunities });
 
   const theme = useTheme();
   const [personName, setPersonName] = useState<string[]>([]);
@@ -54,6 +53,7 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
     );
     setCommunity(value as string);
   };
+
   return (
     <>
       <FormControl
@@ -69,6 +69,7 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
           input={<OutlinedInput />}
           renderValue={selected => {
             if (selected.length === 0) {
+              
               return (
                 <Typography
                   variant="subtitle1"
@@ -118,18 +119,11 @@ const SelectCommunity = ({ emptyCommunity, setCommunity }: SelectCommunityProps)
               YOUR COMMUNITIES
             </Typography>
           </MenuItem>
-          <MenuItem key={"create-community"} value={"Create Community"}>
-            <Typography variant="subtitle1">Create Community</Typography>
-          </MenuItem>
           {userCommunities.map(community => (
             <MenuItem
               key={community.communityId}
               value={community.communityId}
               style={getStyles(community.name, personName, theme)}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-              }}
             >
               r/{community.name}
             </MenuItem>
