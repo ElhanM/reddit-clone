@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"nav-select-community.module.css"}
+{"version":3,"sources":["nav-select-community.module.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,WAAW;AACb","file":"nav-select-community.module.css","sourcesContent":[".link-wrapper {\n  height: 100%;\n  width: 100%;\n}"]}

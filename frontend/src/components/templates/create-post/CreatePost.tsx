@@ -62,6 +62,7 @@ const CreatePost = (props: CreatePostProps) => {
 
   useEffect(() => {
     if (emptyMarkdown) setEmptyMarkdown(false);
+    console.log("markdownText", markdownText);
   }, [markdownText]);
 
   useEffect(() => {

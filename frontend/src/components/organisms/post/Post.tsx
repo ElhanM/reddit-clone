@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 
 // COMPONENTS IMPORTS //
+import { FormattedRMD, RSlash, TimeAgo, Upvote } from "components/molecules";
 
 // EXTRA IMPORTS //
 import { selectPostById } from "features/slices/postsSlice";
 import type { RootState } from "app/store";
 import styles from "./post.module.css";
-import { RSlash, TimeAgo, Upvote } from "components/molecules";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,8 +26,12 @@ const Post = ({ postId }: PostProps) => {
       <Paper key={post.postId} className={`${styles.post}`}>
         <aside className={`${styles["post-aside"]}`}>
           <Upvote />
-          <Typography component="p" className={`${styles["upvote-count"]}`}>{post.PostUpvotes.length}</Typography>
-          <Typography component="p" className={`${styles["upvote-count"]}`}>Vote</Typography>
+          <Typography component="p" className={`${styles["upvote-count"]}`}>
+            {post.PostUpvotes.length}
+          </Typography>
+          <Typography component="p" className={`${styles["upvote-count"]}`}>
+            Vote
+          </Typography>
         </aside>
         <section className={`${styles["post-section"]}`}>
           <header className={`${styles["post-header"]}`}>
@@ -46,9 +50,9 @@ const Post = ({ postId }: PostProps) => {
             <Typography component="h1" className={`${styles["post-main-title"]}`}>
               {post.title}
             </Typography>
-            <Typography component="p" className={`${styles["post-main-description"]}`}>
-              {post.description}
-            </Typography>
+            <div className="post-markdown">
+              <FormattedRMD markdownText={post.description} />
+            </div>
           </main>
           <footer className={`${styles["post-footer"]}`}>
             <ChatBubbleOutlineIcon className={`${styles["comment-icon"]}`} />
