@@ -5,7 +5,7 @@
   // https://pqina.nl/blog/fade-out-overflow-using-css-mask-image/
   --scrollbar-width: 0px;
   --mask-height: 100px;
-  height: 250px;
+  max-height: 250px;
   // onlu apply mask to bottom of post
   --mask-image-content: linear-gradient(to bottom, black, black var(--mask-height), black calc(100% - var(--mask-height)), transparent);
   --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
@@ -22,6 +22,14 @@
   grid-template-columns: 6% 94%;
   margin-bottom: 1em;
   border: 1px solid $reddit-border;
+}
+
+.post:hover {
+  border-color: $post-border-hover;
+}
+
+.post:hover * {
+  cursor: pointer;
 }
 
 .post-aside {

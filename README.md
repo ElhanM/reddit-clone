@@ -6,7 +6,7 @@
 Full-stack Reddit clone made with React on the front end and Node.js/Express on the back end, with features that allow users can create posts and communities, as well as upvote and comment on other people's posts. The project is built using the following technologies and approaches:
 
 ## Video of the project
-https://user-images.githubusercontent.com/103935603/220887985-d1157b4c-7602-42ec-a9d7-46971c4abbdb.mp4
+https://user-images.githubusercontent.com/103935603/221182546-256137eb-3ac2-42d0-bbef-8be280f2fc00.mp4
 
 </br>
 

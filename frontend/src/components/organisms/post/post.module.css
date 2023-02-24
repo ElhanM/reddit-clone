@@ -1,7 +1,7 @@
 .post-main {
   --scrollbar-width: 0px;
   --mask-height: 100px;
-  height: 250px;
+  max-height: 250px;
   --mask-image-content: linear-gradient(to bottom, black, black var(--mask-height), black calc(100% - var(--mask-height)), transparent);
   --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
   --mask-image-scrollbar: linear-gradient(black, black);
@@ -21,6 +21,14 @@
   grid-template-columns: 6% 94%;
   margin-bottom: 1em;
   border: 1px solid #343536;
+}
+
+.post:hover {
+  border-color: #818384;
+}
+
+.post:hover * {
+  cursor: pointer;
 }
 
 .post-aside {

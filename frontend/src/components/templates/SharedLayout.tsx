@@ -13,8 +13,14 @@ const SharedLayout = () => {
   return (
     <>
       {/* this way content loads faster */}
-      <Suspense>{<Navbar />}</Suspense>
-      <Outlet />
+      <Suspense>{<Navbar />}</  Suspense>
+      <div
+        style={{
+          paddingTop: "2.5em",
+        }}
+      >
+        <Outlet />
+      </div>
     </>
   );
 };

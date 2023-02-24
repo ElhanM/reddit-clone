@@ -47,7 +47,7 @@ const Navbar = (props: NavbarProps) => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="fixed">
         <Toolbar
           sx={{
             height: "48px !important",
