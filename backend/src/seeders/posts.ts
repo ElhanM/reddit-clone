@@ -155,10 +155,8 @@ const createPosts = async () => {
       }
       <span class="hljs-keyword">const</span> applejuice=<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>);
       <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(applejuice);
-      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>));
-      </pre><p>My Output:</p><p>Juice with \${apples} apples and \${oranges} oranges.</p><p><br></p><p>Expected Output:</p><p>Juice with 5 apples and 0 oranges.</p><p><br></p><p>Can someone tell me where am I going wrong?</p> CreatePost.tsx:65:12
-      
-      `,
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>));      
+</pre><p>My Output:</p><p>Juice with \${apples} apples and \${oranges} oranges.</p><p><br></p><p>Expected Output:</p><p>Juice with 5 apples and 0 oranges.</p><p><br></p><p>Can someone tell me where am I going wrong?</p>`,
         userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
         communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
       },

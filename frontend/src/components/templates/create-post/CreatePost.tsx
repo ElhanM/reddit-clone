@@ -92,6 +92,7 @@ const CreatePost = (props: CreatePostProps) => {
               }}
             />
             <ConfigedRQuill placeholder="Description" content={markdownText} setContent={setMarkdownText} emptyMarkdown={emptyMarkdown} />
+            <div className={`${styles["border"]} ${styles["bottom"]} ${styles["strong"]}`}></div>
             <div className={`${styles["formatted-markdown"]}`}>
               {/* if we type something into RQuill, and then delete it all, the markdownText gets set to "<p><br></p>" */}
               <FormattedRMD markdownText={markdownText && markdownText !== "<p><br></p>" ? markdownText : "Markdown preview"} />
