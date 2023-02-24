@@ -7,6 +7,7 @@ Full-stack Reddit clone made with React on the front end and Node.js/Express on 
 
 ## Video of the project
 https://user-images.githubusercontent.com/103935603/220887985-d1157b4c-7602-42ec-a9d7-46971c4abbdb.mp4
+</br>
 
 The project was bootstrapped with Vite. Vite is a build tool that utilizes Rollup for module bundling and is known for faster bootstrapping compared to using webpack with npx cra.
 I have used ESLint and Prettier for linting and formatting for both the front-end and the back-end use. ESLint is also used to further enforce writing better code.
