@@ -1,6 +1,7 @@
 // PLUGINS IMPORTS //
 import { Paper, Typography } from "@mui/material";
 import { CreateButton, PlainLink } from "components/atoms";
+import CakeOutlinedIcon from "@mui/icons-material/CakeOutlined";
 
 // COMPONENTS IMPORTS //
 import { RSlash } from "components/molecules";
@@ -24,9 +25,27 @@ const PostPageAside = (props: PostPageAsideProps) => {
         </header>
         <main className={`${styles["home-aside-main"]}`}>
           <p className={`${styles["p-welcome"]}`}>All about studying and students of computer science.</p>
+          <div className={`${styles["created"]}`}>
+            <CakeOutlinedIcon className={`${styles["cake-icon"]}`} />
+            <p className={`${styles["p-created"]}`}>Created Oct 6, 2014</p>
+          </div>
           <div className={`${styles["border-seperate"]}`}></div>
-          <p className={`${styles["p-count"]}`}>165k</p>
-          <p className={`${styles["p-members"]}`}>Members</p>
+
+          <div className={`${styles["info"]}`}>
+            <div className={`${styles["members"]}`}>
+              <p className={`${styles["p-count"]}`}>165k</p>
+              <p className={`${styles["p-info"]}`}>Members</p>
+            </div>
+            <div className={`${styles["online"]}`}>
+              <p className={`${styles["p-count"]} ${styles["center"]}`}>
+                <span className={`${styles["online-dot"]}`} />
+                974
+              </p>
+              <p className={`${styles["p-info"]}`}>Onine</p>
+            </div>
+            <div />
+          </div>
+
           <div className={`${styles["border-seperate"]}`}></div>
           <div className={`${styles["buttons"]}`}>
             <CreateButton

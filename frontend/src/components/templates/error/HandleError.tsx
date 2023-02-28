@@ -1,6 +1,7 @@
 // PLUGINS IMPORTS //
 import type { SerializedError } from "@reduxjs/toolkit";
 import type { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 // COMPONENTS IMPORTS //
 
@@ -21,7 +22,7 @@ const ErrorWrapper = ({ marginTop, children }: { children: React.ReactNode; marg
       ${marginTop ? styles["error-wrapper--margin-top"] : ""}
     `}
     >
-      <i className="fa fa-times-circle"></i>
+      <CancelIcon />
       <span>{children}</span>
     </div>
   );

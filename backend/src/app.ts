@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { auth, communities, posts, user } from "./routes";
+import { auth, comments, communities, posts, user } from "./routes";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import { errorHandler } from "middlewares";
@@ -17,6 +17,7 @@ app.use("/api/auth", auth);
 app.use("/api/posts", posts);
 app.use("/api/user", user);
 app.use("/api/communities", communities);
+app.use("/api/comments", comments);
 
 app.use(errorHandler);
 

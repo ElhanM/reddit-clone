@@ -49,8 +49,27 @@
   font-weight: 500;
 }
 
-.p-members {
+.center {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.p-info {
   font-size: 0.7rem;
+  color: #818384;
+}
+
+.p-created {
   color: #818384;
 }
 
@@ -65,4 +84,41 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 0.6em;
+}
+
+.created {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5em;
+  margin-top: 0.5em;
+}
+
+.p-created {
+  margin-top: 0.24em;
+}
+
+.info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.online-dot {
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: #46d160;
+  margin-right: 0.3em;
 }/*# sourceMappingURL=post-page-aside.module.css.map */

@@ -48,7 +48,7 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
           },
           {
             model: db.Community,
-            attributes: ["communityId", "name"],
+            // attributes: ["communityId", "name"],
           },
           {
             // we are doing this join directly through the PostUpvote table because I added a bunch of extra relations to the model that allow this
