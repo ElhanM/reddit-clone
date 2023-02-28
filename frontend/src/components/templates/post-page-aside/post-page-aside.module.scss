@@ -35,9 +35,14 @@
 .p-count {
   font-weight: 500;
 }
-
-.p-members {
+.center {
+  @include flex-center;
+}
+.p-info {
   font-size: 0.7rem;
+  color: $paler-text;
+}
+.p-created {
   color: $paler-text;
 }
 
@@ -45,4 +50,33 @@
   display: flex;
   flex-direction: column;
   gap: 0.6em;
+}
+
+.created {
+  display: flex;
+  // allign to bottom of row
+  gap: 0.5em;
+  margin-top: 0.5em;
+}
+
+.p-created {
+  margin-top: 0.24em;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.online-dot {
+  // since it is a span element, it is inline by default
+  // we cannot use width and height on inline elements
+  // so we need to make it display: inline-block
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background-color: #46d160;
+  margin-right: 0.3em;
 }

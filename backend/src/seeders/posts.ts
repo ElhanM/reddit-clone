@@ -13,7 +13,7 @@ const posts = [
     postId: "1f4a2051-7d55-4290-9d54-3ba29ec7cdf4",
     title: "post1",
     // shorter descriptions will have shorter compressed strings
-    description: "Short description",
+    description: "Short description, has comments",
     userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
     communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
   },
