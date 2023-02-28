@@ -1,7 +1,7 @@
 .post-main {
   --scrollbar-width: 0px;
   --mask-height: 100px;
-  max-height: 250px;
+  max-height: 300px;
   --mask-image-content: linear-gradient(to bottom, black, black var(--mask-height), black calc(100% - var(--mask-height)), transparent);
   --mask-size-content: calc(100% - var(--scrollbar-width)) 100%;
   --mask-image-scrollbar: linear-gradient(black, black);

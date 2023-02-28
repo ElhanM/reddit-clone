@@ -1,0 +1,17 @@
+@use "../../../../scss/abstracts/colors" as *;
+@use "../../../../scss/abstracts/mixins" as *;
+@use "../../../../scss/abstracts/variables" as *;
+
+.post-page-wrapper {
+  @include grid-layout;
+  @include wrapper-grid(990px);
+}
+
+@media screen and (max-width: $breakpoint-post-page) {
+  .post-page-wrapper {
+    @include grid-layout-responsive;
+  }
+  .post-page-wrapper > *:last-child {
+    order: -1;
+  }
+}

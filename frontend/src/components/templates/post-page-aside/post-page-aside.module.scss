@@ -1,0 +1,48 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+@use "../../../scss/abstracts/variables" as *;
+
+.post-page-aside-wrapper {
+  border: 1px solid $reddit-border;
+}
+
+.background {
+  height: 2.125em;
+  background-color: $r-slash;
+  border-top-left-radius: 0.25em;
+  border-top-right-radius: 0.25em;
+}
+
+.header {
+  @include aside-header;
+  margin-top: 0.5em;
+}
+
+.border-seperate {
+  @include border-seperate;
+}
+
+.home-aside-main {
+  margin: 0 1em;
+  padding-bottom: 1em;
+}
+
+.p-welcome {
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+
+.p-count {
+  font-weight: 500;
+}
+
+.p-members {
+  font-size: 0.7rem;
+  color: $paler-text;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+}

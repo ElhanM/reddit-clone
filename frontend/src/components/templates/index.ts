@@ -6,3 +6,5 @@ export { default as CreatePost } from "./create-post/CreatePost";
 export { default as CreatePostAside } from "./create-post-aside/CreatePostAside";
 export { default as AuthTemplate } from "./auth-template/AuthTemplate";
 export { default as Navbar } from "./navbar/Navbar";
+export { default as PostPageMain } from "./post-page-main/PostPageMain";
+export { default as PostPageAside } from "./post-page-aside/PostPageAside";

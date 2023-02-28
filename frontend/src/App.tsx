@@ -3,7 +3,7 @@ import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { CreatePostPage, Error, Home, Login } from "components/pages";
+import { CreatePostPage, Error, Home, Login, PostPage } from "components/pages";
 import { SharedLayout } from "components/templates";
 import { useEffect, useState } from "react";
 import { getUserCookie } from "utils";
@@ -50,6 +50,8 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="create-post" element={<CreatePostPage />} />
                 <Route path="login" element={<Login />} />
+                {/* post page */}
+                <Route path="post/:postId" element={<PostPage />} />
                 {/* <Route path="register" element={<Register />} /> */}
               </>
             )}
