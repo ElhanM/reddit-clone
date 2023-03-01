@@ -50,6 +50,10 @@
   margin: 0 !important;
 }
 
+.ql-snow .ql-editor pre {
+  background-color: #272729 !important;
+}
+
 .auth-form .MuiTextField-root {
   margin-top: 1em !important;
 }

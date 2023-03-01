@@ -19,6 +19,11 @@
   max-width: $width;
   grid-template-columns: 2fr 1fr;
 }
+@mixin post-wrapper-grid($width) {
+  max-width: $width;
+  grid-template-columns: 5fr 2.1fr;
+}
+
 
 @mixin grid-layout-responsive {
   width: 95%;
