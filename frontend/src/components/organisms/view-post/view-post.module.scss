@@ -9,13 +9,6 @@
   border: 1px solid $reddit-border;
 }
 
-.post:hover {
-  border-color: $post-border-hover;
-}
-
-.post:hover * {
-  cursor: pointer;
-}
 
 .post-aside {
   padding-top: 0.5em;
@@ -23,7 +16,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background-color: $aside-background;
+  background-color: $post-background;
 }
 
 .upvote-count {

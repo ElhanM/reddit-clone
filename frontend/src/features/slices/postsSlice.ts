@@ -5,7 +5,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import type { IPostInfo, IPaginatedGetPosts, IPostsForUser, ICreatePost } from "types/features";
+import type { IPostInfo, IPaginatedGetPosts, IPostsForUser, ICreatePost, IGetPostResponse } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 
@@ -105,11 +105,23 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: [{ type: "Post" }],
     }),
+    getPost: builder.query<IPostsForUser, EntityId>({
+      query: postId => {
+        return {
+          credentials: "include",
+          method: "GET",
+          url: `posts/post/${postId}`,
+        };
+      },
+      transformResponse: (rawResult: IGetPostResponse) => {
+        return rawResult.data;
+      },
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetPostsQuery, useCreatePostMutation } = extendedApiSlice;
+export const { useGetPostsQuery, useCreatePostMutation, useGetPostQuery } = extendedApiSlice;
 
 // returns the query result object
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null);
@@ -119,12 +131,11 @@ const selectPostsData = createSelector(
   selectPostsResult,
   postsResult => postsResult.data, // normalized state object with ids & entities
 );
+// select info from state
+export const selectPostsInfo = createSelector(selectPostsResult, postsResult => postsResult.data?.info);
 
 export const {
   selectAll: selectAllPosts,
   selectById: selectPostById,
   selectIds: selectPostIds,
 } = postsAdapter.getSelectors((state: RootState) => selectPostsData(state) ?? initialState);
-
-// select info from state
-export const selectPostsInfo = createSelector(selectPostsResult, postsResult => postsResult.data?.info);

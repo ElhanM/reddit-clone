@@ -26,12 +26,10 @@ export const userSlice = createSlice({
   name: "userSlice",
   reducers: {
     logout: () => {
-      console.log("LOGOUT USER SLICE");
       deleteUserCookies();
       return initialState;
     },
     setUser: (state, action: PayloadAction<IUserAuth>) => {
-      console.log("LOGIN SETTING DATA");
       state.user = action.payload;
       setUserCookies(action.payload.userId);
       console.log({ state: state.user });

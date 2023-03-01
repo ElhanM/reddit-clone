@@ -23,6 +23,10 @@ const getPost = async (req: AuthRequest, res: Response, next: NextFunction) => {
           model: db.PostUpvote,
           attributes: ["userId"],
         },
+        {
+          model: db.Comment,
+          attributes: ["commentId"],
+        },
       ],
     });
 

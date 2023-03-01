@@ -22,10 +22,6 @@ const Posts = () => {
   const postsInfo = selectPostsInfo(useAppSelector(state => state));
   const postIds = useSelector(selectPostIds);
 
-  // useEffect(() => {
-  //   console.log({ postsInfo });
-  // }, [postsInfo]);
-
   useEffect(() => {
     const onScroll = async (event: any) => {
       const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;

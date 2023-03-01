@@ -4,10 +4,10 @@
 
 .post-page-wrapper {
   @include grid-layout;
-  @include wrapper-grid(990px);
+  @include post-wrapper-grid(1080px);
 }
 
-@media screen and (max-width: $breakpoint-post-page) {
+@media screen and (max-width: $breakpoint-view-post-page) {
   .post-page-wrapper {
     @include grid-layout-responsive;
   }
