@@ -116,6 +116,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       transformResponse: (rawResult: IGetPostResponse) => {
         return rawResult.data;
       },
+      providesTags: result => [{ type: "Post", postId: result.postId, userId: result.User.userId }],
     }),
   }),
   overrideExisting: false,

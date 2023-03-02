@@ -1,0 +1,17 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+
+.post {
+  display: grid;
+  grid-template-columns: 6% 94%;
+  margin-bottom: 1em;
+  border: 1px solid $reddit-border;
+}
+
+.post--hover:hover {
+  border-color: $post-border-hover;
+}
+
+.post--hover:hover * {
+  cursor: pointer;
+}

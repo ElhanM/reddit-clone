@@ -140,8 +140,7 @@ const createPosts = async () => {
             }
           <span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
         {% endif %}
-      {% endfor %}
-      </pre>`,
+      {% endfor %}</pre>`,
         userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
         communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
       },
@@ -173,10 +172,8 @@ const createPosts = async () => {
         <span class="hljs-keyword">elif</span> nums[<span class="hljs-number">1</span>] == <span class="hljs-number">3</span>:
         <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span>
         <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
-        </pre><p><strong>My answer (NEW):</strong></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">def</span> <span class="hljs-title function_">has23</span>(<span class="hljs-params">nums</span>):
-            <span class="hljs-keyword">return</span> (<span class="hljs-number">2</span> <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">or</span> <span class="hljs-number">3</span> <span class="hljs-keyword">in</span> nums)
-        </pre><p>It works but I know there is a simpler way to do this, but for some reason I can't workout how, and its starting to wind me up, there isn't a solution on the page either, as normally I can look at it make sense of the functions and how it operates, but can't with this....</p>`,
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></pre><p><strong>My answer (NEW):</strong></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">def</span> <span class="hljs-title function_">has23</span>(<span class="hljs-params">nums</span>):
+            <span class="hljs-keyword">return</span> (<span class="hljs-number">2</span> <span class="hljs-keyword">in</span> nums <span class="hljs-keyword">or</span> <span class="hljs-number">3</span> <span class="hljs-keyword">in</span> nums)</pre><p>It works but I know there is a simpler way to do this, but for some reason I can't workout how, and its starting to wind me up, there isn't a solution on the page either, as normally I can look at it make sense of the functions and how it operates, but can't with this....</p>`,
         userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
         communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
       },

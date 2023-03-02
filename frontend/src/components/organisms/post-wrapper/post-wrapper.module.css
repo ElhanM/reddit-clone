@@ -1,0 +1,14 @@
+.post {
+  display: grid;
+  grid-template-columns: 6% 94%;
+  margin-bottom: 1em;
+  border: 1px solid #343536;
+}
+
+.post--hover:hover {
+  border-color: #818384;
+}
+
+.post--hover:hover * {
+  cursor: pointer;
+}/*# sourceMappingURL=post-wrapper.module.css.map */
