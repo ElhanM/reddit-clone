@@ -2,7 +2,6 @@
 import { useParams } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { HandleError, PostsLoading } from "components/templates";
 import PostWrapper from "../post-wrapper/PostWrapper";
 import PostAside from "../post-aside/PostAside";
 import PostSection from "../post-section/PostSection";
@@ -18,7 +17,6 @@ type ViewPostProps = {};
 const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, isFetching, data: post } = useGetPostQuery(postId);
-
 
   if (isSuccess) {
     return (

@@ -6,7 +6,7 @@
 Full-stack Reddit clone made with React on the front end and Node.js/Express on the back end, with features that allow users can create posts and communities, as well as upvote and comment on other people's posts. The project is built using the following technologies and approaches:
 
 ## Video of the project
-https://user-images.githubusercontent.com/103935603/221182546-256137eb-3ac2-42d0-bbef-8be280f2fc00.mp4
+https://user-images.githubusercontent.com/103935603/222547324-83eef1b5-c250-45ee-97ad-65c2e8f69333.mp4
 
 </br>
 
@@ -27,6 +27,8 @@ RTK Query was used for handling asynchronous requests and for implementing infin
 As part of the application, I have implemented a functionality that allows users to format the description of their posts using a rich text editor, which also allows me to save that formatted text to the back end and display it on my site without losing the formatting. This text editor also supports the use of code blocks, as well as provides syntax highlighting in multiple languages. In order to create the text editor I used the React Quill library. Then, I used highlight.js in order to add syntax highlighting to code blocks, and I used React Markdown with the rehype-raw plugin in order to render the formatted text without losing the formatting.
 
 Form handling and validation were implemented using React Hook Form and Yup. The benefit of using Yup for form validation on the front end is that it allows us to validate the form before even making a request to the back end, which reduces the amount of overall traffic. As part of my project, I cloned the form-handling logic as well as the form error-handling logic straight from the official Reddit page.
+
+The app also supportes responsive design, and even has a custom skeleton lazy loading component that was made using framer-motion.
 
 <br/>
 
