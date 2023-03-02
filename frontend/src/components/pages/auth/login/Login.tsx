@@ -3,6 +3,9 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { SerializedError } from "@reduxjs/toolkit";
 
 // COMPONENTS IMPORTS //
 import { CreateButton, AuthTextFieldComponent } from "components/atoms";
@@ -16,9 +19,6 @@ import { ILoginForm } from "types/pages";
 import loginFormSchema from "./loginFormSchema";
 import styles from "./login.module.css";
 import { ETheme } from "types/theme";
-import { useEffect, useRef } from "react";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
-import { SerializedError } from "@reduxjs/toolkit";
 
 /////////////////////////////////////////////////////////////////////////////
 

@@ -19,6 +19,10 @@ class PostValidator {
         .withMessage("The description value should be between 1 and 1000 characters"),
     ];
   }
+  checkGetPost() {
+    // postId is a uuid string
+    return [param("postId").isUUID().withMessage("The postId value should be a valid uuid")];
+  }
 }
 
 // we export it as object of this class so we don't need to create new instance of this class in controller

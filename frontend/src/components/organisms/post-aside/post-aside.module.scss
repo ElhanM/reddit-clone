@@ -1,0 +1,16 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+
+.post-aside {
+  padding-top: 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: $post-background;
+}
+
+.upvote-count {
+  font-size: 0.8em !important;
+  font-weight: 600 !important;
+}
