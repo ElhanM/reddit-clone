@@ -78,7 +78,7 @@ const CreatePostLinks = ({ link, handleClick, linkOnly, renderIconText, lgScreen
             // linkOnly = true means that we do not want the icon rendered in the menu on small screen
             iconLink.icon &&
             !linkOnly && (
-              <PlainLink to={iconLink.to} onClick={() => iconLink.handleClick && iconLink.handleClick(null)}>
+              <PlainLink key={iconLink.text} to={iconLink.to} onClick={() => iconLink.handleClick && iconLink.handleClick(null)}>
                 <StyledIconButton ariaLabel={iconLink.ariaLabel} icon>
                   {iconLink.icon}
                 </StyledIconButton>
@@ -96,7 +96,7 @@ const CreatePostLinks = ({ link, handleClick, linkOnly, renderIconText, lgScreen
             // if we are on lg screen, if we have an icon in the navbar, we do not need to render it again in the user dropdown menu
             // but on sm screen, we need to render the text in the dropdown menu regardless
             (renderIconText || (lgScreenRenderText && !iconLink.icon)) && (
-              <PlainLink to={iconLink.to} onClick={() => iconLink.handleClick && iconLink.handleClick(null)}>
+              <PlainLink key={iconLink.text} to={iconLink.to} onClick={() => iconLink.handleClick && iconLink.handleClick(null)}>
                 <MenuItem onClick={handleClick}>{iconLink.text}</MenuItem>
               </PlainLink>
             ),

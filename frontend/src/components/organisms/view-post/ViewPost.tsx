@@ -9,6 +9,7 @@ import PostSection from "../post-section/PostSection";
 // EXTRA IMPORTS //
 import { useGetPostQuery } from "features/slices/postsSlice";
 import { useEffect } from "react";
+import { HandleError, PostsLoading } from "components/templates";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -18,7 +19,11 @@ const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, isFetching, data: post } = useGetPostQuery(postId);
 
-  if (isSuccess) {
+  if (isLoading) {
+    return <PostsLoading />;
+  } else if (isError) {
+    return <HandleError error={error} />;
+  } else if (isSuccess) {
     return (
       <PostWrapper postId={postId}>
         <PostAside upvotes={post.PostUpvotes.length} />

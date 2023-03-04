@@ -105,7 +105,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: [{ type: "Post" }],
     }),
-    getPost: builder.query<IPostsForUser, EntityId>({
+    getPost: builder.query<IPostsForUser, string>({
       query: postId => {
         return {
           credentials: "include",
@@ -114,6 +114,11 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         };
       },
       transformResponse: (rawResult: IGetPostResponse) => {
+        // the default behavior of queries is to keep on trying to fetch the data until they get a 200 response
+        // to avoid this, I will return errors with 200 response but handle them here
+        if (!rawResult.success) {
+          throw new Error(rawResult.msg);
+        }
         return rawResult.data;
       },
       providesTags: result => [{ type: "Post", postId: result.postId, userId: result.User.userId }],
