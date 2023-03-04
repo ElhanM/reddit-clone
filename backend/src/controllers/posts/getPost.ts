@@ -29,8 +29,9 @@ const getPost = async (req: AuthRequest, res: Response, next: NextFunction) => {
         },
       ],
     });
+
     if (!post) {
-      return next(new ErrorResponse(`Post with postId: ${postId} not found`, 404));
+      return next(new ErrorResponse(`Post with postId: ${postId} not found`, 200));
     }
 
     res.status(200).json({ success: true, data: post });

@@ -5,6 +5,6 @@ import postValidator from "validation/postValidator";
 
 const router = express.Router();
 
-router.route("/get-comments/:postId").get(postValidator.checkGetPost(), handleValidationError, verifyToken, getComments);
+router.route("/get-comments/:postId").get(postValidator.checkGetPost(), handleValidationError(), verifyToken, getComments);
 
 export default router;
