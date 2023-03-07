@@ -23,7 +23,11 @@ type NavLGProps = {
 const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
   return (
     <>
-      <div className={`${styles["logo"]}`}>
+      <div
+        className={`${styles["logo"]}`}
+        // onclick scroll to top, with smooth animation
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      >
         <RedditLogo />
       </div>
       <section className={`${styles["nav-main"]}`}>

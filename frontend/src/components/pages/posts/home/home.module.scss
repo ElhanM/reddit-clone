@@ -5,8 +5,7 @@
 
 .home-wrapper {
   @include grid-layout;
-  @include wrapper-grid(990px);
-  // padding: 2.5em 0;
+  @include wrapper-grid(990px, 2fr, 1fr);
 }
 
 @media screen and (max-width: $breakpoint-home) {
