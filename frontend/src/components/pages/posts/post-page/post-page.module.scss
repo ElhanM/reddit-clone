@@ -4,7 +4,7 @@
 
 .post-page-wrapper {
   @include grid-layout;
-  @include post-wrapper-grid(1080px);
+  @include wrapper-grid(1080px, 5fr, 2.1fr);
 }
 
 @media screen and (max-width: $breakpoint-view-post-page) {

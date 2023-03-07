@@ -15,15 +15,10 @@
   margin-top: 1.6em;
 }
 
-@mixin wrapper-grid($width) {
+@mixin wrapper-grid($width, $column-one, $column-two) {
   max-width: $width;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: $column-one $column-two;
 }
-@mixin post-wrapper-grid($width) {
-  max-width: $width;
-  grid-template-columns: 5fr 2.1fr;
-}
-
 
 @mixin grid-layout-responsive {
   width: 95%;
