@@ -3,12 +3,13 @@
 ## The project is still a work in progress.
 ### Description
 
-Full-stack Reddit clone made with React on the front end and Node.js/Express on the back end, with features that allow users can create posts and communities, as well as upvote and comment on other people's posts. The project is built using the following technologies and approaches:
+Full-stack Reddit clone made with React on the front end and Node.js/Express on the back end, with features that allow users can create posts and communities, as well as upvote and comment on other people's posts.
 
 ## Video of the project
 https://user-images.githubusercontent.com/103935603/222547324-83eef1b5-c250-45ee-97ad-65c2e8f69333.mp4
 
 </br>
+The project is built using the following technologies and approaches:
 
 The project was bootstrapped with Vite. Vite is a build tool that utilizes Rollup for module bundling and is known for faster bootstrapping compared to using webpack with npx cra.
 I have used ESLint and Prettier for linting and formatting for both the front-end and the back-end use. ESLint is also used to further enforce writing better code.

@@ -145,21 +145,6 @@ const createPosts = async () => {
         communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
       },
       {
-        postId: "4044831b-e665-42d0-b5ce-aaa309867b36",
-        title: "Unable to get expected output.",
-        description: `<p>My input is :</p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-params">apples,oranges</span>){
-          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(apples,oranges);
-          <span class="hljs-keyword">const</span> juice=<span class="hljs-string">'Juice with \${apples} apples and \${oranges} oranges.'</span>;
-          <span class="hljs-keyword">return</span> juice;
-      }
-      <span class="hljs-keyword">const</span> applejuice=<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>);
-      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(applejuice);
-      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>));      
-</pre><p>My Output:</p><p>Juice with \${apples} apples and \${oranges} oranges.</p><p><br></p><p>Expected Output:</p><p>Juice with 5 apples and 0 oranges.</p><p><br></p><p>Can someone tell me where am I going wrong?</p>`,
-        userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
-        communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
-      },
-      {
         postId: "de1daa75-efff-4e9a-bfb3-61191fc50484",
         title: "Python lists - just don't make sense to me!",
         description: `<p>With the below question, I can't for the love of me workout these lists, I just keep defaulting back to 'if' statements. Some of you may recongise this from Codingbat List-1 has23.</p><p><strong>Question:</strong></p><p>Given an int array length 2, return True if it contains a 2 or a 3.</p><p>has23([2, 5]) → Truehas23([4, 3]) → Truehas23([4, 5]) → False</p><p><strong>My answer (OLD):</strong></p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">def</span> <span class="hljs-title function_">has23</span>(<span class="hljs-params">nums</span>):
@@ -181,6 +166,21 @@ const createPosts = async () => {
         postId: "7d6730a2-67fb-4935-96c6-3bd266e01e7c",
         title: "How to make a vertical carousel slide only when mouse wheel scrolling in Bootstrap 5.3",
         description: `<p>I'm trying to develop a simple website for myself with 0 experience. I managed to make this landing page in 2 full days and I imagined a vertical bootstrap 5 carousel which moves only when I scroll with my mouse's wheel. I figured out that it needs JS, but after 10 hours of searching and trying I could not make it work. Also please do not spare me and be critical about my code if you have time. Thank you for taking the effort!</p><p>Codepen link: <a href="https://codepen.io/user775399/pen/yLxewxj" rel="noopener noreferrer" target="_blank">https://codepen.io/user775399/pen/yLxewxj</a></p><p><br></p><p>I've found different solutions for older versions of Bootstrap and the last one I've tried was on this website:</p><p><a href="https://bootsnipp.com/snippets/Ol55Z" rel="noopener noreferrer" target="_blank">https://bootsnipp.com/snippets/Ol55Z</a></p><p>Honestly it did not do any changes expect that my brain went numb and I changed a lot of lines in my HTML as well and ended up the carousel not working at all. So fortunately I made a save a day before and started it over.</p>`,
+        userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
+        communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
+      },
+      {
+        postId: "4044831b-e665-42d0-b5ce-aaa309867b36",
+        title: "Unable to get expected output.",
+        description: `<p>My input is :</p><pre class="ql-syntax" spellcheck="false"><span class="hljs-keyword">function</span> <span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-params">apples,oranges</span>){
+          <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(apples,oranges);
+          <span class="hljs-keyword">const</span> juice=<span class="hljs-string">'Juice with \${apples} apples and \${oranges} oranges.'</span>;
+          <span class="hljs-keyword">return</span> juice;
+      }
+      <span class="hljs-keyword">const</span> applejuice=<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(applejuice);
+      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-title function_">fruitProcessors</span>(<span class="hljs-number">5</span>,<span class="hljs-number">0</span>));      
+</pre><p>My Output:</p><p>Juice with \${apples} apples and \${oranges} oranges.</p><p><br></p><p>Expected Output:</p><p>Juice with 5 apples and 0 oranges.</p><p><br></p><p>Can someone tell me where am I going wrong?</p>`,
         userId: "eca7aa61-7567-4d1d-befc-b22e3bc372f6",
         communityId: "d3c62225-dbbc-4335-b25e-fe06d5edbec1",
       },

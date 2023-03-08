@@ -14,5 +14,5 @@ export const apiSlice = createApi({
   }),
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   endpoints: builder => ({}),
-  tagTypes: ["Post", "User", "Auth", "Community"],
+  tagTypes: ["Post", "User", "Auth", "Community", "Comment"],
 });

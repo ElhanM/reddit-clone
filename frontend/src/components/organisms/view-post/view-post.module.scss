@@ -2,3 +2,13 @@
 @use "../../../scss/abstracts/mixins" as *;
 @use "../../../scss/abstracts/variables" as *;
 
+.quill-wrapper {
+  padding: 0.3em 0.5em;
+  background-color: #1a1a1b;
+  // giving it margin top results in a different background color appearing, so we use padding
+  padding-top: 1em;
+}
+
+.comments-wrapper {
+  padding: 0.3em 0.5em;
+}

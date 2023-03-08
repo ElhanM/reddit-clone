@@ -20,12 +20,12 @@ const getPost = async (req: AuthRequest, res: Response, next: NextFunction) => {
           attributes: ["communityId", "name", "description"],
         },
         {
-          model: db.PostUpvote,
-          attributes: ["userId"],
-        },
-        {
           model: db.Comment,
           attributes: ["commentId"],
+        },
+        {
+          model: db.PostUpvote,
+          attributes: ["userId"],
         },
       ],
     });
