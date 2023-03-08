@@ -5,3 +5,4 @@ export { default as NavUser } from "./nav-user/NavUser";
 export { default as ViewPost } from "./view-post/ViewPost";
 export { default as PostWrapper } from "./post-wrapper/PostWrapper";
 export { default as PostAside } from "./post-aside/PostAside";
+export { default as PostComments } from "./post-comments/PostComments";

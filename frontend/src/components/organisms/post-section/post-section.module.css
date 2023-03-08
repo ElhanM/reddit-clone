@@ -114,6 +114,7 @@
       -ms-flex-align: center;
           align-items: center;
   gap: 0.2em;
+  margin-top: 0.6em;
 }
 
 .comment-icon {

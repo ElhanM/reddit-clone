@@ -135,7 +135,10 @@ export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null
 // Creates memoized selector
 const selectPostsData = createSelector(
   selectPostsResult,
-  postsResult => postsResult.data, // normalized state object with ids & entities
+  postsResult => {
+    console.log("selectCommentsData selectPostsData", postsResult);
+    return postsResult.data;
+  }, // normalized state object with ids & entities
 );
 // select info from state
 export const selectPostsInfo = createSelector(selectPostsResult, postsResult => postsResult.data?.info);
@@ -145,3 +148,8 @@ export const {
   selectById: selectPostById,
   selectIds: selectPostIds,
 } = postsAdapter.getSelectors((state: RootState) => selectPostsData(state) ?? initialState);
+
+
+// create selector for post from getPost query
+
+
