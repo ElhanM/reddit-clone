@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.post-comment {
+  border-left: 2px solid #818384;
+  margin: 1em 0;
+}
+
+.post-comment > * {
+  margin: 0.2em 0;
+  margin-left: 0.5em;
+}
+
+.post-comment-header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.post-comment-username {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #d7dadc;
+}
+
+.time-ago::before {
+  content: "•";
+  margin: auto 0.5em;
+}/*# sourceMappingURL=post-comment.module.css.map */

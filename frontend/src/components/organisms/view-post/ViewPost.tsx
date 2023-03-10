@@ -2,6 +2,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 // COMPONENTS IMPORTS //
 import PostWrapper from "../post-wrapper/PostWrapper";
@@ -10,10 +11,13 @@ import PostSection from "../post-section/PostSection";
 import { HandleError, PostsLoading } from "components/templates";
 import { ConfigedRQuill } from "components/molecules";
 import PostComments from "../post-comments/PostComments";
+import { CreateButton } from "components/atoms";
 
 // EXTRA IMPORTS //
 import { useGetPostQuery } from "features/slices/postsSlice";
 import styles from "./view-post.module.css";
+import FormWrapper from "../form-wrapper/FormWrapper";
+import { ETheme } from "types/theme";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -22,14 +26,30 @@ type ViewPostProps = {};
 const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, isFetching, data: post } = useGetPostQuery(postId);
-  const [markdownText, setMarkdownText] = useState("");
 
+  const [markdownText, setMarkdownText] = useState("");
   const [emptyMarkdown, setEmptyMarkdown] = useState(false);
 
   useEffect(() => {
     if (emptyMarkdown) setEmptyMarkdown(false);
     console.log("markdownText", markdownText);
   }, [markdownText]);
+
+  const submitHandler = async e => {
+    e.preventDefault();
+    if (markdownText === "<p><br></p>" || markdownText === "") {
+      setEmptyMarkdown(true);
+    }
+
+    if (markdownText !== "<p><br></p>" && markdownText !== "") {
+      console.log("markdownText", markdownText);
+      // const createPostData = await createPost({
+      //   title: data.title,
+      //   description: markdownText,
+      //   communityId: community,
+      // }).unwrap();
+    }
+  };
 
   if (isLoading) {
     return <PostsLoading />;
@@ -51,14 +71,23 @@ const ViewPost = ({}: ViewPostProps) => {
             />
             <div className={`${styles["quill-wrapper"]}`}>
               <Typography variant="subtitle1" fontSize={14}>
-                Comment as dumbelco
+                Comment as {post.User.username}
               </Typography>
-              <ConfigedRQuill
-                placeholder="What are your thoughts?"
-                content={markdownText}
-                setContent={setMarkdownText}
-                emptyMarkdown={emptyMarkdown}
-              />
+              <form onSubmit={submitHandler}>
+                <ConfigedRQuill
+                  placeholder="What are your thoughts?"
+                  content={markdownText}
+                  setContent={setMarkdownText}
+                  emptyMarkdown={emptyMarkdown}
+                />
+                <section className={`${styles["post-button"]}`}>
+                  <CreateButton
+                    theme={ETheme.LIGHT}
+                    buttonText="Comment"
+                    buttonProps={{ type: "submit", variant: "contained", color: "primary", disabled: false }}
+                  />
+                </section>
+              </form>
             </div>
             <div className={`${styles["comments-wrapper"]}`}>
               <PostComments />

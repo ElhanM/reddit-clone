@@ -5,5 +5,13 @@
 }
 
 .comments-wrapper {
+  background-color: #1a1a1b;
   padding: 0.3em 0.5em;
+}
+
+.post-button button {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 15%;
+  margin-top: 0.5em !important;
 }/*# sourceMappingURL=view-post.module.css.map */

@@ -20,10 +20,7 @@ const CreateButtonLight = ({ theme, buttonText, createPost, ...rest }: CreateBut
   return (
     <Button
       variant="contained"
-      className={`${styles[`button-${theme}`]}
-
-      
-      `}
+      className={`${styles[`button-${theme}`]}`}
       {...rest.buttonProps}
       sx={{
         // select .MuiButton-root

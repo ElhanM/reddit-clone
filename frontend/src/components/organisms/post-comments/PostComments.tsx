@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
 // COMPONENTS IMPORTS //
+import PostComment from "../post-comment/PostComment";
 
 // EXTRA IMPORTS //
 import { useGetCommentsQuery, selectCommentsByPostId } from "features/slices/commentsSlice";
@@ -19,7 +20,13 @@ const PostComments = ({}: PostCommentsProps) => {
 
   const comments = useSelector(selectCommentsByPostId(postId).selectCommentIds);
 
-  return <div>{JSON.stringify(comments)}</div>;
+  return (
+    <footer className={`${styles["post-comments"]}`}>
+      {comments.map(commentId => (
+        <PostComment key={commentId} commentId={commentId} />
+      ))}
+    </footer>
+  );
 };
 
 export default PostComments;

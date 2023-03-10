@@ -28,13 +28,7 @@ const Avatar = ({ size, translate, rounded }: AvatarProps) => {
       break;
   }
 
-  return (
-    <div
-      className={`${styles["avatar"]} ${sizeClass}
-    ${translate && styles["translate"]}
-    ${rounded && styles["rounded"]}    `}
-    ></div>
-  );
+  return <div className={`${styles["avatar"]} ${sizeClass} ${translate && styles["translate"]} ${rounded && styles["rounded"]}`}></div>;
 };
 
 export default Avatar;
