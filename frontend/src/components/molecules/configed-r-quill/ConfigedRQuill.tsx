@@ -15,9 +15,10 @@ type ConfigedRQuillProps = {
   // useState setState function
   setContent: (value: string) => void;
   emptyMarkdown?: boolean;
+  createPost?: boolean;
 };
 
-const ConfigedRQuill = ({ placeholder, content, setContent, emptyMarkdown }: ConfigedRQuillProps) => {
+const ConfigedRQuill = ({ placeholder, content, setContent, emptyMarkdown, createPost }: ConfigedRQuillProps) => {
   return (
     <>
       <ReactQuill
@@ -36,7 +37,7 @@ const ConfigedRQuill = ({ placeholder, content, setContent, emptyMarkdown }: Con
             color: "#f44336",
             fontSize: "0.75rem",
             marginLeft: "0.7rem",
-            marginTop: "-.8em",
+            marginTop: `${createPost ? "-.8em" : "0.4"}`,
           }}
         >
           The description value should not be empty

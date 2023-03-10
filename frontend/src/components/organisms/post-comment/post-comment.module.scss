@@ -1,0 +1,30 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+
+.post-comment {
+  border-left: 2px solid $paler-text;
+  margin: 1em 0;
+}
+
+// .post-comment all children
+.post-comment > * {
+  margin: 0.2em 0;
+  margin-left: 0.5em;
+}
+
+.post-comment-header {
+  display: flex;
+  align-items: center;
+}
+
+.post-comment-username {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $pale-text;
+}
+
+.time-ago::before {
+  // add dot before time ago
+  content: "•";
+  margin: auto 0.5em;
+}
