@@ -17,6 +17,11 @@ class PostValidator {
         .withMessage("The description value should not be empty")
         .isLength({ min: 1, max: 1000 })
         .withMessage("The description value should be between 1 and 1000 characters"),
+      body("communityId")
+        .isUUID()
+        .withMessage("The communityId value should be a valid uuid")
+        .notEmpty()
+        .withMessage("The communityId value should not be empty"),
     ];
   }
   checkGetPost() {

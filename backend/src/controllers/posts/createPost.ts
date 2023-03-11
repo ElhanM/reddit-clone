@@ -9,10 +9,7 @@ const createPost = async (req: AuthRequest, res: Response, next: NextFunction) =
     const { userId } = req;
 
     if (userId === undefined) {
-      return next(new ErrorResponse("User not found", 404));
-    }
-    if (communityId === undefined) {
-      return next(new ErrorResponse("Community not found", 404));
+      return next(new ErrorResponse("UserId is undefined", 404));
     }
 
     const post = await db.Post.create({
