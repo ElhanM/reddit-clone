@@ -11,3 +11,4 @@ export { default as getMe } from "./user/getMe";
 export { default as getUserCommunities } from "./communities/getUserCommunities";
 
 export { default as getComments } from "./comments/getComments";
+export { default as createComment } from "./comments/createComment";
