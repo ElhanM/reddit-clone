@@ -9,5 +9,4 @@ class CommentValidator {
   }
 }
 
-// we export it as object of this class so we don't need to create new instance of this class in controller
 export default new CommentValidator();

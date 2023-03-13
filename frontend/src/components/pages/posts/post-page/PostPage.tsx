@@ -1,8 +1,7 @@
 // PLUGINS IMPORTS //
 
 // COMPONENTS IMPORTS //
-import { ViewPost } from "components/organisms";
-import { PostPageAside } from "components/templates";
+import { PostPageAside, ViewPost } from "components/templates";
 
 // EXTRA IMPORTS //
 import styles from "./post-page.module.css";

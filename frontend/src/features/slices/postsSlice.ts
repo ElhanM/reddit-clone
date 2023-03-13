@@ -7,7 +7,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // EXTRA IMPORTS //
 import type { IPostInfo, IPaginatedGetPosts, IPostsForUser, ICreatePost, IGetPostResponse } from "types/features";
 import { apiSlice } from "../api/apiSlice";
-import type { RootState } from "app/store";
+import { RootState, useAppSelector } from "app/store";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -105,6 +105,12 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: [{ type: "Post" }],
     }),
+    //*-------------------------------------------------------------*//
+    // i have a seperate route for getting a single post
+    // this way I reduce the amount of data that I need to fetch on inital render
+    // on top of that, if I were to rely on the getPosts query for displaying a single post, I would not work unless user accesses a post from the home page
+    // if user navigates straight to a post using the url, the getPosts query would not be called and the post would not be displayed
+    // unless I were to call the getPosts query in app.tsx, but that would decrease performance of initial render of other pages
     getPost: builder.query<IPostsForUser, string>({
       query: postId => {
         return {
@@ -136,12 +142,12 @@ export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null
 const selectPostsData = createSelector(
   selectPostsResult,
   postsResult => {
-    console.log("selectCommentsData selectPostsData", postsResult);
     return postsResult.data;
   }, // normalized state object with ids & entities
 );
 // select info from state
 export const selectPostsInfo = createSelector(selectPostsResult, postsResult => postsResult.data?.info);
+// select
 
 export const {
   selectAll: selectAllPosts,
@@ -149,7 +155,9 @@ export const {
   selectIds: selectPostIds,
 } = postsAdapter.getSelectors((state: RootState) => selectPostsData(state) ?? initialState);
 
+export const selectCommunityIdByPostId = (postId: string) => {
+  const selectGetPostResult = extendedApiSlice.endpoints.getPost.select(postId);
 
-// create selector for post from getPost query
-
-
+  // we return the function, and then get the id using useAppSelector
+  return createSelector(selectGetPostResult, postData => postData.data?.Community.communityId);
+};
