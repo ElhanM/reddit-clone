@@ -18,6 +18,7 @@ import { useGetPostQuery } from "features/slices/postsSlice";
 import styles from "./view-post.module.css";
 import FormWrapper from "../form-wrapper/FormWrapper";
 import { ETheme } from "types/theme";
+import { useCreateCommentMutation } from "../../../features/slices/commentsSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +27,8 @@ type ViewPostProps = {};
 const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, isFetching, data: post } = useGetPostQuery(postId);
+  const [createComment, { isLoading: isLoadingComment, isError: isErrorComment, error: errorComment, isSuccess: isSuccessComment }] =
+    useCreateCommentMutation();
 
   const [markdownText, setMarkdownText] = useState("");
   const [emptyMarkdown, setEmptyMarkdown] = useState(false);
@@ -35,19 +38,19 @@ const ViewPost = ({}: ViewPostProps) => {
     console.log("markdownText", markdownText);
   }, [markdownText]);
 
-  const submitHandler = async e => {
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (markdownText === "<p><br></p>" || markdownText === "") {
       setEmptyMarkdown(true);
     }
 
     if (markdownText !== "<p><br></p>" && markdownText !== "") {
-      console.log("markdownText", markdownText);
-      // const createPostData = await createPost({
-      //   title: data.title,
-      //   description: markdownText,
-      //   communityId: community,
-      // }).unwrap();
+      const createCommentData = await createComment({
+        comment: markdownText,
+        postId: postId,
+      }).unwrap();
+      setMarkdownText("");
+      setEmptyMarkdown(false);
     }
   };
 
@@ -84,7 +87,7 @@ const ViewPost = ({}: ViewPostProps) => {
                   <CreateButton
                     theme={ETheme.LIGHT}
                     buttonText="Comment"
-                    buttonProps={{ type: "submit", variant: "contained", color: "primary", disabled: false }}
+                    buttonProps={{ type: "submit", variant: "contained", color: "primary", disabled: isLoadingComment }}
                   />
                 </section>
               </form>

@@ -14,3 +14,4 @@ export type { default as IExtendedUserAuth } from "./slices/authSlice/IExtendedU
 
 export type { default as IGetCommunities } from "./slices/communitySlice/IGetCommunities";
 export type { default as IGetComment } from "./slices/comments/IGetComment";
+export type { default as ICreateComment } from "./slices/comments/ICreateComment";
