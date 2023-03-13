@@ -7,10 +7,6 @@ const getUserCommunities = async (req: AuthRequest, res: Response, next: NextFun
   try {
     const { userId } = req;
 
-    if (userId === undefined) {
-      return next(new ErrorResponse("User not found", 404));
-    }
-
     const userCommunities = await db.User.findOne({
       where: { userId },
       attributes: [],

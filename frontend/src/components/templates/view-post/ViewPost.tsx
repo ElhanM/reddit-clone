@@ -2,23 +2,19 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Typography } from "@mui/material";
-import { SubmitHandler, useForm } from "react-hook-form";
 
 // COMPONENTS IMPORTS //
-import PostWrapper from "../post-wrapper/PostWrapper";
-import PostAside from "../post-aside/PostAside";
-import PostSection from "../post-section/PostSection";
 import { HandleError, PostsLoading } from "components/templates";
 import { ConfigedRQuill } from "components/molecules";
-import PostComments from "../post-comments/PostComments";
 import { CreateButton } from "components/atoms";
+import { PostWrapper, PostAside, PostComments } from "components/organisms";
 
 // EXTRA IMPORTS //
-import { useGetPostQuery } from "features/slices/postsSlice";
 import styles from "./view-post.module.css";
-import FormWrapper from "../form-wrapper/FormWrapper";
 import { ETheme } from "types/theme";
-import { useCreateCommentMutation } from "../../../features/slices/commentsSlice";
+import PostSection from "components/organisms/post-section/PostSection";
+import { useGetPostQuery } from "features/slices/postsSlice";
+import { useCreateCommentMutation } from "features/slices/commentsSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,7 +22,10 @@ type ViewPostProps = {};
 
 const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
-  const { isLoading, isSuccess, isError, error, isFetching, data: post } = useGetPostQuery(postId);
+  const { isLoading, isSuccess, isError, error, data: post } = useGetPostQuery(postId);
+
+  console.log({ post })
+
   const [createComment, { isLoading: isLoadingComment, isError: isErrorComment, error: errorComment, isSuccess: isSuccessComment }] =
     useCreateCommentMutation();
 

@@ -2,6 +2,7 @@
 import { Paper, Typography } from "@mui/material";
 import { CreateButton, PlainLink } from "components/atoms";
 import CakeOutlinedIcon from "@mui/icons-material/CakeOutlined";
+import { useParams } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
 import { RSlash } from "components/molecules";
@@ -9,12 +10,20 @@ import { RSlash } from "components/molecules";
 // EXTRA IMPORTS //
 import { ETheme } from "types/theme";
 import styles from "./post-page-aside.module.css";
+import { selectCommunityIdByPostId } from "features/slices/postsSlice";
+import { useAppSelector } from "app/store";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type PostPageAsideProps = {};
 
 const PostPageAside = (props: PostPageAsideProps) => {
+  const { postId } = useParams<{ postId: string }>();
+
+  const communityId = useAppSelector(selectCommunityIdByPostId(postId));
+
+  console.log({ communityId });
+
   return (
     <aside>
       <Paper className={`${styles["post-page-aside-wrapper"]}`}>

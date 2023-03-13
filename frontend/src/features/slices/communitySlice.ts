@@ -49,6 +49,15 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           : [{ type: "Community", postId: "LIST" }],
     }),
   }),
+  // I have a PostPage with ViewPost and PostPageAside components
+  // i called getPost in PostPage
+  // so, in order to access the post data in PostPageAside (get the communityId of the community the post is posted in)
+  // I needed to create a seperate selector for it in the postsSlice
+  // now that I have the communityId, I can use the getCommunity query to select the community data
+  // I could have also used the data from the getPost query directly, but I need this query later on when making my search communities featuer
+  // so I decided to create a seperate query for it now and use that
+  // this way I also need to fetch less data about the community in the getPost query, so performance is better
+  // as to why I did not use the getPosts query for all of this, the reason is stated in the postsSlice, under green line
 });
 
 export const { useGetUserCommunitiesQuery } = extendedApiSlice;

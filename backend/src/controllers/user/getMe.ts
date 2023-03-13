@@ -10,9 +10,7 @@ const getMe = async (req: AuthRequest, res: Response, next: NextFunction) => {
         userId: req.userId,
       },
     });
-    if (!user) {
-      return next(new ErrorResponse("User not found", 404));
-    }
+
     const userWithoutPassword = removePassword(user.toJSON());
 
     return res.status(200).json({ success: true, msg: "Successfully Gotten User Credentials", user: userWithoutPassword });
