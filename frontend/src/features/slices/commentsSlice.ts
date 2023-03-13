@@ -8,7 +8,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 import IGetComments from "types/features/slices/comments/IGetComments";
-import { IGetComment } from "types/features";
+import { ICreateComment, IGetComment } from "types/features";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -39,21 +39,9 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           url: `comments/get-comments/${postId}`,
         };
       },
-      // we need to implement same logic here as we did for the postsSlice getPosts pagination
-      // because we are getting comments multiple times for multiple posts
-      // without this "pagination" logic, our selectors don't work
-      // serializeQueryArgs: ({ endpointName }) => {
-      //   return endpointName;
-      // },
       transformResponse: (rawResult: IGetComments) => {
         return commentsAdapter.setAll({ ...initialState, success: rawResult.success }, rawResult.data);
       },
-      // merge: (currentCache, newItems) => {
-      //   return commentsAdapter.upsertMany(currentCache, newItems.entities);
-      // },
-      // forceRefetch({ currentArg, previousArg }) {
-      //   return currentArg !== previousArg;
-      // },
       providesTags: result =>
         result
           ? [
@@ -66,11 +54,21 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
             ]
           : [{ type: "Comment", commentId: "LIST", userId: "LIST" }],
     }),
+    createComment: builder.mutation<ICreateComment, { comment: string; postId: string }>({
+      query: ({ comment, postId }) => {
+        return {
+          credentials: "include",
+          method: "POST",
+          url: `comments/create-comment/${postId}`,
+          body: { comment },
+        };
+      },
+      invalidatesTags: [{ type: "Comment" }],
+    }),
   }),
-  // overrideExisting: false,
 });
 
-export const { useGetCommentsQuery } = extendedApiSlice;
+export const { useGetCommentsQuery, useCreateCommentMutation } = extendedApiSlice;
 
 // we need to keep in mind that there are multiple instances of the getComments query, because it gets called seperately for each post, with a new postId as a key
 // so we need a way to pass a postId argument to the our selectors
