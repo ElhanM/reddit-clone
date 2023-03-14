@@ -5,7 +5,7 @@ import { AuthRequest } from "types/express";
 
 const getCommunity = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const { communityId } = req.body;
+    const { communityId } = req.params;
 
     const community = await db.Community.findOne({
       where: { communityId },

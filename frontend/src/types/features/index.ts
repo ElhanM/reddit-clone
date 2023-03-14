@@ -11,7 +11,11 @@ export type { default as IGetPostResponse } from "./slices/postSlice/IGetPostRes
 export type { default as IUserAuth } from "./slices/authSlice/IUserAuth";
 export type { default as IUserBody } from "./slices/authSlice/IUserBody";
 export type { default as IExtendedUserAuth } from "./slices/authSlice/IExtendedUserAuth";
+export type { default as IUserId } from "./slices/authSlice/IUserId";
 
 export type { default as IGetCommunities } from "./slices/communitySlice/IGetCommunities";
 export type { default as IGetComment } from "./slices/comments/IGetComment";
 export type { default as ICreateComment } from "./slices/comments/ICreateComment";
+
+export type { default as IGetCommunity } from "./slices/communitySlice/IGetCommunity";
+export type { default as ICommunityRes } from "./slices/communitySlice/ICommunityRes";

@@ -9,9 +9,10 @@ import styles from "./time-ago.module.css";
 
 type TimeAgoProps = {
   timestamp: string;
+  noStyles?: boolean;
 };
 
-const TimeAgo = ({ timestamp }: TimeAgoProps) => {
+const TimeAgo = ({ timestamp, noStyles }: TimeAgoProps) => {
   let timeAgo = "";
   if (timestamp) {
     const date = parseISO(timestamp);
@@ -19,11 +20,7 @@ const TimeAgo = ({ timestamp }: TimeAgoProps) => {
     timeAgo = `${timePeriod} ago`;
   }
 
-  return (
-    <span className={`${styles["header-rest"]}`}>
-      <i>{timeAgo}</i>
-    </span>
-  );
+  return <span className={`${noStyles || styles["header-rest"]}`}>{noStyles ? <span>{timeAgo}</span> : <i>{timeAgo}</i>}</span>;
 };
 
 export default TimeAgo;

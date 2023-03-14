@@ -10,7 +10,7 @@ import styles from "./plain-link.module.css";
 
 type PlainLinkProps = {
   children: React.ReactNode;
-  to: string;
+  to: string | { pathname: string };
   className?: string;
   // i need the onClick in order to have the back button in the error page
   onClick?: () => void;

@@ -8,7 +8,6 @@ const router = express.Router();
 
 router.route("/get-user-communities").get(verifyToken, getUserCommunities);
 
-//can't send body with get request, so we use post
-router.route("/get-community").post(CommunityValidator.checkGetCommunity(), handleValidationError(), verifyToken, getCommunity);
+router.route("/get-community/:communityId").get(CommunityValidator.checkGetCommunity(), handleValidationError(200), verifyToken, getCommunity);
 
 export default router;
