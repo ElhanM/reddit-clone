@@ -19,3 +19,4 @@ export type { default as ICreateComment } from "./slices/comments/ICreateComment
 
 export type { default as IGetCommunity } from "./slices/communitySlice/IGetCommunity";
 export type { default as ICommunityRes } from "./slices/communitySlice/ICommunityRes";
+export type { default as ICommunityPostReq } from "./slices/communitySlice/ICommunityPostReq";
