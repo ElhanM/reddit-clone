@@ -5,3 +5,5 @@ export { default as CreatePostPage } from "./posts/create-post/CreatePostPage";
 export { default as PostPage } from "./posts/post-page/PostPage";
 
 export { default as Error } from "./error/Error";
+
+export { default as SearchCommunities } from "./search-communities/SearchCommunities";

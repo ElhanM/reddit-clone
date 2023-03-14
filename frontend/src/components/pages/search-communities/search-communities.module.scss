@@ -1,0 +1,11 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+@use "../../../scss/abstracts/variables" as *;
+
+.search-communities-wrapper {
+  width: 70%;
+  border: 1px solid $paler-text;
+  border-radius: 0.2em;
+  background-color: $post-background;
+  margin: 2em auto;
+}

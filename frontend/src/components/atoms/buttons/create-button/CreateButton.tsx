@@ -4,7 +4,7 @@ import { Button, ButtonProps } from "@mui/material";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import styles from "./create-button.module.scss";
+import styles from "./create-button.module.css";
 import { ETheme } from "types/theme";
 
 /////////////////////////////////////////////////////////////////////////////

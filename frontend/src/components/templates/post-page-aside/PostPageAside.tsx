@@ -38,7 +38,6 @@ const PostPageAside = (props: PostPageAsideProps) => {
     setShowLeave(false);
   };
   const handleJoinCommunity = async () => {
-    console.log("clickeeeeed")
     await joinCommunity(communityId).unwrap();
     setShowLeave(true);
   };
@@ -56,7 +55,6 @@ const PostPageAside = (props: PostPageAsideProps) => {
     return <HandleError error={error} />;
   } else if (isSuccess) {
     return (
-      // !split to different component
       <aside>
         <Paper className={`${styles["post-page-aside-wrapper"]}`}>
           <div className={`${styles["background"]}`} />
