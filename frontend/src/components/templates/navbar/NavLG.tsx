@@ -12,6 +12,7 @@ import IconLink from "./CreatePostLinks";
 // EXTRA IMPORTS //
 import styles from "./navbar.module.css";
 import { ELink } from "types/pages";
+import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -21,6 +22,13 @@ type NavLGProps = {
 };
 
 const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    // navigate user to search route and add searchValue as query
+    window.location.href = `/search-communities?name=${searchValue}`;
+  };
   return (
     <>
       <div
@@ -34,7 +42,6 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
         <div className={`${styles["select"]}`}>
           <NavSelectCommunity />
         </div>
-        {/* //TODO add search to menu on sm screens and either make search opet up a new page and search there, or make it search from nav on lg and on new page on sm */}
         <Search
           className={`${styles["search"]}`}
           sx={{
@@ -46,7 +53,14 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
-          <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
+          <StyledInputBase
+            placeholder="Search…"
+            inputProps={{ "aria-label": "search" }}
+            value={searchValue}
+            onChange={e => setSearchValue(e.target.value)}
+            // handle submit on enter
+            onKeyDown={e => e.key === "Enter" && handleSubmit(e)}
+          />
         </Search>
       </section>
       <Box

@@ -1,16 +1,16 @@
 // PLUGINS IMPORTS //
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
-import { CreatePostPage, Error, Home, Login, PostPage } from "components/pages";
+import { CreatePostPage, Error, Home, Login, PostPage, SearchCommunities } from "components/pages";
 import { SharedLayout } from "components/templates";
-import { useEffect, useState } from "react";
-import { getUserCookie } from "utils";
 
 // EXTRA IMPORTS //
 import { useAppSelector } from "app/store";
 import { useGetMeMutation } from "features/slices/authSlice";
+import { getUserCookie } from "utils";
 import { useGetUserCommunitiesQuery } from "features/slices/communitySlice";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -50,8 +50,9 @@ const App = () => {
                 <Route index element={<Home />} />
                 <Route path="create-post" element={<CreatePostPage />} />
                 <Route path="login" element={<Login />} />
-                {/* post page */}
                 <Route path="post/:postId" element={<PostPage />} />
+                <Route path="search-communities" element={<SearchCommunities />} />
+
                 {/* <Route path="register" element={<Register />} /> */}
               </>
             )}
