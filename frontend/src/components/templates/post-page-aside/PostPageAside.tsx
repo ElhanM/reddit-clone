@@ -14,7 +14,8 @@ import { ETheme } from "types/theme";
 import styles from "./post-page-aside.module.css";
 import { selectCommunityIdByPostId } from "features/slices/postsSlice";
 import { useAppSelector } from "app/store";
-import { useGetCommunityQuery } from "features/slices/communitySlice";
+import { useGetCommunityQuery, useJoinCommunityMutation, useLeaveCommunityMutation } from "features/slices/communitySlice";
+import { useEffect, useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +27,27 @@ const PostPageAside = (props: PostPageAsideProps) => {
   const communityId = useAppSelector(selectCommunityIdByPostId(postId));
 
   const { isLoading, isSuccess, isError, error, data: community } = useGetCommunityQuery(communityId);
+  const [leaveCommunity, { isLoading: isLoadingLeave, isError: isErrorLeave, error: errorLeave, isSuccess: isSuccessLeave }] =
+    useLeaveCommunityMutation();
+  const [joinCommunity, { isLoading: isLoadingJoin, isError: isErrorJoin, error: errorJoin, isSuccess: isSuccessJoin }] = useJoinCommunityMutation();
+
+  const [showLeave, setShowLeave] = useState(true);
+
+  const handleLeaveCommunity = async () => {
+    await leaveCommunity(communityId).unwrap();
+    setShowLeave(false);
+  };
+  const handleJoinCommunity = async () => {
+    console.log("clickeeeeed")
+    await joinCommunity(communityId).unwrap();
+    setShowLeave(true);
+  };
+
+  //  random number between 0 and community.Users.length
+  const [online, setOnline] = useState(0);
+  useEffect(() => {
+    setOnline(Math.floor(Math.random() * community?.Users?.length));
+  }, [isSuccess]);
 
   if (isLoading) {
     return <PostsLoading />;
@@ -34,6 +56,7 @@ const PostPageAside = (props: PostPageAsideProps) => {
     return <HandleError error={error} />;
   } else if (isSuccess) {
     return (
+      // !split to different component
       <aside>
         <Paper className={`${styles["post-page-aside-wrapper"]}`}>
           <div className={`${styles["background"]}`} />
@@ -60,23 +83,36 @@ const PostPageAside = (props: PostPageAsideProps) => {
               <div className={`${styles["online"]}`}>
                 <p className={`${styles["p-count"]} ${styles["center"]}`}>
                   <span className={`${styles["online-dot"]}`} />
-                  {/* random number between 0 and community.Users.length*/}
-                  {Math.floor(Math.random() * community.Users.length)}
+                  {/* online gets displayed as NaN at start, this way we pervent that behaviour */}
+                  {!Number.isNaN(online) ? online : 0}
                 </p>
                 <p className={`${styles["p-info"]}`}>Onine</p>
               </div>
               <div />
             </div>
-
             <div className={`${styles["border-seperate"]}`}></div>
             <div className={`${styles["buttons"]}`}>
-              <CreateButton
-                theme={ETheme.DARK}
-                buttonText="Join"
-                buttonProps={{
-                  fullWidth: true,
-                }}
-              />
+              {showLeave ? (
+                <CreateButton
+                  theme={ETheme.DARK}
+                  buttonText="Leave community"
+                  buttonProps={{
+                    fullWidth: true,
+                    onClick: handleLeaveCommunity,
+                    disabled: isLoadingLeave,
+                  }}
+                />
+              ) : (
+                <CreateButton
+                  theme={ETheme.DARK}
+                  buttonText="Join community"
+                  buttonProps={{
+                    fullWidth: true,
+                    onClick: handleJoinCommunity,
+                    disabled: isLoadingJoin,
+                  }}
+                />
+              )}
               <PlainLink
                 // when we use to="create-post", it adds this path at the end of the current path, so it goes postIdParm/create-post
                 // we use to={{ pathname: "/create-post" }} to go to the path /create-post
@@ -97,6 +133,9 @@ const PostPageAside = (props: PostPageAsideProps) => {
         </Paper>
       </aside>
     );
+  } else{
+    // since we now have 2 conditions for error case, we also return PostsLoading in else, in case none of the above cases are hit
+    return <PostsLoading />
   }
 };
 

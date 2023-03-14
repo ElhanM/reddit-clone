@@ -5,7 +5,7 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import type { ICommunity, ICommunityRes, IGetCommunities, IGetCommunity } from "types/features";
+import type { ICommunity, ICommunityPostReq, ICommunityRes, IGetCommunities, IGetCommunity } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
 
@@ -75,10 +75,32 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: result => [{ type: "Community", communityId: result.communityId }],
     }),
+    joinCommunity: builder.mutation<ICommunityPostReq, string>({
+      query: communityId => {
+        return {
+          credentials: "include",
+          method: "POST",
+          url: "communities/community/join",
+          body: { communityId },
+        };
+      },
+      invalidatesTags: [{ type: "Post" }],
+    }),
+    leaveCommunity: builder.mutation<ICommunityPostReq, string>({
+      query: communityId => {
+        return {
+          credentials: "include",
+          method: "POST",
+          url: "communities/community/leave",
+          body: { communityId },
+        };
+      },
+      invalidatesTags: [{ type: "Post" }],
+    }),
   }),
 });
 
-export const { useGetUserCommunitiesQuery, useGetCommunityQuery } = extendedApiSlice;
+export const { useGetUserCommunitiesQuery, useGetCommunityQuery, useJoinCommunityMutation, useLeaveCommunityMutation } = extendedApiSlice;
 
 // returns the query result object
 export const selectCommunityResult = extendedApiSlice.endpoints.getUserCommunities.select(null);
