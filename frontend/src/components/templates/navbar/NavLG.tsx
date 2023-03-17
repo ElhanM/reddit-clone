@@ -1,6 +1,8 @@
 // PLUGINS IMPORTS //
 import SearchIcon from "@mui/icons-material/Search";
 import { Box } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
 import { NavSelectCommunity, StyledIconButton } from "components/atoms";
@@ -12,7 +14,6 @@ import IconLink from "./CreatePostLinks";
 // EXTRA IMPORTS //
 import styles from "./navbar.module.css";
 import { ELink } from "types/pages";
-import { useState } from "react";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -22,12 +23,21 @@ type NavLGProps = {
 };
 
 const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
-  const [searchValue, setSearchValue] = useState("");
+  // select query params from the url
+  const { search } = useLocation();
+  const history = useNavigate();
+  // extract the name from the query params
+  const name = new URLSearchParams(search).get("name");
 
-  const handleSubmit = e => {
+  const [searchValue, setSearchValue] = useState(name || "");
+
+  useEffect(() => {
+    setSearchValue(name || "");
+  }, [name]);
+
+  const handleSubmit = (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault();
-    // navigate user to search route and add searchValue as query
-    window.location.href = `/search-communities?name=${searchValue}`;
+    history(`/search-communities?name=${searchValue}`);
   };
   return (
     <>
@@ -43,7 +53,7 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
           <NavSelectCommunity />
         </div>
         <Search
-          className={`${styles["search"]}`}
+          className={`${styles["search"]} nav-search`}
           sx={{
             height: "40px !important",
             borderRadius: "20px !important",
@@ -60,6 +70,10 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
             onChange={e => setSearchValue(e.target.value)}
             // handle submit on enter
             onKeyDown={e => e.key === "Enter" && handleSubmit(e)}
+            sx={{
+              // make same width as parent
+              width: "100% !important",
+            }}
           />
         </Search>
       </section>

@@ -1,5 +1,6 @@
 // PLUGINS IMPORTS //
 
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
@@ -15,6 +16,12 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
   const { search } = useLocation();
   // extract the name from the query params
   const name = new URLSearchParams(search).get("name");
+
+  useEffect(() => {
+    return () => {
+      
+    };
+  }, []);
 
   return <main className={styles["search-communities-wrapper"]}>SearchCommunities</main>;
 };

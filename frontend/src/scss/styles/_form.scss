@@ -11,3 +11,8 @@
 .auth-form .MuiButton-root {
   margin-top: $from-margin-top !important;
 }
+
+.nav-search input {
+  // make input inside the search element in the navbar take up the entire width of the element
+  width: 100% !important;
+}
