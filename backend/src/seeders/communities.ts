@@ -16,9 +16,6 @@ const communities = [
     name: "AskReddit",
     description: "r/AskReddit is the place to ask and answer thought-provoking questions.",
   },
-];
-
-const communities2 = [
   {
     communityId: "5604a169-ad0e-40e6-9a02-914e75b3aa77",
     name: "Showerthoughts",
@@ -116,11 +113,6 @@ const communities2 = [
 const createCommunities = async () => {
   try {
     await db.Community.bulkCreate(communities, {
-      runValidators: true,
-    });
-    // createing too many communities at once causes an error where other seeders start going off before the communities are created
-    // which starts violating foreign key constraints
-    await db.Community.bulkCreate(communities2, {
       runValidators: true,
     });
   } catch (error) {

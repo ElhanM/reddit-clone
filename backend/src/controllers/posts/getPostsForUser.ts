@@ -87,7 +87,7 @@ const getAllPostsForUser = async (req: AuthRequest, res: Response, next: NextFun
         currentPage: pageNumber,
         next: pageNumber >= pages ? null : `http://localhost:5000/api/posts?page=${pageNumber + 1}`,
         previous:
-          pageNumber >= pages
+          pageNumber > pages
             ? `http://localhost:5000/api/posts?page=${pages}`
             : pageNumber === 1
             ? null
