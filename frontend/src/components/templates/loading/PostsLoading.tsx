@@ -41,7 +41,10 @@ const TitlePlaceholder = ({}: TitlePlaceholderProps) => {
           // https://stackoverflow.com/questions/11160227/translate-x-and-y-percentage-values-based-on-elements-height-and-width
           // aka When using percentage in translate, it refers to width or height of itself.
           // so I will just use pixels, from -100 to 900 so it works on all screen sizes and I don't have to waste any more time on this
-          translateX: ["-100px", "900px"],
+          // translateX: ["-100%", "900%"],
+          // any way to avoid using pixels?, use left instead of translateX
+          // we set inital left to -20% in scss file, and set it here to 100% so it loops infinitely
+          left: "100%",
         }}
         transition={{ duration: 1, ease: "linear", repeat: Infinity }}
         className={`${styles["title-animation"]}`}
@@ -60,7 +63,7 @@ const BodyPlaceholder = ({}: BodyPlaceholderProps) => {
           <div className={`${styles["body-background"]}`} />
           <m.div
             animate={{
-              translateX: ["-100px", "900px"],
+              left: "100%",
             }}
             transition={{ duration: 1, ease: "linear", repeat: Infinity }}
             className={`${styles["body-animation"]}`}
@@ -71,17 +74,21 @@ const BodyPlaceholder = ({}: BodyPlaceholderProps) => {
   );
 };
 
-type PostsLoadingProps = {};
+type PostsLoadingProps = {
+  searchCommunities?: boolean;
+};
 
-const PostsLoading = ({}: PostsLoadingProps) => {
+const PostsLoading = ({ searchCommunities = false }: PostsLoadingProps) => {
   return (
     <div className={`${styles["posts-loading-container"]}`}>
-      <div className={`${styles["posts-loading-flex"]}`}>
-        <AvatarPlaceholder />
-        <div className={`${styles["title-container"]}`}>
-          <TitlePlaceholder />
+      {searchCommunities || (
+        <div className={`${styles["posts-loading-flex"]}`}>
+          <AvatarPlaceholder />
+          <div className={`${styles["title-container"]}`}>
+            <TitlePlaceholder />
+          </div>
         </div>
-      </div>
+      )}
       <BodyPlaceholder />
     </div>
   );

@@ -27,7 +27,7 @@ const Posts = () => {
       const { scrollHeight, scrollTop, clientHeight } = event.target.scrollingElement;
 
       if (!isFetching && scrollHeight - scrollTop <= clientHeight * 1.5) {
-        if (page <= postsInfo.pages) setPage(page + 1);
+        if (page < postsInfo.pages) setPage(page + 1);
       }
     };
 

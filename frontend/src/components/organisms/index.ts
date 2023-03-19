@@ -6,3 +6,4 @@ export { default as PostWrapper } from "./post-wrapper/PostWrapper";
 export { default as PostAside } from "./post-aside/PostAside";
 export { default as PostComments } from "./post-comments/PostComments";
 export { default as PostComment } from "./post-comment/PostComment";
+export { default as PostPageAsideContent } from "./post-page-aside-content/PostPageAsideContent";
