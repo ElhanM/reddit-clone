@@ -59,7 +59,7 @@ const BodyPlaceholder = ({}: BodyPlaceholderProps) => {
   return (
     <>
       {[...Array(5)].map((_, index) => (
-        <div className={`${styles["body-container"]}`}>
+        <div className={`${styles["body-container"]}`} key={index}>
           <div className={`${styles["body-background"]}`} />
           <m.div
             animate={{

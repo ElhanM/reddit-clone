@@ -1,15 +1,17 @@
 // PLUGINS IMPORTS //
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { PostsLoading, HandleError } from "components/templates";
+import { selectSearchCommunitiesIds, selectSearchCommunitiesInfo, useSearchCommunitiesQuery } from "features/slices/searchCommunitiesSlice";
+import { SearchCommunity } from "components/organisms";
 
 // EXTRA IMPORTS //
 import styles from "./search-communities.module.css";
 import { useAppSelector } from "app/store";
-import { selectSearchCommunitiesIds, selectSearchCommunitiesInfo, useSearchCommunitiesQuery } from "features/slices/searchCommunitiesSlice";
+import { apiSlice } from "features/api/apiSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 type SearchCommunitiesProps = {};
@@ -22,19 +24,18 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
   // extract the name from the query params
   const name = new URLSearchParams(search).get("name");
 
-  const { isLoading, isSuccess, isError, error, isFetching } = useSearchCommunitiesQuery({
+  // refetch the query when the name changes,
+  // reason: it is a pagianted query, when we change the name to search for a new community, it just adds the new communities to the end of the list
+  // TODO: make different selectors for query with different name params
+  const { isLoading, isSuccess, isError, error, isFetching, refetch } = useSearchCommunitiesQuery({
     pageNumber: page,
     searchQuery: name,
   });
 
+  const dispatch = useDispatch();
+
   const communitiesInfo = selectSearchCommunitiesInfo(useAppSelector(state => state));
   const communityIds = useSelector(selectSearchCommunitiesIds);
-
-  useEffect(() => {
-    console.log("pageeeee", { page });
-    // communitiesInfo.pages
-    console.log("pageeeee communitiesInfo.pages", { communitiesInfo });
-  }, [page, communitiesInfo]);
 
   useEffect(() => {
     const onScroll = async (event: any) => {
@@ -62,19 +63,11 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
           <>
             {communityIds.length}
             <br />
+            {JSON.stringify(communitiesInfo)}
+            <br />
+            <br />
             {communityIds.map(communityId => (
-              // <SearchCommunities key={communityId} communityId={communityId} />
-              <>
-                {JSON.stringify(communityId)}
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-              </>
+              <SearchCommunity key={communityId} communityId={communityId} />
             ))}
             {isFetching && !isLoading && <PostsLoading />}
           </>

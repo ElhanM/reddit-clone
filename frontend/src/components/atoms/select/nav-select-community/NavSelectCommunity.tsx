@@ -70,8 +70,6 @@ const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={selected => {
-            console.log({ userCommunities });
-            console.log("selected", selected[0]);
             if (selected.length === 0) {
               return (
                 <>
@@ -178,7 +176,7 @@ const NavSelectCommunity = ({}: NavSelectCommunityProps) => {
               value={community.communityId}
               style={getStyles(community.name, personName, theme)}
               onClick={() => {
-                history(`/${community.communityId}`);
+                history(`/search-communities?name=${community.name}`);
               }}
             >
               r/{community.name}

@@ -120,8 +120,17 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         };
       },
       transformResponse: (rawResult: IGetPostResponse) => {
-        // the default behavior of queries is to keep on trying to fetch the data until they get a 200 response
-        // to avoid this, I will return errors with 200 response but handle them here
+        // getRequests usually only fail if your server fails, then they get a 500 response and throw an error
+        // but, if your server is fine, the default behavior of queries is to keep on trying to fetch the data until they get a 2## response
+        // and if they get a 4## response, they will keep on refetching and not throw an error (stuck on loading state)
+
+        // this query is special, because it is looking for a specific post that might not exist, and if it doesn't exist, I have made it so that the backend returns an error response in this case
+        // but by default the query will not throw this error, even if I return it with 4## response it just keeps on refetching trying to get 2##
+        // so the first step in handling errors for this query, is to always return a 2## response from the backend even if it is an error response
+        // then I just need a way to handle these errors
+        // I want these errors to be thrown and go into my error state, so I can handle them more easily
+        // so, finally, my solution to this problem is the following:
+        // I will return these "post not found" errors from the backend with 200 response and handle them here myself (throw them manually)
         if (!rawResult.success) {
           throw new Error(rawResult.msg);
         }

@@ -33,7 +33,7 @@ const NavLG = ({ menuId, handleProfileMenuOpen }: NavLGProps) => {
 
   useEffect(() => {
     // when we press the home button for example, we want to clear the search input
-    // since it changes the alue of name, aka changes the query params
+    // since navigating to home page changes the value of name, aka changes the query params
     // we can do this to reset the search input
     setSearchValue(name || "");
   }, [name]);
