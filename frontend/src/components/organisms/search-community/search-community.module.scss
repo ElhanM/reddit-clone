@@ -1,0 +1,53 @@
+@use "../../../scss/abstracts/colors" as *;
+@use "../../../scss/abstracts/mixins" as *;
+@use "../../../scss/abstracts/variables" as *;
+
+.search-community-wrapper {
+  // height: 8vh;
+  padding: 1em;
+  border: 1px solid $reddit-border;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+// select last child from search-community-wrapper move it to end
+.search-community-wrapper > *:last-child {
+  margin-left: auto;
+}
+
+.header {
+  display: flex;
+  gap: 0.5em;
+}
+
+.members {
+  display: flex;
+  gap: 0.2em;
+  align-items: center;
+}
+
+.community-name {
+  font-weight: 600 !important;
+}
+
+.p-count,
+.p-info {
+  font-size: 0.9rem;
+}
+
+.p-count,
+.p-info,
+.p-welcome {
+  color: $paler-text;
+  // make it a bit brighter using brightness
+  filter: brightness(1.2);
+}
+
+.members::before {
+  content: "•";
+  color: $paler-text;
+}
+
+
+// #272729

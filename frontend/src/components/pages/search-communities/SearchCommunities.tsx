@@ -58,17 +58,12 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
         <HandleError error={error} />
       ) : (
         isSuccess && (
-          <>
-            {communityIds.length}
-            <br />
-            {JSON.stringify(communitiesInfo)}
-            <br />
-            <br />
+          <article>
             {communityIds.map(communityId => (
               <SearchCommunity key={communityId} communityId={communityId} name={name} />
             ))}
             {isFetching && !isLoading && <PostsLoading />}
-          </>
+          </article>
         )
       )}
     </main>

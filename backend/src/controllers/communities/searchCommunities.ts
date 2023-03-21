@@ -45,6 +45,15 @@ const searchCommunities = async (req: AuthRequest, res: Response, next: NextFunc
             [db.Sequelize.Op.iLike]: `%${name}%`,
           },
         },
+        // user
+        include: [
+          {
+            model: db.User,
+            attributes: ["userId"],
+            // remove CommunityUser
+            through: { attributes: [] },
+          },
+        ],
         limit: pageSize,
         offset: (pageNumber - 1) * pageSize,
       });
