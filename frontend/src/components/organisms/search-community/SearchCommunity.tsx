@@ -7,15 +7,16 @@ import { EntityId } from "@reduxjs/toolkit";
 // EXTRA IMPORTS //
 import styles from "./search-community.module.css";
 import { RootState } from "app/store";
-import { selectSearchCommunitiesById } from "features/slices/searchCommunitiesSlice";
+import { selectFilteredByName } from "features/slices/searchCommunitiesSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 type SearchCommunityProps = {
   communityId: EntityId;
+  name: string;
 };
 
-const SearchCommunity = ({ communityId }: SearchCommunityProps) => {
-  const community = useSelector((state: RootState) => selectSearchCommunitiesById(state, communityId));
+const SearchCommunity = ({ communityId, name }: SearchCommunityProps) => {
+  const community = useSelector((state: RootState) => selectFilteredByName(name).selectSearchCommunitiesById(state, communityId));
 
   return (
     <div>

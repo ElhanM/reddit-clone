@@ -79,21 +79,42 @@ export const { useSearchCommunitiesQuery } = extendedApiSlice;
 
 // returns the query result object
 export const selectSearchCommunitiesResult = extendedApiSlice.endpoints.searchCommunities.select(null);
+
 export const selectSearchCommunitiesInfo = createSelector(
   selectSearchCommunitiesResult,
   searchCommunitiesResult => searchCommunitiesResult.data?.info,
 );
 
-// Creates memoized selector
-const selectSearchCommunitiesData = createSelector(
-  selectSearchCommunitiesResult,
-  searchCommunitiesResult => {
-    return searchCommunitiesResult.data;
-  }, // normalized state object with ids & entities
-);
+export const selectFilteredByName = (name: string) => {
+  // Creates memoized selector
+  const selectSearchCommunitiesData = createSelector(
+    selectSearchCommunitiesResult,
+    searchCommunitiesResult => {
+      // return searchCommunitiesResult.data;
+      // filter the entities object from searchCommunitiesResult.data by name and return the filtered entities
+      return {
+        ...searchCommunitiesResult.data,
+        entities: Object.values(searchCommunitiesResult.data?.entities ?? {}).reduce((acc, community) => {
+          if (community.name.toLowerCase().includes(name.toLowerCase())) {
+            acc[community.communityId] = community;
+          }
+          return acc;
+        }, {}),
+        ids: Object.values(searchCommunitiesResult.data?.entities ?? {}).reduce((acc, community) => {
+          if (community.name.toLowerCase().includes(name.toLowerCase())) {
+            acc.push(community.communityId);
+          }
+          return acc;
+        }, [] as EntityId[]),
+      };
+    }, // normalized state object with ids & entities
+  );
 
-export const {
-  selectAll: selectAllSearchCommunities,
-  selectById: selectSearchCommunitiesById,
-  selectIds: selectSearchCommunitiesIds,
-} = searchCommunitiesAdapter.getSelectors((state: RootState) => selectSearchCommunitiesData(state) ?? initialState);
+  const {
+    selectAll: selectAllSearchCommunities,
+    selectById: selectSearchCommunitiesById,
+    selectIds: selectSearchCommunitiesIds,
+  } = searchCommunitiesAdapter.getSelectors((state: RootState) => selectSearchCommunitiesData(state) ?? initialState);
+
+  return { selectAllSearchCommunities, selectSearchCommunitiesById, selectSearchCommunitiesIds };
+};

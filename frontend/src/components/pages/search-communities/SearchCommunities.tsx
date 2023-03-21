@@ -1,17 +1,16 @@
 // PLUGINS IMPORTS //
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { PostsLoading, HandleError } from "components/templates";
-import { selectSearchCommunitiesIds, selectSearchCommunitiesInfo, useSearchCommunitiesQuery } from "features/slices/searchCommunitiesSlice";
+import { selectFilteredByName, selectSearchCommunitiesInfo, useSearchCommunitiesQuery } from "features/slices/searchCommunitiesSlice";
 import { SearchCommunity } from "components/organisms";
 
 // EXTRA IMPORTS //
 import styles from "./search-communities.module.css";
 import { useAppSelector } from "app/store";
-import { apiSlice } from "features/api/apiSlice";
 
 /////////////////////////////////////////////////////////////////////////////
 type SearchCommunitiesProps = {};
@@ -26,16 +25,15 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
 
   // refetch the query when the name changes,
   // reason: it is a pagianted query, when we change the name to search for a new community, it just adds the new communities to the end of the list
-  // TODO: make different selectors for query with different name params
+  // do not reset the cache, leave all of the already fetched communities in the cache, just filter the communities on the front-end
+  // i did the filtering in the SearchCommunitySlice directly
   const { isLoading, isSuccess, isError, error, isFetching, refetch } = useSearchCommunitiesQuery({
     pageNumber: page,
     searchQuery: name,
   });
 
-  const dispatch = useDispatch();
-
   const communitiesInfo = selectSearchCommunitiesInfo(useAppSelector(state => state));
-  const communityIds = useSelector(selectSearchCommunitiesIds);
+  const communityIds = useSelector(selectFilteredByName(name).selectSearchCommunitiesIds);
 
   useEffect(() => {
     const onScroll = async (event: any) => {
@@ -67,7 +65,7 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
             <br />
             <br />
             {communityIds.map(communityId => (
-              <SearchCommunity key={communityId} communityId={communityId} />
+              <SearchCommunity key={communityId} communityId={communityId} name={name} />
             ))}
             {isFetching && !isLoading && <PostsLoading />}
           </>
