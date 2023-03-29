@@ -57,4 +57,10 @@
 .members::before {
   content: "•";
   color: #818384;
+}
+
+.buttons {
+  width: 100px;
+  min-width: 100px;
+  max-width: 100px;
 }/*# sourceMappingURL=search-community.module.css.map */

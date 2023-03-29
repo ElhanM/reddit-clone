@@ -55,7 +55,7 @@ const Login = (props: LoginProps) => {
   const submitHandler: SubmitHandler<ILoginForm> = async (data: ILoginForm) => {
     const { email, password } = data;
     // If you need to access the error or success payload immediately after a mutation, you can chain .unwrap().
-    const login = await loginUser({
+    await loginUser({
       email,
       password,
     }).unwrap();

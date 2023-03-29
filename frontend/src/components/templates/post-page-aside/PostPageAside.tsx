@@ -1,16 +1,11 @@
 // PLUGINS IMPORTS //
-import { Paper, Typography } from "@mui/material";
-import { CreateButton, PlainLink } from "components/atoms";
-import CakeOutlinedIcon from "@mui/icons-material/CakeOutlined";
 import { useParams } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { RSlash, TimeAgo } from "components/molecules";
 import PostsLoading from "../loading/PostsLoading";
 import HandleError from "../error/HandleError";
 
 // EXTRA IMPORTS //
-import { ETheme } from "types/theme";
 import styles from "./post-page-aside.module.css";
 import { selectCommunityIdByPostId } from "features/slices/postsSlice";
 import { useAppSelector } from "app/store";
@@ -31,6 +26,8 @@ const PostPageAside = (props: PostPageAsideProps) => {
   const [leaveCommunity, { isLoading: isLoadingLeave, isError: isErrorLeave, error: errorLeave, isSuccess: isSuccessLeave }] =
     useLeaveCommunityMutation();
   const [joinCommunity, { isLoading: isLoadingJoin, isError: isErrorJoin, error: errorJoin, isSuccess: isSuccessJoin }] = useJoinCommunityMutation();
+
+  const { user } = useAppSelector(state => state.userState);
 
   const [showLeave, setShowLeave] = useState(true);
 

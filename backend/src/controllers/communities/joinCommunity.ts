@@ -20,7 +20,6 @@ const getCommunity = async (req: AuthRequest, res: Response, next: NextFunction)
       joinCommunity,
     });
   } catch (err) {
-    console.log(err);
     return next(err);
   }
 };

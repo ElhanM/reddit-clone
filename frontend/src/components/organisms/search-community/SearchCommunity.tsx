@@ -2,6 +2,7 @@
 import { useSelector } from "react-redux";
 import { EntityId } from "@reduxjs/toolkit";
 import { Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
 import { CreateButton } from "components/atoms";
@@ -9,9 +10,10 @@ import { RSlash } from "components/molecules";
 
 // EXTRA IMPORTS //
 import styles from "./search-community.module.css";
-import { RootState } from "app/store";
+import { RootState, useAppSelector } from "app/store";
 import { selectFilteredByName } from "features/slices/searchCommunitiesSlice";
 import { ETheme } from "types/theme";
+import { useLeaveCommunityMutation, useJoinCommunityMutation } from "features/slices/communitySlice";
 
 /////////////////////////////////////////////////////////////////////////////
 type SearchCommunityProps = {
@@ -21,6 +23,34 @@ type SearchCommunityProps = {
 
 const SearchCommunity = ({ communityId, name }: SearchCommunityProps) => {
   const community = useSelector((state: RootState) => selectFilteredByName(name).selectSearchCommunitiesById(state, communityId));
+
+  const [leaveCommunity, { isLoading: isLoadingLeave, isError: isErrorLeave, error: errorLeave, isSuccess: isSuccessLeave }] =
+    useLeaveCommunityMutation();
+  const [joinCommunity, { isLoading: isLoadingJoin, isError: isErrorJoin, error: errorJoin, isSuccess: isSuccessJoin }] = useJoinCommunityMutation();
+
+  const { user } = useAppSelector(state => state.userState);
+
+  // for the inital load, we want to wait for both user and community to be fetched, and then want to check if user is in community.Users array
+  // and use that to conditionally render the leave/join button
+  const [showLeave, setShowLeave] = useState<"loading" | boolean>("loading");
+  useEffect(() => {
+    if (user.userId && community.communityId && showLeave === "loading") {
+      setShowLeave(
+        // if user.userId can be found in community.Users array, then setShowLeave to true
+        !!community.Users.find(user => user.userId === user.userId),
+      );
+    }
+  }, [community, user]);
+
+  const handleLeaveCommunity = async () => {
+    await leaveCommunity(communityId as string).unwrap();
+    setShowLeave(false);
+  };
+
+  const handleJoinCommunity = async () => {
+    await joinCommunity(communityId as string).unwrap();
+    setShowLeave(true);
+  };
 
   return (
     <section className={`${styles["search-community-wrapper"]}`}>
@@ -38,13 +68,27 @@ const SearchCommunity = ({ communityId, name }: SearchCommunityProps) => {
         <p className={`${styles["p-welcome"]}`}>{community.description}</p>
       </div>
       <div className={`${styles["buttons"]}`}>
-        <CreateButton
-          theme={ETheme.DARK}
-          buttonText="Join"
-          buttonProps={{
-            fullWidth: true,
-          }}
-        />
+        {showLeave ? (
+          <CreateButton
+            theme={ETheme.DARK}
+            buttonText="Leave"
+            buttonProps={{
+              fullWidth: true,
+              onClick: handleLeaveCommunity,
+              disabled: isLoadingLeave || showLeave === "loading",
+            }}
+          />
+        ) : (
+          <CreateButton
+            theme={ETheme.DARK}
+            buttonText="Join"
+            buttonProps={{
+              fullWidth: true,
+              onClick: handleJoinCommunity,
+              disabled: isLoadingJoin || showLeave === "loading",
+            }}
+          />
+        )}
       </div>
     </section>
   );
