@@ -11,6 +11,7 @@ import { SearchCommunity } from "components/organisms";
 // EXTRA IMPORTS //
 import styles from "./search-communities.module.css";
 import { useAppSelector } from "app/store";
+import { Typography } from "@mui/material";
 
 /////////////////////////////////////////////////////////////////////////////
 type SearchCommunitiesProps = {};
@@ -57,14 +58,19 @@ const SearchCommunities = ({}: SearchCommunitiesProps) => {
       ) : isError ? (
         <HandleError error={error} />
       ) : (
-        isSuccess && (
+        isSuccess &&
+        (communityIds.length === 0 ? (
+          <section className={`${styles["search-community-wrapper"]}`}>
+            <Typography variant="h5">No communities found</Typography>
+          </section>
+        ) : (
           <article>
             {communityIds.map(communityId => (
               <SearchCommunity key={communityId} communityId={communityId} name={name} />
             ))}
             {isFetching && !isLoading && <PostsLoading />}
           </article>
-        )
+        ))
       )}
     </main>
   );

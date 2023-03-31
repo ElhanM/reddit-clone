@@ -9,3 +9,11 @@
   background-color: $post-background;
   margin: 2em auto;
 }
+
+.search-community-wrapper {
+  padding: 1em;
+  border: 1px solid $reddit-border;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}

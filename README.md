@@ -3,7 +3,7 @@
 ## The project is still a work in progress.
 ### Description
 
-Full-stack Reddit clone made with React on the front end and Node.js/Express on the back end, with features that allow users can create posts and communities, as well as upvote and comment on other people's posts.
+Full-stack Reddit clone made with React/TypeScript on the front end and Express/TypeScript along with Sequelize ORM and a PostgreSQL database on the back end.
 
 ## Video of the project
 https://user-images.githubusercontent.com/103935603/222547324-83eef1b5-c250-45ee-97ad-65c2e8f69333.mp4

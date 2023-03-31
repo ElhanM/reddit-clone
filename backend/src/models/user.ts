@@ -81,6 +81,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
             msg: "Username can only contain letters, numbers, dash, underscore and dot and no space",
           },
         },
+        // remove all spaces
         set(value: string) {
           this.setDataValue("username", value.replace(/\s/g, ""));
         },

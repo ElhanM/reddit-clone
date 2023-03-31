@@ -84,7 +84,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           body: { communityId },
         };
       },
-      invalidatesTags: [{ type: "Post" }],
+      invalidatesTags: [{ type: "Post" }, { type: "Community" }, { type: "SearchCommunities" }],
     }),
     leaveCommunity: builder.mutation<ICommunityPostReq, string>({
       query: communityId => {
@@ -95,7 +95,7 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
           body: { communityId },
         };
       },
-      invalidatesTags: [{ type: "Post" }],
+      invalidatesTags: [{ type: "Post" }, { type: "Community" }, { type: "SearchCommunities" }],
     }),
   }),
 });

@@ -4,4 +4,18 @@
   border-radius: 0.2em;
   background-color: #1a1a1b;
   margin: 2em auto;
+}
+
+.search-community-wrapper {
+  padding: 1em;
+  border: 1px solid #343536;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
 }/*# sourceMappingURL=search-communities.module.css.map */
