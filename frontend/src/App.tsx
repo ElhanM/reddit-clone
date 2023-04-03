@@ -52,7 +52,6 @@ const App = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="post/:postId" element={<PostPage />} />
                 <Route path="search-communities" element={<SearchCommunities />} />
-
                 {/* <Route path="register" element={<Register />} /> */}
               </>
             )}
