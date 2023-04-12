@@ -1,24 +1,23 @@
 // PLUGINS IMPORTS //
-import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { useEffect, useRef } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 // COMPONENTS IMPORTS //
-import { CreateButton, AuthTextFieldComponent } from "components/atoms";
-import { HandleError } from "components/templates";
+import { AuthTextFieldComponent, CreateButton } from "components/atoms";
 import { FormWrapper } from "components/organisms";
-import { AuthTemplate } from "components/templates";
+import { AuthTemplate, HandleError } from "components/templates";
 
 // EXTRA IMPORTS //
 import { useLoginMutation } from "features/slices/authSlice";
 import { ILoginForm } from "types/pages";
-import loginFormSchema from "./loginFormSchema";
-import styles from "./login.module.css";
 import { ETheme } from "types/theme";
+import styles from "./login.module.css";
+import loginFormSchema from "./loginFormSchema";
 
 /////////////////////////////////////////////////////////////////////////////
 

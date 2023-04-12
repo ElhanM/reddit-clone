@@ -28,6 +28,24 @@ class PostValidator {
     // postId is a uuid string
     return [param("postId").isUUID().withMessage("The postId value should be a valid uuid")];
   }
+  checkVotePost() {
+    return [
+      body("postId")
+        .isUUID()
+        .withMessage("The postId value should be a valid uuid")
+        .notEmpty()
+        .withMessage("The postId value should not be empty")
+        .isString()
+        .withMessage("The postId value should be string"),
+      body("userId")
+        .isUUID()
+        .withMessage("The userId value should be a valid uuid")
+        .notEmpty()
+        .withMessage("The userId value should not be empty")
+        .isString()
+        .withMessage("The userId value should be string"),
+    ];
+  }
 }
 
 // we export it as object of this class so we don't need to create new instance of this class in controller

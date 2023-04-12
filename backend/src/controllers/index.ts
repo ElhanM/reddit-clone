@@ -5,6 +5,7 @@ export { default as logout } from "./auth/logout";
 export { default as getPostsForUser } from "./posts/getPostsForUser";
 export { default as createPost } from "./posts/createPost";
 export { default as getPost } from "./posts/getPost";
+export { default as votePost } from "./posts/votePost";
 
 export { default as getMe } from "./user/getMe";
 
