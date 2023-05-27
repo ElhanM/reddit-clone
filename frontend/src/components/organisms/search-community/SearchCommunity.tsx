@@ -37,7 +37,7 @@ const SearchCommunity = ({ communityId, name }: SearchCommunityProps) => {
     if (user.userId && community.communityId && showLeave === "loading") {
       setShowLeave(
         // if user.userId can be found in community.Users array, then setShowLeave to true
-        !!community.Users.find(user => user.userId === user.userId),
+        !!community.Users.find(communityUser => user.userId === communityUser.userId),
       );
     }
   }, [community, user]);

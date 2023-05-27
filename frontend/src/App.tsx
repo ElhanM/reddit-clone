@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // COMPONENTS IMPORTS //
-import { CreatePostPage, Error, Home, Login, PostPage, SearchCommunities } from "components/pages";
+import { CreatePostPage, Error, Home, Login, PostPage, Register, SearchCommunities } from "components/pages";
 import { SharedLayout } from "components/templates";
 
 // EXTRA IMPORTS //
@@ -44,18 +44,18 @@ const App = () => {
       <CssBaseline />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={userCookie ? <SharedLayout /> : <Login />}>
+          <Route path="/" element={userCookie && <SharedLayout />}>
             {userCookie && (
               <>
                 <Route index element={<Home />} />
                 <Route path="create-post" element={<CreatePostPage />} />
-                <Route path="login" element={<Login />} />
+                <Route path="login" element={<Register />} />
+                <Route path="register" element={<Register />} />
                 <Route path="post/:postId" element={<PostPage />} />
                 <Route path="search-communities" element={<SearchCommunities />} />
-                {/* <Route path="register" element={<Register />} /> */}
               </>
             )}
-
+            <Route path="register" element={<Register />} />
             <Route path="*" element={userCookie ? <Error /> : <Login />} />
           </Route>
         </Routes>

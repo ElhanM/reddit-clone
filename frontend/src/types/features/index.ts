@@ -10,6 +10,7 @@ export type { default as IGetPostResponse } from "./slices/postSlice/IGetPostRes
 
 export type { default as IUserAuth } from "./slices/authSlice/IUserAuth";
 export type { default as IUserBody } from "./slices/authSlice/IUserBody";
+export type { default as IRegisterUserBody } from "./slices/authSlice/IRegisterUserBody";
 export type { default as IExtendedUserAuth } from "./slices/authSlice/IExtendedUserAuth";
 export type { default as IUserId } from "./slices/authSlice/IUserId";
 

@@ -1,4 +1,4 @@
-export default interface ILoginForm {
+export default interface IRegisterForm {
   username: string;
   email: string;
   password: string;

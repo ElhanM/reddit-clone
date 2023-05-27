@@ -4,7 +4,7 @@
 
 // EXTRA IMPORTS //
 import { apiSlice } from "../api/apiSlice";
-import { IExtendedUserAuth, IReqInfo, IUserAuth, IUserBody } from "types/features";
+import { IExtendedUserAuth, IRegisterUserBody, IReqInfo, IUserAuth, IUserBody } from "types/features";
 import { setUser, logout } from "./userSlice";
 
 /////////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,34 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
+    register: builder.mutation<IUserAuth, IRegisterUserBody>({
+      query: ({ username, email, password }) => {
+        return {
+          method: "POST",
+          // we need to include credentials in order to be able to even set the cookie on the backend
+          credentials: "include",
+          url: "auth/register",
+          body: { username, email, password },
+          // i don't ever need to invalidate an auth request
+          // but I will still provide "Auth" as a tag
+          // this way, I can easily filter and identify requests related to authentication
+          tags: ["Auth"],
+        };
+      },
+      transformResponse: (rawResult: IExtendedUserAuth) => {
+        return rawResult.user;
+      },
+      async onQueryStarted(_args, { dispatch, queryFulfilled }) {
+        try {
+          // add cookie on successful login
+          // resolve queryFulfilled promise
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data));
+        } catch (error) {
+          console.log("register error:", { error });
+        }
+      },
+    }),
     // we need logout to be a mutation/post request in order to be able to dispatch logout action
     logout: builder.mutation<IReqInfo, null>({
       query: () => {
@@ -91,4 +119,4 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLoginMutation, useGetMeMutation, useLogoutMutation } = extendedApiSlice;
+export const { useLoginMutation, useGetMeMutation, useLogoutMutation, useRegisterMutation } = extendedApiSlice;

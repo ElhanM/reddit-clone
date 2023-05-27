@@ -8,7 +8,6 @@ import Cookies from "universal-cookie";
 /////////////////////////////////////////////////////////////////////////////
 
 const setUserCookies = (userId: string) => {
-  console.log({ userId, env: import.meta.env.VITE_COOKIE_EXPIRE });
   const cookies = new Cookies();
   cookies.set(`${import.meta.env.VITE_USER_COOKIE}`, userId, {
     path: "/",
