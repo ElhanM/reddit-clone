@@ -7,9 +7,9 @@ import Cookies from "universal-cookie";
 
 /////////////////////////////////////////////////////////////////////////////
 
-const deleteUserCookies = () => {
+const getUserCookie = () => {
   const cookies = new Cookies();
   return cookies.get(`${import.meta.env.VITE_USER_COOKIE}`);
 };
 
-export default deleteUserCookies;
+export default getUserCookie;

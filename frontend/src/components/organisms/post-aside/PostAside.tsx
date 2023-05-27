@@ -6,17 +6,19 @@ import { Upvote } from "components/molecules";
 
 // EXTRA IMPORTS //
 import styles from "./post-aside.module.css";
+import { EntityId } from "@reduxjs/toolkit";
 
 /////////////////////////////////////////////////////////////////////////////
 
 type PostAsideProps = {
   upvotes: number;
+  postId?: string | EntityId;
 };
 
-const PostAside = ({ upvotes }: PostAsideProps) => {
+const PostAside = ({ upvotes, postId }: PostAsideProps) => {
   return (
     <aside className={`${styles["post-aside"]}`}>
-      <Upvote />
+      <Upvote postId={postId} />
       <Typography component="p" className={`${styles["upvote-count"]}`}>
         {upvotes}
       </Typography>

@@ -4,3 +4,11 @@
   width: 20px;
   fill: $upvote;
 }
+
+.upvote-svg--active {
+  cursor: pointer;
+}
+
+.upvote-svg--active:hover {
+  fill: $error-text;
+}

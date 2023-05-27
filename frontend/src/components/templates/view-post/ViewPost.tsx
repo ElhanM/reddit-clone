@@ -24,7 +24,7 @@ const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, data: post } = useGetPostQuery(postId);
 
-  console.log({ post })
+  console.log({ post });
 
   const [createComment, { isLoading: isLoadingComment, isError: isErrorComment, error: errorComment, isSuccess: isSuccessComment }] =
     useCreateCommentMutation();
@@ -61,7 +61,7 @@ const ViewPost = ({}: ViewPostProps) => {
     return (
       <>
         <PostWrapper postId={postId}>
-          <PostAside upvotes={post.PostUpvotes.length} />
+          <PostAside upvotes={post.PostUpvotes.length} postId={postId} />
           <div className={`${styles["post-section-wrapper"]}`}>
             <PostSection
               communityName={post.Community.name}

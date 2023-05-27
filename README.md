@@ -23,7 +23,7 @@ During development, I did my best to stick to all of the best code practices and
 
 For the front end, Material UI and SCSS modules were utilized for styling. SCSS modules really help with code splitting and prevent naming collisions. Redux Toolkit was used for state management, with the createEntityAdapter hook in order to normalize the state. The benefit of using a normalized state shape is that it makes it easier to perform mutations on using RTK's built-in mutators functions. Furthermore, by writing components that rely on normalized state we avoid having to pass nonprimitive datatypes as props, which in turn reduces the amount of rerenders that occur without having to rely on React.Memo. This leads to an overall performance boost and further optimizes our app.
 
-RTK Query was used for handling asynchronous requests and for implementing infinite scrolling and optimistic updates.
+RTK Query was used for handling asynchronous requests and for implementing infinite scrolling.
 
 As part of the application, I have implemented a functionality that allows users to format the description of their posts using a rich text editor, which also allows me to save that formatted text to the back end and display it on my site without losing the formatting. This text editor also supports the use of code blocks, as well as provides syntax highlighting in multiple languages. In order to create the text editor I used the React Quill library. Then, I used highlight.js in order to add syntax highlighting to code blocks, and I used React Markdown with the rehype-raw plugin in order to render the formatted text without losing the formatting.
 

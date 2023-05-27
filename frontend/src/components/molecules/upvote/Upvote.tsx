@@ -3,14 +3,35 @@
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
+import { useLikePostMutation } from "features/slices/postsSlice";
+import { getUserCookie } from "utils";
 import styles from "./upvote.module.css";
+import { EntityId } from "@reduxjs/toolkit";
 /////////////////////////////////////////////////////////////////////////////
 
-type UpvoteProps = {};
+type UpvoteProps = {
+  postId?: string | EntityId;
+};
 
-const Upvote = (props: UpvoteProps) => {
+const Upvote = ({ postId }: UpvoteProps) => {
+  const [likePost, { isLoading, isError, error, isSuccess }] = useLikePostMutation();
+
+  console.log(getUserCookie());
+
+  const handleUpvoteClick = async () => {
+    if (!getUserCookie() || !postId) return;
+    await likePost({ postId: postId as string, userId: getUserCookie() as string });
+  };
+
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={`${styles["upvote-svg"]}`}>
+    // if postId then add classname
+    <svg
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${styles["upvote-svg"]} ${postId && styles["upvote-svg--active"]}
+    }`}
+      onClick={() => handleUpvoteClick()}
+    >
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
       <g id="SVGRepo_iconCarrier">

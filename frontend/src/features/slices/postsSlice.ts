@@ -138,11 +138,32 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       providesTags: result => [{ type: "Post", postId: result.postId, userId: result.User.userId }],
     }),
+    likePost: builder.mutation<
+      {
+        success: boolean;
+        msg: string;
+      },
+      {
+        postId: string;
+        userId: string;
+      }
+    >({
+      query: ({ postId, userId }) => {
+        return {
+          // allow httpOnly cookies to be sent
+          credentials: "include",
+          method: "POST",
+          url: "posts/vote-post",
+          body: { postId, userId },
+        };
+      },
+      invalidatesTags: [{ type: "Post" }],
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetPostsQuery, useCreatePostMutation, useGetPostQuery } = extendedApiSlice;
+export const { useGetPostsQuery, useCreatePostMutation, useGetPostQuery, useLikePostMutation } = extendedApiSlice;
 
 // returns the query result object
 export const selectPostsResult = extendedApiSlice.endpoints.getPosts.select(null);

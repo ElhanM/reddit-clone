@@ -1,4 +1,12 @@
 .upvote-svg {
   width: 20px;
   fill: #818384;
+}
+
+.upvote-svg--active {
+  cursor: pointer;
+}
+
+.upvote-svg--active:hover {
+  fill: #f44336;
 }/*# sourceMappingURL=upvote.module.css.map */
