@@ -5,9 +5,10 @@ import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
 // COMPONENTS IMPORTS //
 
 // EXTRA IMPORTS //
-import type { ICommunity, ICommunityPostReq, ICommunityRes, IGetCommunities, IGetCommunity } from "types/features";
+import type { ICommunity, ICommunityPostReq, ICommunityRes, ICreateCommunity, IGetCommunities, IGetCommunity } from "types/features";
 import { apiSlice } from "../api/apiSlice";
 import type { RootState } from "app/store";
+import ICommunityResponse from "types/features/slices/communitySlice/ICommunityResponse";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -97,10 +98,23 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: [{ type: "Post" }, { type: "Community" }, { type: "SearchCommunities" }],
     }),
+    createCommunity: builder.mutation<ICommunityResponse, ICreateCommunity>({
+      query: ({ name, description }) => {
+        return {
+          // allow httpOnly cookies to be sent
+          credentials: "include",
+          method: "POST",
+          url: "communities/community/create",
+          body: { name, description },
+        };
+      },
+      invalidatesTags: [{ type: "Community" }],
+    }),
   }),
 });
 
-export const { useGetUserCommunitiesQuery, useGetCommunityQuery, useJoinCommunityMutation, useLeaveCommunityMutation } = extendedApiSlice;
+export const { useGetUserCommunitiesQuery, useGetCommunityQuery, useJoinCommunityMutation, useLeaveCommunityMutation, useCreateCommunityMutation } =
+  extendedApiSlice;
 
 // returns the query result object
 export const selectCommunityResult = extendedApiSlice.endpoints.getUserCommunities.select(null);

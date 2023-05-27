@@ -12,6 +12,7 @@ import { useAppSelector } from "app/store";
 import { useGetMeMutation } from "features/slices/authSlice";
 import { getUserCookie } from "utils";
 import { useGetUserCommunitiesQuery } from "features/slices/communitySlice";
+import CreateCommunityPage from "components/pages/create-community/CreateCommunity";
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -53,6 +54,7 @@ const App = () => {
                 <Route path="register" element={<Register />} />
                 <Route path="post/:postId" element={<PostPage />} />
                 <Route path="search-communities" element={<SearchCommunities />} />
+                <Route path="create-community" element={<CreateCommunityPage />} />
               </>
             )}
             <Route path="register" element={<Register />} />

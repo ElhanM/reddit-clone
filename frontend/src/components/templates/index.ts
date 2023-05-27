@@ -8,3 +8,4 @@ export { default as AuthTemplate } from "./auth-template/AuthTemplate";
 export { default as Navbar } from "./navbar/Navbar";
 export { default as PostPageAside } from "./post-page-aside/PostPageAside";
 export { default as ViewPost } from "./view-post/ViewPost";
+export { default as CreateCommunity } from "./create-community/CreateCommunity";

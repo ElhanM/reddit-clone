@@ -1,11 +1,11 @@
 @use "../../../scss/abstracts/colors" as *;
 @use "../../../scss/abstracts/mixins" as *;
 
-.create-post-wrapper {
+.create-community-wrapper {
   display: grid;
   grid-template-columns: 1fr;
 }
-.create-post-header {
+.create-community-header {
   color: $pale-text-header;
 }
 
@@ -18,16 +18,16 @@
   margin: 0.8em auto;
 }
 
-.create-post {
+.create-community {
   background-color: $post-background;
 }
 
-.inner-create-post {
+.inner-create-community {
   margin: 0.8em 1em;
 }
 
-// select all direct children of .inner-create-post, except the last one
-.inner-create-post > :not(:last-child) {
+// select all direct children of .inner-create-community, except the last one
+.inner-create-community > :not(:last-child) {
   margin-bottom: 0.8em;
 }
 
@@ -36,7 +36,7 @@
   background-color: darken($post-background, 2%);
 }
 
-.post-button {
+.community-button {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -45,7 +45,7 @@
   padding: 0 !important;
 }
 
-.post-button button {
+.community-button button {
   @include small-button;
 }
 

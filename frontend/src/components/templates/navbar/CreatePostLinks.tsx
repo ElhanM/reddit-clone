@@ -51,14 +51,14 @@ const CreatePostLinks = ({ link, handleClick, linkOnly, renderIconText, lgScreen
         to: "/create-post",
         text: "Create Post",
       },
-      {
-        to: "#",
-        text: "Profile",
-      },
-      {
-        to: "#",
-        text: "My account",
-      },
+      // {
+      //   to: "#",
+      //   text: "Profile",
+      // },
+      // {
+      //   to: "#",
+      //   text: "My account",
+      // },
       {
         to: "login",
         text: "Logout",

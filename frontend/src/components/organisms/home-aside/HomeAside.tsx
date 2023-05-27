@@ -18,7 +18,7 @@ const HomeAside = (props: HomeAsideProps) => {
   return (
     <aside>
       <Paper className={`${styles["home_aside-wrapper"]}`}>
-        <div className={`${styles["background"]}`}/>
+        <div className={`${styles["background"]}`} />
         <header className={`${styles["header"]}`}>
           <Avatar size={EAvatar.MEDIUM} translate />
           <Typography>Home</Typography>
@@ -36,7 +36,7 @@ const HomeAside = (props: HomeAsideProps) => {
                 }}
               />
             </PlainLink>
-            <PlainLink to="#">
+            <PlainLink to="create-community">
               <CreateButton
                 theme={ETheme.DARK}
                 buttonText="Create Community"
