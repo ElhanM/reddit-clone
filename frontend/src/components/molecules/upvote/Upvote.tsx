@@ -16,8 +16,6 @@ type UpvoteProps = {
 const Upvote = ({ postId }: UpvoteProps) => {
   const [likePost, { isLoading, isError, error, isSuccess }] = useLikePostMutation();
 
-  console.log(getUserCookie());
-
   const handleUpvoteClick = async () => {
     if (!getUserCookie() || !postId) return;
     await likePost({ postId: postId as string, userId: getUserCookie() as string });

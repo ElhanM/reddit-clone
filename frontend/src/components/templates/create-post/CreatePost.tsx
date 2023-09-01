@@ -50,7 +50,6 @@ const CreatePost = (props: CreatePostProps) => {
       setEmptyTitle(true);
     }
     if (markdownText !== "<p><br></p>" && markdownText !== "" && community !== "" && data.title !== "") {
-      console.log("data", data, "markdownText", markdownText, "community", community);
       const createPostData = await createPost({
         title: data.title,
         description: markdownText,
@@ -62,7 +61,6 @@ const CreatePost = (props: CreatePostProps) => {
 
   useEffect(() => {
     if (emptyMarkdown) setEmptyMarkdown(false);
-    console.log("markdownText", markdownText);
   }, [markdownText]);
 
   useEffect(() => {

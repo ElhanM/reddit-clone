@@ -24,8 +24,6 @@ const ViewPost = ({}: ViewPostProps) => {
   const { postId } = useParams<{ postId: string }>();
   const { isLoading, isSuccess, isError, error, data: post } = useGetPostQuery(postId);
 
-  console.log({ post });
-
   const [createComment, { isLoading: isLoadingComment, isError: isErrorComment, error: errorComment, isSuccess: isSuccessComment }] =
     useCreateCommentMutation();
 
@@ -34,7 +32,6 @@ const ViewPost = ({}: ViewPostProps) => {
 
   useEffect(() => {
     if (emptyMarkdown) setEmptyMarkdown(false);
-    console.log("markdownText", markdownText);
   }, [markdownText]);
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {

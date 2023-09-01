@@ -32,7 +32,6 @@ export const userSlice = createSlice({
     setUser: (state, action: PayloadAction<IUserAuth>) => {
       state.user = action.payload;
       setUserCookies(action.payload.userId);
-      console.log({ state: state.user });
     },
   },
 });

@@ -108,7 +108,6 @@ export const extendedApiSlice = apiSlice.injectEndpoints({
       },
       async onQueryStarted(_args, { dispatch, queryFulfilled }) {
         try {
-          console.log("LOGOUT AUTH SLICE");
           // "optimistic" logout, which will delete the cookie on the frontend before the backend request
           // that way the user gets redirected to the login page immediately, and also the navbar gets removed and routes updated
           dispatch(logout());

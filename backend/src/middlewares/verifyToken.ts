@@ -4,12 +4,9 @@ import { AuthRequest } from "types/express";
 import { ErrorResponse } from "utils";
 
 const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
-  // console.log(req.cookies);
   const cookies = req.headers.cookie;
-  console.log("=========================");
-  console.log("cookie:", req.headers.cookie);
   if (cookies) {
-    // since user can have multiple cookies, we have our cookie a unique name that is stored in the .env file
+    // since user can have multiple cookies, we give our cookie a unique name that is stored in the .env file
     // and now we can get the cookie we want without restricting the user to only have one cookie
     const token = cookies
       .split("; ")
@@ -17,7 +14,6 @@ const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
         return cookie.startsWith(String(process.env.USER_COOKIE));
       })
       ?.split("=")[1];
-    console.log({ token });
     if (!token) {
       return next(new ErrorResponse("No token found", 404));
     }
@@ -31,7 +27,6 @@ const verifyToken = (req: AuthRequest, res: Response, next: NextFunction) => {
         // destructure userId from user
         const { userId } = user as { userId: string };
         // in order to add userId to req object, we need to add it to the req type, hence the AuthRequest type
-        console.log({ userId });
         req.userId = userId;
         next();
       });
