@@ -1,6 +1,5 @@
 # Full Stack Reddit Clone Project
 
-## The project is still a work in progress.
 ### Description
 
 Full-stack Reddit clone made with React/TypeScript on the front end and Express/TypeScript along with Sequelize ORM and a PostgreSQL database on the back end.
