@@ -20,7 +20,7 @@ During development, I did my best to stick to all of the best code practices and
 
 <br/>
 
-For the front end, Material UI and SCSS modules were utilized for styling. SCSS modules really help with code splitting and prevent naming collisions. Redux Toolkit was used for state management, with the createEntityAdapter hook in order to normalize the state. The benefit of using a normalized state shape is that it makes it easier to perform mutations on using RTK's built-in mutators functions. Furthermore, by writing components that rely on normalized state we avoid having to pass nonprimitive datatypes as props, which in turn reduces the amount of rerenders that occur without having to rely on React.Memo. This leads to an overall performance boost and further optimizes our app.
+For the front end, Material UI and SCSS modules were utilized for styling. SCSS modules really help with code splitting and prevent naming collisions. Redux Toolkit was used for state management, with the createEntityAdapter hook in order to normalize the state. The benefit of using a normalized state shape is that it makes it easier to perform mutations using RTK's built-in mutators functions. Furthermore, by writing components that rely on normalized state we avoid having to pass nonprimitive datatypes as props, which in turn reduces the amount of rerenders that occur without having to rely on React.Memo. This leads to an overall performance boost and further optimizes our app.
 
 RTK Query was used for handling asynchronous requests and for implementing infinite scrolling.
 
